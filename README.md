@@ -1,15 +1,15 @@
 # OrderEats_App
 
-1. create app - OrderEats
+Create app - OrderEats
 
 <!-- Create Files and Folders -->
 
-2. activity - MainActivity (Pre-Defined)
-3. activity - splash_screen
-4. activity - StartActivity
-5. activity - LoginActivity
-6. activity - SignActivity
-7. activity - ChooseLocationActivity
+1. activity - MainActivity (Pre-Defined)
+2. activity - splash_screen
+3. activity - StartActivity
+4. activity - LoginActivity
+5. activity - SignActivity
+6. activity - ChooseLocationActivity
 
 <!-- Create Fragment Files -->
 
