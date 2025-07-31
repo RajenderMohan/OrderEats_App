@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">OrderEats</string>
+    <string name="dev_name">Design By Rajender, Shekhar, Anushka</string>
+    <string name="para1">To provide you with the best dining experience, we need your permission to access your device\'s location. By enabling location services, we can offer personalized recommendations accurate delivery instruments and ensure a seamless food delivery experience.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="list_of_locations">
+        <item>New York</item>
+        <item>London</item>
+        <item>Paris</item>
+        <item>Tokyo</item>
+        <item>Sydney</item>
+        <item>Mumbai</item>
+        <item>Delhi</item>
+        <item>Jaipur</item>
+        <item>Other</item>
+    </string-array>
+</resources>
