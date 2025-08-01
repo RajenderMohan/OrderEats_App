@@ -38,7 +38,6 @@
             android:id="@+id/listOfLocation"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:drawableEnd="@drawable/icon_arrow_down"
             android:fontFamily="@font/lato_ltalic"
             android:inputType="none"
             android:paddingLeft="15sp"

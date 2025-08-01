@@ -16,9 +16,9 @@ class splash_screen : AppCompatActivity() {
         enableEdgeToEdge()
         this.setContentView(R.layout.activity_splash_screen)
         Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent(this, StartActivity::class.java)
+            val intent = Intent(this, SignActivity::class.java)
             startActivity(intent)
             finish()
-        }, 3000) // 3000 milliseconds = 3 seconds
+        }, 1000) // 3000 milliseconds = 3 seconds
     }
 }
