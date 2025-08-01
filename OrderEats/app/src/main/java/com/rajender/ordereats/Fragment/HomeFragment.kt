@@ -5,9 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.denzcoskun.imageslider.constants.ScaleTypes
+import com.denzcoskun.imageslider.models.SlideModel
 import com.rajender.ordereats.R
+import com.rajender.ordereats.databinding.FragmentHomeBinding
 
+@Suppress("UNREACHABLE_CODE")
 class HomeFragment : Fragment() {
+    private  lateinit var binding: FragmentHomeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,8 +22,25 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        binding = FragmentHomeBinding.inflate(inflater, container,false)
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        return binding.root
+
+
+    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+
+        val imageList = ArrayList<SlideModel>()
+        imageList.add(SlideModel(R.drawable.burger, ScaleTypes.FIT))
+        imageList.add(SlideModel(R.drawable.logo_app, ScaleTypes.FIT))
+        imageList.add(SlideModel(R.drawable.logo_app1, ScaleTypes.FIT))
+
+
+        val imageSlider = binding.imageSlider
+        imageSlider.setImageList(imageList)
+        imageSlider.setImageList(imageList, ScaleTypes.FIT)
     }
 
     companion object{
