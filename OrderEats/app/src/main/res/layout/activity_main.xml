@@ -27,32 +27,29 @@
         android:layout_marginTop="45dp"
         android:text="Explore Your Favorite Food"
         android:textSize="24sp"
-        android:textColor="@color/black"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginEnd="16dp"
-        android:background="@color/black"
+        android:layout_width="23dp"
+        android:layout_height="23dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="30dp"
         android:padding="2dp"
         app:layout_constraintBottom_toBottomOf="@+id/textView14"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView14"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/notification_icon" />
+        app:srcCompat="@drawable/bell_icon" />
 
     <fragment
         android:id="@+id/fragmentContainerView"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="90dp"
-        android:layout_marginEnd="16dp"
         app:defaultNavHost="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
