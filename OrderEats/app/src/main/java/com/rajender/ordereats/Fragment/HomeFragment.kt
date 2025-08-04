@@ -28,9 +28,13 @@ class HomeFragment : Fragment() {
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater, container,false)
         // Inflate the layout for this fragment
+
+        binding.viewAllMenu.setOnClickListener{
+            val bottomSheetDialog = menuBottomSheetFragment()
+            bottomSheetDialog.show(parentFragmentManager, "Test")
+        }
+
         return binding.root
-
-
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {

@@ -12,6 +12,7 @@ Create app - OrderEats
 6. activity - ChooseLocationActivity
 7. activity - populer_item
 8. activity - cart_item
+9. activity - menu_item
 
 <!-- Create Fragment Files -->
 
@@ -20,11 +21,13 @@ Create app - OrderEats
     SearchFragment
     HistoryFragment
     ProfileFragment
+    menuBottomSheetFragment
 
 <!-- Create Adapter Files -->
 
     PopulerAdapter
     CartAdapter
+    MenuAdapter
 
 <!-- Create Drawable Files -->
 
