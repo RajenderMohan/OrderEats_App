@@ -22,6 +22,7 @@ Layout - activity_choose_location
 Layout - populer_item
 Layout - cart_item
 Layout - menu_item
+Layout - notification_item
 
 <!-- Create Fragments Files -->
 
@@ -31,6 +32,7 @@ Layout - menu_item
     HistoryFragment - fragment_history
     ProfileFragment - fragment_profile
     menuBottomSheet - Fragmentfragment_menu_bottom_sheet
+    Notification_Botton_Fragment - fragment_notification_botton
 
 <!-- Create Adapter Files -->
 
@@ -38,6 +40,7 @@ Layout - menu_item
     CartAdapter
     MenuAdapter
     BuyAgainAdapter
+    NotificationAdapter
 
 <!-- Create Drawable Files -->
 
@@ -47,6 +50,7 @@ Layout - menu_item
     addtocart.xml
     textviewshape
     proceedbuttonshape
+    profileedittextshape
 
 <!-- Create Navigation File -->
 
