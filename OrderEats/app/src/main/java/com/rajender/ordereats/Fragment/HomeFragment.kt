@@ -42,8 +42,18 @@ class HomeFragment : Fragment() {
 
         val imageList = ArrayList<SlideModel>()
         imageList.add(SlideModel(R.drawable.burger, ScaleTypes.FIT))
-        imageList.add(SlideModel(R.drawable.logo_app, ScaleTypes.FIT))
-        imageList.add(SlideModel(R.drawable.logo_app1, ScaleTypes.FIT))
+        imageList.add(SlideModel(R.drawable.chole_kulche, ScaleTypes.FIT))
+        imageList.add(SlideModel(R.drawable.dosa, ScaleTypes.FIT))
+        imageList.add(SlideModel(R.drawable.momo, ScaleTypes.FIT))
+        imageList.add(SlideModel(R.drawable.noodles, ScaleTypes.FIT))
+        imageList.add(SlideModel(R.drawable.paneer, ScaleTypes.FIT))
+        imageList.add(SlideModel(R.drawable.pizza, ScaleTypes.FIT))
+        imageList.add(SlideModel(R.drawable.momos, ScaleTypes.FIT))
+        imageList.add(SlideModel(R.drawable.noodle, ScaleTypes.FIT))
+        imageList.add(SlideModel(R.drawable.pizzas, ScaleTypes.FIT))
+        imageList.add(SlideModel(R.drawable.tikka, ScaleTypes.FIT))
+        imageList.add(SlideModel(R.drawable.dosas, ScaleTypes.FIT))
+
 
 
         val imageSlider = binding.imageSlider

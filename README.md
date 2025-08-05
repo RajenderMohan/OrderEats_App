@@ -2,7 +2,7 @@
 
 Create app - OrderEats
 
-<!-- Create Files and Folders -->
+<!-- Create Activity Files -->
 
 1. activity - MainActivity (Pre-Defined)
 2. activity - splash_screen
@@ -10,24 +10,34 @@ Create app - OrderEats
 4. activity - LoginActivity
 5. activity - SignActivity
 6. activity - ChooseLocationActivity
-7. activity - populer_item
-8. activity - cart_item
-9. activity - menu_item
 
-<!-- Create Fragment Files -->
+<!-- Create Layout Files -->
 
-    HomeFragment
-    CartFragment
-    SearchFragment
-    HistoryFragment
-    ProfileFragment
-    menuBottomSheetFragment
+Layout - activity_main
+Layout - activity_splash_screen
+Layout - activity_start
+Layout - activity_login
+Layout - activity_signup
+Layout - activity_choose_location
+Layout - populer_item
+Layout - cart_item
+Layout - menu_item
+
+<!-- Create Fragments Files -->
+
+    HomeFragment - fragment_home
+    CartFragment - fragment_cart
+    SearchFragment - fragmentsearch
+    HistoryFragment - fragment_history
+    ProfileFragment - fragment_profile
+    menuBottomSheet - Fragmentfragment_menu_bottom_sheet
 
 <!-- Create Adapter Files -->
 
     PopulerAdapter
     CartAdapter
     MenuAdapter
+    BuyAgainAdapter
 
 <!-- Create Drawable Files -->
 
