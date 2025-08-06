@@ -10,6 +10,7 @@ Create app - OrderEats
 4. activity - LoginActivity
 5. activity - SignActivity
 6. activity - ChooseLocationActivity
+7. activity - PayOutActivity
 
 <!-- Create Layout Files -->
 
@@ -23,6 +24,7 @@ Layout - populer_item
 Layout - cart_item
 Layout - menu_item
 Layout - notification_item
+Layout - activity_pay_out
 
 <!-- Create Fragments Files -->
 
@@ -33,6 +35,7 @@ Layout - notification_item
     ProfileFragment - fragment_profile
     menuBottomSheet - Fragmentfragment_menu_bottom_sheet
     Notification_Botton_Fragment - fragment_notification_botton
+    CongratsBottomSheet - fragment_congrats_bottom_sheet
 
 <!-- Create Adapter Files -->
 
@@ -51,6 +54,7 @@ Layout - notification_item
     textviewshape
     proceedbuttonshape
     profileedittextshape
+    gohomeshape
 
 <!-- Create Navigation File -->
 
