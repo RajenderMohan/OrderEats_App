@@ -36,7 +36,7 @@
         <!-- Removed bottom constraint to button, as it will now be positioned below RecyclerView -->
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button"
+            android:id="@+id/proceedButton"
             android:layout_width="0dp"
             android:layout_height="58dp"
             android:layout_marginStart="32dp"

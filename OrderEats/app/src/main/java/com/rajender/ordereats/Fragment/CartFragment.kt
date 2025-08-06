@@ -1,11 +1,13 @@
 package com.rajender.ordereats.Fragment
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.rajender.ordereats.PayOutActivity
 import com.rajender.ordereats.R
 import com.rajender.ordereats.adapter.CartAdapter
 import com.rajender.ordereats.databinding.FragmentCartBinding
@@ -41,9 +43,9 @@ class CartFragment : Fragment() {
         binding.cartRecyclerView.adapter = adapter
 
         // You can add click listener for your proceed button here if needed
-        binding.button.setOnClickListener {
-            // Handle proceed button click
-            // For example: navigate to checkout, show a Toast, etc.
+        binding.proceedButton.setOnClickListener {
+            val intent = Intent(requireContext(), PayOutActivity::class.java)
+            startActivity(intent)
         }
 
         return binding.root
