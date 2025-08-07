@@ -1,14 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     tools:context=".Fragment.CartFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Cart" />
+        android:layout_height="wrap_content"> <!-- Height must be wrap_content for ConstraintLayout inside NestedScrollView -->
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+        android:text="Cart"
+        android:textColor="@color/text_color"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/cartRecyclerView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+        android:nestedScrollingEnabled="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView17"  />
+        <!-- Replace item_cart_placeholder with your actual cart item layout for preview -->
+        <!-- Removed bottom constraint to button, as it will now be positioned below RecyclerView -->
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/proceedButton"
+            android:layout_width="0dp"
+            android:layout_height="58dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="100dp"
+            android:background="@drawable/proceedbuttonshape"
+            android:fontFamily="@font/lato_blackitalic"
+            android:text="Proceed"
+            android:textSize="16dp"
+            android:textAllCaps="false"
+            android:textColor="@color/text_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cartRecyclerView"
+            app:layout_constraintBottom_toBottomOf="parent"/> <!-- Constrain button to the bottom of ConstraintLayout -->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
