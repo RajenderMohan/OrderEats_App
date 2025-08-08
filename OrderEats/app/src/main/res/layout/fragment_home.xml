@@ -73,18 +73,21 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardView3" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/PopulerRecyclerView"
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="16dp"
-    android:nestedScrollingEnabled="false"
-        android:background="@color/white"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/viewAllMenu"
-    app:layout_constraintBottom_toBottomOf="parent"
-    android:layout_marginBottom="16dp" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/PopulerRecyclerView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@color/white"
+            android:nestedScrollingEnabled="false"
+            tools:listitem="@layout/populer_item"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewAllMenu"
+            app:layout_constraintVertical_bias="0.273" />
     <!-- Optional: Add some bottom margin -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

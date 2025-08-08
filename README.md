@@ -1,21 +1,21 @@
-# OrderEats_App
+# OrderEats App
 
-Create app - OrderEats
+Create App - OrderEats
 
 <!-- Create Activity Files -->
 
-1. activity - MainActivity (Pre-Defined)
-2. activity - splash_screen
-3. activity - StartActivity
-4. activity - LoginActivity
-5. activity - SignActivity
-6. activity - ChooseLocationActivity
-7. activity - PayOutActivity
-8. activity - DetailsActivity
+1. Activity - MainActivity (Pre-Defined)
+2. Activity - splash_screen
+3. Activity - StartActivity
+4. Activity - LoginActivity
+5. Activity - SignActivity
+6. Activity - ChooseLocationActivity
+7. Activity - PayOutActivity
+8. Activity - DetailsActivity
 
 <!-- Create Layout Files -->
 
-Layout - activity_main
+Layout - activity_main (Pre-Defined)
 Layout - activity_splash_screen
 Layout - activity_start
 Layout - activity_login
@@ -70,3 +70,21 @@ Layout - notification_item
     slide_in_from_left.xml
     slide_in_from_right.xml
     fade_in_slide_up_delayed.xml
+
+Create Admin Panel OrderEats App
+
+<!-- Adimn Panel All Files -->
+
+<!-- Create Activity Files -->
+
+Activity - MainActivity (Pre-Defined)
+Activity - SplashScreenActivity
+Activity - LoginActivity
+Activity - SignUpActivity
+
+<!-- Create Layout Files -->
+
+Layout - activity_main (Pre-Defined)
+Layout - activity_splash_screen
+Layout - activity_login
+Layout - activity_sign_up
