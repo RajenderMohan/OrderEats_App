@@ -33,7 +33,7 @@ class SearchFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentSearchBinding.inflate(inflater, container, false)
-        adapter = MenuAdapter(filteredMenuFoodName, filteredMenuItemPrice, filteredMenuImages)
+        adapter = MenuAdapter(filteredMenuFoodName, filteredMenuItemPrice, filteredMenuImages, requireContext())
         binding.menuRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.menuRecyclerView.adapter = adapter
 
@@ -59,7 +59,8 @@ class SearchFragment : Fragment() {
     }
 
     private fun setupSearchView() {
-        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextChange(query: String): Boolean {
                 filterMenuItems(query)
                 return true

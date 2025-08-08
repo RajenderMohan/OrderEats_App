@@ -11,6 +11,7 @@ Create app - OrderEats
 5. activity - SignActivity
 6. activity - ChooseLocationActivity
 7. activity - PayOutActivity
+8. activity - DetailsActivity
 
 <!-- Create Layout Files -->
 
@@ -20,11 +21,12 @@ Layout - activity_start
 Layout - activity_login
 Layout - activity_signup
 Layout - activity_choose_location
+Layout - activity_pay_out
+Layout - activity_details
 Layout - populer_item
 Layout - cart_item
 Layout - menu_item
 Layout - notification_item
-Layout - activity_pay_out
 
 <!-- Create Fragments Files -->
 

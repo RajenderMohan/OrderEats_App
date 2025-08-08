@@ -5,12 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    android:layout_marginBottom="60dp"
+    android:layout_marginBottom="65dp"
+    android:background="@color/white"
     tools:context=".Fragment.HomeFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/white">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView3"
@@ -19,7 +21,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
         android:layout_marginTop="4dp"
-        app:cardCornerRadius="25dp"
+        app:cardCornerRadius="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -28,7 +30,8 @@
             android:id="@+id/image_slider"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="15dp"
+            android:background="#53E88b"
+            android:padding="10dp"
             app:iss_auto_cycle="true"
             app:iss_delay="2000"
             app:iss_no_dots="true"
@@ -43,6 +46,7 @@
             android:layout_marginStart="16dp"
             android:fontFamily="@font/lato_blackitalic"
             android:text="Populer"
+            android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintBaseline_toBaselineOf="@+id/viewAllMenu"
@@ -75,6 +79,7 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="16dp"
     android:nestedScrollingEnabled="false"
+        android:background="@color/white"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/viewAllMenu"
