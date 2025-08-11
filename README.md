@@ -83,6 +83,7 @@ Activity - LoginActivity
 Activity - SignUpActivity
 Activity - AddItemActivity
 Activity - AllItemActivity
+Activity - OutForDeliveryActivity
 
 <!-- Create Layout Files -->
 
@@ -92,12 +93,15 @@ Layout - activity_login
 Layout - activity_sign_up
 Layout - activity_add_item
 Layout - activity_all_item
+Layout - activity_out_for_delivery
 
 Layout - item_item
+Layout - delivery_item
 
 <!-- Create Adapter Files -->
 
     AddItemAdapter
+    DeliveryAdapter
 
 <!-- Create Drawable Files -->
 

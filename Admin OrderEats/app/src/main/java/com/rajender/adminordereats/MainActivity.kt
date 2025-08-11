@@ -17,12 +17,17 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(binding.root)
         binding.addMenu.setOnClickListener {
-            val intent = Intent(this, AddItemActivity::class.java)
-            startActivity(intent)
+            val i1 = Intent(this, AddItemActivity::class.java)
+            startActivity(i1)
         }
         binding.allItemMenu.setOnClickListener {
-            val intent = Intent(this, AllItemActivity::class.java)
-            startActivity(intent)
+            val i2 = Intent(this, AllItemActivity::class.java)
+            startActivity(i2)
+        }
+        // In PreviousActivity.kt
+        binding.outForDeliveryButton.setOnClickListener {
+            val intent = Intent(this, OutForDeliveryActivity::class.java)
+            startActivity(intent) // This line starts OutForDeliveryActivity
         }
 
     }
