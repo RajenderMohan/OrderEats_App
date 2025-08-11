@@ -81,6 +81,8 @@ Activity - MainActivity (Pre-Defined)
 Activity - SplashScreenActivity
 Activity - LoginActivity
 Activity - SignUpActivity
+Activity - AddItemActivity
+Activity - AllItemActivity
 
 <!-- Create Layout Files -->
 
@@ -88,3 +90,17 @@ Layout - activity_main (Pre-Defined)
 Layout - activity_splash_screen
 Layout - activity_login
 Layout - activity_sign_up
+Layout - activity_add_item
+Layout - activity_all_item
+
+Layout - item_item
+
+<!-- Create Adapter Files -->
+
+    AddItemAdapter
+
+<!-- Create Drawable Files -->
+
+edittextshape
+greenbuttongradient
+greencard
