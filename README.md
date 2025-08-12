@@ -71,6 +71,9 @@ Layout - notification_item
     slide_in_from_right.xml
     fade_in_slide_up_delayed.xml
 
+
+#  Admin OrderEats App
+
 Create Admin Panel OrderEats App
 
 <!-- Adimn Panel All Files -->
@@ -84,6 +87,9 @@ Activity - SignUpActivity
 Activity - AddItemActivity
 Activity - AllItemActivity
 Activity - OutForDeliveryActivity
+Activity - AdminProfileActivity
+Activity - CreateUserActivity
+Activity - PendingOrderActivity
 
 <!-- Create Layout Files -->
 
@@ -94,6 +100,9 @@ Layout - activity_sign_up
 Layout - activity_add_item
 Layout - activity_all_item
 Layout - activity_out_for_delivery
+Layout - activity_admin_profile
+Layout - activity_create_user
+Layout - activity_pending_order
 
 Layout - item_item
 Layout - delivery_item
