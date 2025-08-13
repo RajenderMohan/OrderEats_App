@@ -1,30 +1,32 @@
-# OrderEats_App
+# OrderEats App
 
-Create app - OrderEats
+Create App - OrderEats
 
 <!-- Create Activity Files -->
 
-1. activity - MainActivity (Pre-Defined)
-2. activity - splash_screen
-3. activity - StartActivity
-4. activity - LoginActivity
-5. activity - SignActivity
-6. activity - ChooseLocationActivity
-7. activity - PayOutActivity
+1. Activity - MainActivity (Pre-Defined)
+2. Activity - splash_screen
+3. Activity - StartActivity
+4. Activity - LoginActivity
+5. Activity - SignActivity
+6. Activity - ChooseLocationActivity
+7. Activity - PayOutActivity
+8. Activity - DetailsActivity
 
 <!-- Create Layout Files -->
 
-Layout - activity_main
+Layout - activity_main (Pre-Defined)
 Layout - activity_splash_screen
 Layout - activity_start
 Layout - activity_login
 Layout - activity_signup
 Layout - activity_choose_location
+Layout - activity_pay_out
+Layout - activity_details
 Layout - populer_item
 Layout - cart_item
 Layout - menu_item
 Layout - notification_item
-Layout - activity_pay_out
 
 <!-- Create Fragments Files -->
 
@@ -68,3 +70,50 @@ Layout - activity_pay_out
     slide_in_from_left.xml
     slide_in_from_right.xml
     fade_in_slide_up_delayed.xml
+
+
+#  Admin OrderEats App
+
+Create Admin Panel OrderEats App
+
+<!-- Adimn Panel All Files -->
+
+<!-- Create Activity Files -->
+
+Activity - MainActivity (Pre-Defined)
+Activity - SplashScreenActivity
+Activity - LoginActivity
+Activity - SignUpActivity
+Activity - AddItemActivity
+Activity - AllItemActivity
+Activity - OutForDeliveryActivity
+Activity - AdminProfileActivity
+Activity - CreateUserActivity
+Activity - PendingOrderActivity
+
+<!-- Create Layout Files -->
+
+Layout - activity_main (Pre-Defined)
+Layout - activity_splash_screen
+Layout - activity_login
+Layout - activity_sign_up
+Layout - activity_add_item
+Layout - activity_all_item
+Layout - activity_out_for_delivery
+Layout - activity_admin_profile
+Layout - activity_create_user
+Layout - activity_pending_order
+
+Layout - item_item
+Layout - delivery_item
+
+<!-- Create Adapter Files -->
+
+    AddItemAdapter
+    DeliveryAdapter
+
+<!-- Create Drawable Files -->
+
+edittextshape
+greenbuttongradient
+greencard

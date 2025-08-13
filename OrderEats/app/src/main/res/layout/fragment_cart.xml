@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
+    android:background="@color/white"
     tools:context=".Fragment.CartFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -42,7 +43,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="100dp"
+            android:layout_marginBottom="95dp"
             android:background="@drawable/proceedbuttonshape"
             android:fontFamily="@font/lato_blackitalic"
             android:text="Proceed"
