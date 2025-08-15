@@ -16,7 +16,6 @@ class HistoryFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -24,14 +23,21 @@ class HistoryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHistoryBinding.inflate(layoutInflater, container, false)
-        // Inflate the layout for this fragment
         setupRecyclerView()
         return binding.root
     }
+
     private fun setupRecyclerView() {
         val buyAgainFoodName = arrayListOf("Pizza", "Burger", "Pizza", "Burger", "Pizza", "Burger")
         val buyAgainFoodPrice = arrayListOf("$5", "$5", "$5", "$5", "$5", "$5")
-        val buyAgainFoodImage = arrayListOf(R.drawable.pizzas, R.drawable.burger, R.drawable.pizzas, R.drawable.burger, R.drawable.pizzas, R.drawable.burger)
+        val buyAgainFoodImage = arrayListOf(
+            R.drawable.pizzas,
+            R.drawable.burger,
+            R.drawable.pizzas,
+            R.drawable.burger,
+            R.drawable.pizzas,
+            R.drawable.burger
+        )
         buyAgainAdapter = BuyAgainAdapter(buyAgainFoodName, buyAgainFoodPrice, buyAgainFoodImage)
         binding.BuyAgainRecyclerView.adapter = buyAgainAdapter
         binding.BuyAgainRecyclerView.layoutManager = LinearLayoutManager(requireContext())

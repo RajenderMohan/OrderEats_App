@@ -71,8 +71,7 @@ Layout - notification_item
     slide_in_from_right.xml
     fade_in_slide_up_delayed.xml
 
-
-#  Admin OrderEats App
+# Admin OrderEats App
 
 Create Admin Panel OrderEats App
 
@@ -106,11 +105,13 @@ Layout - activity_pending_order
 
 Layout - item_item
 Layout - delivery_item
+Layout - pending_order_item
 
 <!-- Create Adapter Files -->
 
     AddItemAdapter
     DeliveryAdapter
+    PendingOrderAdapter
 
 <!-- Create Drawable Files -->
 

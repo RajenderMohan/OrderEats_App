@@ -12,6 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AdminOrderEats">
         <activity
+            android:name=".PendingOrderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CreateUserActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AdminProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".OutForDeliveryActivity"
             android:exported="false" />
         <activity
@@ -28,17 +37,15 @@
             android:exported="false" />
         <activity
             android:name=".SplashScreenActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".MainActivity"
-            android:exported="true" >
-
         </activity>
     </application>
 

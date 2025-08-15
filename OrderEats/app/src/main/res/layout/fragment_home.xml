@@ -31,6 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#53E88b"
+            android:rotationX="30"
             android:padding="10dp"
             app:iss_auto_cycle="true"
             app:iss_delay="2000"

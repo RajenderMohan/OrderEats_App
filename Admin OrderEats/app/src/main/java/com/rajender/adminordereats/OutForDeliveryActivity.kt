@@ -28,13 +28,13 @@ class OutForDeliveryActivity : AppCompatActivity() {
             "Karuna Singh"
         )
         // MAKE SURE THIS LIST HAS THE SAME NUMBER OF ITEMS
-        val notReceviedTextView = arrayListOf(
+        val statusMonay = arrayListOf(
             "Recevied",
             "Not Recevied",
             "Pending",
             "Recevied" // EXAMPLE: Added a fourth item. Adjust to your actual data.
         )
-        val adapter = DeliveryAdapter(customerName, notReceviedTextView)
+        val adapter = DeliveryAdapter(customerName, statusMonay)
         binding.deliveryRecyclerView.layoutManager = LinearLayoutManager(this)
         binding.deliveryRecyclerView.adapter = adapter
 

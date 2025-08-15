@@ -53,6 +53,8 @@
             android:id="@+id/DetailFoodImage"
             android:layout_width="wrap_content"
             android:layout_height="180dp"
+            android:rotationX="10"
+            android:rotationY="10"
             app:srcCompat="@drawable/burger" />
 
     </androidx.cardview.widget.CardView>

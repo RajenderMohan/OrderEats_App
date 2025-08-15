@@ -29,6 +29,18 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, OutForDeliveryActivity::class.java)
             startActivity(intent) // This line starts OutForDeliveryActivity
         }
+        binding.profile.setOnClickListener {
+            val intent = Intent(this, AdminProfileActivity::class.java)
+            startActivity(intent) // This line starts OutForDeliveryActivity
+        }
+        binding.createNewUser.setOnClickListener {
+            val intent = Intent(this, CreateUserActivity::class.java)
+            startActivity(intent) // This line starts OutForDeliveryActivity
+        }
+        binding.pendingOrder.setOnClickListener {
+            val intent = Intent(this, PendingOrderActivity::class.java)
+            startActivity(intent) // This line starts OutForDeliveryActivity
+        }
 
     }
 }
