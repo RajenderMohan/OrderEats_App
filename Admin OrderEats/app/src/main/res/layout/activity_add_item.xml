@@ -121,7 +121,7 @@
             </androidx.cardview.widget.CardView>
 
             <TextView
-                android:id="@+id/paymentTextView"
+                android:id="@+id/descriptionTextView"
                 android:layout_width="match_parent"
                 android:layout_height="46dp"
                 android:layout_marginStart="8dp"
@@ -137,22 +137,8 @@
                 app:layout_constraintStart_toStartOf="@+id/selectImage"
                 app:layout_constraintTop_toBottomOf="@+id/cardView6" />
 
-            <EditText
-                android:id="@+id/description"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="@color/white"
-                android:fontFamily="@font/lato_regular"
-                android:padding="5dp"
-                android:text="Sangam Vihar, Hamdard Nagar, Batra Hospitol, Ratiya Marg, Sangam Vihar, Hamdard Nagar, Batra Hospitol, Ratiya Marg  "
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.198"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/paymentTextView" />
-
             <TextView
-                android:id="@+id/statusMonay"
+                android:id="@+id/ingredientTextView"
                 android:layout_width="match_parent"
                 android:layout_height="46dp"
                 android:layout_marginLeft="8dp"
@@ -169,25 +155,40 @@
                 app:layout_constraintTop_toBottomOf="@+id/description" />
 
             <EditText
+                android:id="@+id/description"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@color/white"
+                android:fontFamily="@font/lato_regular"
+                android:padding="5dp"
+                android:text="Sangam Vihar, Hamdard Nagar, Batra Hospitol, Ratiya Marg, Sangam Vihar, Hamdard Nagar, Batra Hospitol, Ratiya Marg  "
+                app:layout_constraintEnd_toEndOf="@+id/descriptionTextView"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/descriptionTextView"
+                app:layout_constraintTop_toBottomOf="@+id/descriptionTextView" />
+
+            <EditText
                 android:id="@+id/ingredient"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="195dp"
                 android:background="@color/white"
                 android:fontFamily="@font/lato_regular"
                 android:paddingLeft="5dp"
                 android:text="Noddle Salad \nBurgur Herger \nPen Cake\nMomos"
-                app:layout_constraintEnd_toEndOf="@+id/cardView6"
-                app:layout_constraintHorizontal_bias="0.305"
-                app:layout_constraintStart_toStartOf="@+id/statusMonay"
-                app:layout_constraintTop_toBottomOf="@+id/statusMonay" />
+                app:layout_constraintEnd_toEndOf="@+id/ingredientTextView"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/ingredientTextView"
+                app:layout_constraintTop_toBottomOf="@+id/ingredientTextView" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/AddItemButton"
                 android:layout_width="156dp"
                 android:layout_height="56dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="32dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="24dp"
                 android:background="@drawable/greenbuttongradient"
                 android:fontFamily="@font/lato_regular"
                 android:text="Add Item"

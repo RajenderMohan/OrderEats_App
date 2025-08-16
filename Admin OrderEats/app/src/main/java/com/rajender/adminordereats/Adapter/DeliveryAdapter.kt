@@ -31,7 +31,7 @@ class DeliveryAdapter(
         fun bind(position: Int) {
             binding.apply {
                 customerName.text = customerNames[position]
-                statusMonay.text = moneyStatus[position]
+                statusMoney.text = moneyStatus[position]
 
                 val colorMap = mapOf(
                     "Recevied" to "#4CAF50",
@@ -58,7 +58,7 @@ class DeliveryAdapter(
                 }
 
                 // Apply the color
-                statusMonay.setTextColor(finalColorInt) // Assuming you also want to set text color
+                statusMoney.setTextColor(finalColorInt) // Assuming you also want to set text color
                 statusColor.backgroundTintList = android.content.res.ColorStateList.valueOf(finalColorInt)
             }
         }
