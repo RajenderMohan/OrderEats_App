@@ -1,26 +1,39 @@
 package com.rajender.adminordereats
 
+import android.content.Context // Added for adapter
 import android.os.Bundle
+import android.view.animation.AnimationUtils // Added for animations
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-// import androidx.core.view.ViewCompat // Not used in this snippet
-// import androidx.core.view.WindowInsetsCompat // Not used in this snippet
 import androidx.recyclerview.widget.LinearLayoutManager
-// import com.rajender.adminordereats.Adapter.DeliveryAdapter // Not used in this activity
 import com.rajender.adminordereats.Adapter.PendingOrderAdapter
 import com.rajender.adminordereats.databinding.ActivityPendingOrderBinding
-// import com.rajender.adminordereats.databinding.PendingOrderItemBinding // Not used directly in activity
+import com.rajender.adminordereats.R // IMPORTANT: Import R for animations and drawables
 
 class PendingOrderActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityPendingOrderBinding
+    // Using lazy initialization for binding is a good practice
+    private val binding: ActivityPendingOrderBinding by lazy {
+        ActivityPendingOrderBinding.inflate(layoutInflater)
+    }
+
+    private lateinit var adapter: PendingOrderAdapter // Declare adapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge() // Good to call this early
-        binding = ActivityPendingOrderBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        enableEdgeToEdge() // Call this early
+        setContentView(binding.root) // Set content view after binding is initialized
 
-        // --- All this code should be INSIDE onCreate ---
+        // --- Load Animations ---
+        val fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in)
+        val clickScale = AnimationUtils.loadAnimation(this, R.anim.click_scale)
+
+        // --- Apply Entrance Animations ---
+        // Assuming your activity_pending_order.xml has a TextView with id "textView13" for the title
+        binding.textView13.startAnimation(fadeIn)
+        binding.backButton.startAnimation(fadeIn)
+
+
+        // --- Prepare Data (Your existing data setup) ---
         val orderCustomerName = arrayListOf(
             "Rajender Mohan Verma",
             "Anushka Singh",
@@ -35,26 +48,32 @@ class PendingOrderActivity : AppCompatActivity() {
             "7"
         )
         val orderFoodImage = arrayListOf(
-            R.drawable.logo_app,
+            R.drawable.logo_app, // Ensure R is imported
             R.drawable.logo_app,
             R.drawable.logo_app,
             R.drawable.logo_app
         )
 
-        // Assuming PendingOrderAdapter constructor now takes three arguments
-        val adapter = PendingOrderAdapter(orderCustomerName, orderQuantity, orderFoodImage, this)
-
-        // Ensure your RecyclerView in activity_pending_order.xml has the id "pendingOrderRecyclerView"
-        // If it's "pendingRecyclerView" (as per your initial XML), change this line accordingly.
+        // --- Initialize and Set Adapter ---
+        adapter = PendingOrderAdapter(orderCustomerName, orderQuantity, orderFoodImage, this)
         binding.pendingOrderRecyclerView.layoutManager = LinearLayoutManager(this)
         binding.pendingOrderRecyclerView.adapter = adapter
+        // The RecyclerView's layout animation is set in XML (android:layoutAnimation)
+        // and will trigger automatically when items are first laid out.
 
-        // Assuming your ActivityPendingOrderBinding has a view with id "backButton"
-        // This also needs to be inside onCreate if 'binding' is to be used
+
+        // --- Back Button Click Transform & Exit Transition ---
         binding.backButton.setOnClickListener {
+            it.startAnimation(clickScale) // Apply click animation
             finish()
+            // Apply activity exit transition
+            overridePendingTransition(R.anim.slide_in_left_activity, R.anim.slide_out_right_activity)
         }
-        // --- End of code that should be inside onCreate ---
+    }
+
+    override fun finish() {
+        super.finish()
+        // Apply consistent activity exit transition when finish() is called elsewhere too
+        overridePendingTransition(R.anim.slide_in_left_activity, R.anim.slide_out_right_activity)
     }
 }
-

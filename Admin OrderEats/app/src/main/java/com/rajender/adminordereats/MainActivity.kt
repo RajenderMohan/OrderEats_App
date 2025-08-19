@@ -3,7 +3,6 @@ package com.rajender.adminordereats
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -21,7 +20,7 @@ class MainActivity : AppCompatActivity() {
 
         // --- Load Animations ---
         val fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in)
-        val slideInBottom = AnimationUtils.loadAnimation(this, R.anim.slide_in_from_bottom)
+        val slideInBottom = AnimationUtils.loadAnimation(this, R.anim.fade_in_slide_up_delayed)
         val clickScaleAnimation = AnimationUtils.loadAnimation(this, R.anim.click_scale)
         val rotateOnceAnim = AnimationUtils.loadAnimation(this, R.anim.rotate_once)
 

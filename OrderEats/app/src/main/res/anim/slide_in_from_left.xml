@@ -1,17 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
+<!-- res/anim/slide_in_from_left.xml -->
 <set xmlns:android="http://schemas.android.com/apk/res/android"
-    android:interpolator="@android:anim/accelerate_decelerate_interpolator">
-
+    android:interpolator="@android:anim/decelerate_interpolator">
+    <translate
+        android:fromXDelta="-50%p"
+    android:toXDelta="0%"
+    android:duration="600"/>
     <alpha
         android:fromAlpha="0.0"
         android:toAlpha="1.0"
-        android:duration="800"
-        android:startOffset="400"/> <!-- Delay slightly -->
-
-    <translate
-        android:fromXDelta="-100%p"
-    android:toXDelta="0"
-    android:duration="700"
-    android:startOffset="400"/> <!-- Delay slightly -->
+        android:duration="500"
+        android:startOffset="100"/>
 </set>
-    

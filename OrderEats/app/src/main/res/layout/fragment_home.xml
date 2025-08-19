@@ -31,7 +31,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#53E88b"
-            android:rotationX="30"
             android:padding="10dp"
             app:iss_auto_cycle="true"
             app:iss_delay="2000"
@@ -89,7 +88,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/viewAllMenu"
             app:layout_constraintVertical_bias="0.273" />
-    <!-- Optional: Add some bottom margin -->
+
+        <!-- Optional: Add some bottom margin -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

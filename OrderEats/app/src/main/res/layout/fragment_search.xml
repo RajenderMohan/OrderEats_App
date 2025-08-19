@@ -12,11 +12,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:background="@color/white"
+        android:fontFamily="@font/lato_bold"
         android:text="Search"
         android:textSize="18dp"
         android:textStyle="bold"
-        android:background="@color/white"
-        android:fontFamily="@font/lato_bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -29,13 +29,14 @@
         android:layout_marginTop="8dp"
         android:layout_marginRight="16dp"
         android:background="@drawable/searchshape"
-        app:iconifiedByDefault="false"
-        app:queryHint="What do you want to order?"
-        app:searchIcon="@drawable/search_5_svgrepo_com"
         android:theme="@style/CustomSearchViewQueryText"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/textView16" />
+        app:iconifiedByDefault="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView16"
+        app:queryHint="What do you want to order?"
+        app:searchIcon="@drawable/search_5_svgrepo_com" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/menuRecyclerView"
@@ -49,18 +50,19 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView18"
-        app:layout_constraintVertical_bias="0.275" />
+        app:layout_constraintVertical_bias="0.275"
+        tools:listitem="@layout/populer_item" />
 
     <TextView
         android:id="@+id/textView18"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:gravity="center_horizontal"
         android:text="Menu"
         android:textColor="@color/black"
-        android:textStyle="bold"
         android:textSize="16sp"
-        android:gravity="center_horizontal"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"

@@ -1,0 +1,14 @@
+<!-- res/anim/splash_title_animation.xml -->
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:interpolator="@android:anim/decelerate_interpolator">
+    <alpha
+        android:fromAlpha="0.0"
+        android:toAlpha="1.0"
+        android:duration="700"
+        android:startOffset="300"/> <!-- Start after logo starts appearing -->
+    <translate
+        android:fromYDelta="30%p"
+        android:toYDelta="0%"
+        android:duration="700"
+        android:startOffset="300"/>
+</set>

@@ -1,0 +1,14 @@
+<!-- res/anim/splash_dev_name_animation.xml -->
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:interpolator="@android:anim/decelerate_interpolator">
+    <alpha
+        android:fromAlpha="0.0"
+        android:toAlpha="1.0"
+        android:duration="800"
+        android:startOffset="800"/>
+    <translate
+        android:fromYDelta="100%p"
+    android:toYDelta="0%"
+    android:duration="800"
+    android:startOffset="800"/>
+</set>

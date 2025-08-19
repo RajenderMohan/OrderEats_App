@@ -49,12 +49,13 @@
                 android:id="@+id/foodNameTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/lato_regular"
                 android:text="Sandwich"
+                android:textStyle="bold"
                 android:textColor="@color/black"
-                android:textSize="16dp"
+                android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@+id/cardView7"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -62,12 +63,13 @@
                 android:id="@+id/priceTextView"
                 android:layout_width="32dp"
                 android:layout_height="22dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="8dp"
                 android:fontFamily="@font/lato_regular"
                 android:text="₹30"
                 android:textColor="@color/text_color"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="@+id/foodNameTextView"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/foodNameTextView"
                 app:layout_constraintTop_toBottomOf="@+id/foodNameTextView" />
 

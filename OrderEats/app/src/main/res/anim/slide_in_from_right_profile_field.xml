@@ -1,0 +1,12 @@
+<!-- res/anim/slide_in_from_right_profile_field.xml -->
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:interpolator="@android:anim/decelerate_interpolator">
+    <translate
+        android:fromXDelta="75%p"
+        android:toXDelta="0%"
+        android:duration="500"/>
+    <alpha
+        android:fromAlpha="0.0"
+        android:toAlpha="1.0"
+        android:duration="500"/>
+</set>
