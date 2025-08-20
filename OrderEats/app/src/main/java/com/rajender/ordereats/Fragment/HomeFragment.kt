@@ -144,15 +144,21 @@ class HomeFragment : Fragment() {
         val foodName = listOf(
             "Cheese Burger",
             "Veggie Pizza",
-            "Chicken Noodles",
+            "Noodles",
             "Paneer Tikka",
             "Masala Dosa",
             "Chole Bhature",
-            "Spring Rolls",
+            "Makta Kulfi",
             "Veg Sandwich",
-            "Momo Platter"
+            "Momo Platter",
+            "Ice Cream",
+            "Kachori",
+            "Desi Jalebi",
+            "Mojito",
+            "Manchurian",
+            "Desi Aalu Paratha"
         )
-        val price = listOf("₹30", "₹120", "₹100", "₹99", "₹79", "₹58", "₹69", "₹50", "₹110")
+        val price = listOf("₹30", "₹120", "₹100", "₹99", "₹79", "₹58", "₹150", "₹50", "₹110","₹99","₹30","₹50","₹50","₹70","₹40")
         val populerFoodImages = listOf(
             R.drawable.burger,
             R.drawable.banner_pizza,
@@ -160,9 +166,15 @@ class HomeFragment : Fragment() {
             R.drawable.paneer_tikka, // Replace with your actual drawables
             R.drawable.dosas,
             R.drawable.chole_kulche,
-            R.drawable.momo,
-            R.drawable.logo_app,
-            R.drawable.momos_2
+            R.drawable.matka_kulfi,
+            R.drawable.sandwich,
+            R.drawable.momos_2,
+            R.drawable.ice_cream,
+            R.drawable.kachori,
+            R.drawable.jalebi,
+            R.drawable.mojito,
+            R.drawable.manchurian,
+            R.drawable.paratha
         )
 
         val context = requireContext() // Context is still needed for LayoutManager
