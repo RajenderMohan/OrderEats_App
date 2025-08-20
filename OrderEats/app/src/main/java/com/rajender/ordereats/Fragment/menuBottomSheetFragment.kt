@@ -30,14 +30,14 @@ class MenuBottomSheetFragment : BottomSheetDialogFragment() {
     )
     private val menuImages = listOf(
         R.drawable.burger,
-        R.drawable.pizza,
+        R.drawable.banner_pizza,
         R.drawable.noodles,
         R.drawable.paneer, // Replace with your actual drawables
         R.drawable.dosa,
         R.drawable.chole_kulche,
         R.drawable.momo,
         R.drawable.logo_app,
-        R.drawable.momos
+        R.drawable.momos_2
     )
 
     // Animation Delays (in milliseconds)

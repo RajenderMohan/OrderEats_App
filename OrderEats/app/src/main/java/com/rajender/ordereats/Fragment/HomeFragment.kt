@@ -14,7 +14,6 @@ import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.interfaces.ItemClickListener
 import com.denzcoskun.imageslider.models.SlideModel
 import com.rajender.ordereats.R
-import com.rajender.ordereats.Fragment.MenuBottomSheetFragment
 import com.rajender.ordereats.adapter.PopulerAdapter
 import com.rajender.ordereats.databinding.FragmentHomeBinding
 
@@ -117,14 +116,14 @@ class HomeFragment : Fragment() {
 
     private fun setupImageSlider() {
         val imageList = ArrayList<SlideModel>()
-        imageList.add(SlideModel(R.drawable.burger, ScaleTypes.FIT))
+        imageList.add(SlideModel(R.drawable.banner_burger, ScaleTypes.FIT))
         imageList.add(SlideModel(R.drawable.chole_kulche, ScaleTypes.FIT))
         imageList.add(SlideModel(R.drawable.dosa, ScaleTypes.FIT))
         imageList.add(SlideModel(R.drawable.momo, ScaleTypes.FIT))
         imageList.add(SlideModel(R.drawable.noodles, ScaleTypes.FIT))
         imageList.add(SlideModel(R.drawable.paneer, ScaleTypes.FIT))
-        imageList.add(SlideModel(R.drawable.pizza, ScaleTypes.FIT))
-        imageList.add(SlideModel(R.drawable.momos, ScaleTypes.FIT))
+        imageList.add(SlideModel(R.drawable.banner_pizza, ScaleTypes.FIT))
+        imageList.add(SlideModel(R.drawable.momos_2, ScaleTypes.FIT))
 
 
         val imageSlider = binding.imageSlider
@@ -142,19 +141,28 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupPopularRecyclerView() {
-        val foodName = listOf(   "Cheese Burger", "Veggie Pizza", "Chicken Noodles", "Paneer Tikka",
-            "Masala Dosa", "Chole Bhature", "Spring Rolls", "Veg Sandwich", "Momo Platter")
-        val price = listOf("$8", "$12", "$10", "$9", "$7", "$8", "$6", "$5", "$11")
+        val foodName = listOf(
+            "Cheese Burger",
+            "Veggie Pizza",
+            "Chicken Noodles",
+            "Paneer Tikka",
+            "Masala Dosa",
+            "Chole Bhature",
+            "Spring Rolls",
+            "Veg Sandwich",
+            "Momo Platter"
+        )
+        val price = listOf("₹30", "₹120", "₹100", "₹99", "₹79", "₹58", "₹69", "₹50", "₹110")
         val populerFoodImages = listOf(
             R.drawable.burger,
-            R.drawable.pizza,
-            R.drawable.noodles,
-            R.drawable.paneer, // Replace with your actual drawables
-            R.drawable.dosa,
+            R.drawable.banner_pizza,
+            R.drawable.noddles,
+            R.drawable.paneer_tikka, // Replace with your actual drawables
+            R.drawable.dosas,
             R.drawable.chole_kulche,
             R.drawable.momo,
             R.drawable.logo_app,
-            R.drawable.momos
+            R.drawable.momos_2
         )
 
         val context = requireContext() // Context is still needed for LayoutManager
