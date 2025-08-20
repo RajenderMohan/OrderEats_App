@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "146028169859",
+    "project_id": "ordereats-ee850",
+    "storage_bucket": "ordereats-ee850.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:146028169859:android:d808be7e9eb4af82eae9b6",
+        "android_client_info": {
+          "package_name": "com.rajender.adminordereats"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWrt5oWR56HVgVn3qt9_8t5iLkJvcm7aM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,13 +6,13 @@
     android:background="@color/white"
     tools:context=".Fragment.CongratsBottomSheet">
 
-    <!-- TODO: Update blank fragment layout -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/congratsTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -29,6 +28,7 @@
             android:id="@+id/imageView5"
             android:layout_width="300dp"
             android:layout_height="300dp"
+            android:layout_marginTop="16dp"
             android:layout_gravity="center"
             android:src="@drawable/correct" />
 
@@ -36,15 +36,15 @@
             android:id="@+id/goHome"
             android:layout_width="156dp"
             android:layout_height="56dp"
+            android:layout_gravity="center"
             android:layout_marginTop="32dp"
             android:layout_marginBottom="32dp"
-            android:layout_gravity="center"
-            android:textAllCaps="false"
             android:background="@drawable/gohomeshape"
+            android:fontFamily="sans-serif-smallcaps"
             android:text="Go Home"
+            android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="20sp"
-            android:fontFamily="sans-serif-smallcaps"/>
+            android:textSize="20sp" />
     </LinearLayout>
 
 </FrameLayout>

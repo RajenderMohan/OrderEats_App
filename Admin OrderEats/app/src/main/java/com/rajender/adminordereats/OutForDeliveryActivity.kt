@@ -1,46 +1,74 @@
 package com.rajender.adminordereats
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
+import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.rajender.adminordereats.Adapter.DeliveryAdapter
 import com.rajender.adminordereats.databinding.ActivityOutForDeliveryBinding
+import com.rajender.adminordereats.R // Import R for resources
 
 class OutForDeliveryActivity : AppCompatActivity() {
     private val binding: ActivityOutForDeliveryBinding by lazy {
         ActivityOutForDeliveryBinding.inflate(layoutInflater)
     }
 
-    // Inside OutForDeliveryActivity.kt
+    private lateinit var adapter: DeliveryAdapter
+    private val customerNames = ArrayList<String>()
+    private val paymentStatuses = ArrayList<String>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // Ensure binding is initialized before use
-        // binding = ActivityOutForDeliveryBinding.inflate(layoutInflater) // Corrected from your initial code
         setContentView(binding.root)
 
-        val customerName = arrayListOf(
-            "Rajender Mohan",
-            "Anushka Singh",
-            "Shekhar Maurya",
-            "Karuna Singh"
-        )
-        // MAKE SURE THIS LIST HAS THE SAME NUMBER OF ITEMS
-        val notReceviedTextView = arrayListOf(
-            "Recevied",
-            "Not Recevied",
-            "Pending",
-            "Recevied" // EXAMPLE: Added a fourth item. Adjust to your actual data.
-        )
-        val adapter = DeliveryAdapter(customerName, notReceviedTextView)
+        // --- Load Animations ---
+        val fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in)
+        val clickScale = AnimationUtils.loadAnimation(this, R.anim.click_scale)
+
+        // --- Apply Entrance Animations ---
+        binding.textView13.startAnimation(fadeIn) // Title: "Out For Delivery"
+        binding.backButton.startAnimation(fadeIn)
+
+        // --- Prepare Data ---
+        prepareLocalData()
+
+        // --- Initialize and Set Adapter ---
+        adapter = DeliveryAdapter(customerNames, paymentStatuses, this)
         binding.deliveryRecyclerView.layoutManager = LinearLayoutManager(this)
         binding.deliveryRecyclerView.adapter = adapter
+        // RecyclerView's layout animation is set in XML.
 
+        // --- Back Button Click Transform & Exit Transition ---
         binding.backButton.setOnClickListener {
-            finish() // Standard back button behavior
+            it.startAnimation(clickScale)
+            finish()
+            overridePendingTransition(R.anim.slide_in_left_activity, R.anim.slide_out_right_activity)
         }
     }
 
+    private fun prepareLocalData() {
+        customerNames.clear() // Clear previous data if any
+        paymentStatuses.clear()
+
+        customerNames.addAll(listOf(
+            "Rajender Mohan",
+            "Anushka Singh",
+            "Shekhar Maurya",
+            "Karuna Singh",
+            "Amit Patel"
+        ))
+
+        paymentStatuses.addAll(listOf(
+            "Received",    // Make sure these strings match keys in DeliveryAdapter's colorMap
+            "Not Received",
+            "Pending",
+            "Received",
+            "Pending"
+        ))
+    }
+
+    override fun finish() {
+        super.finish()
+        overridePendingTransition(R.anim.slide_in_left_activity, R.anim.slide_out_right_activity)
+    }
 }

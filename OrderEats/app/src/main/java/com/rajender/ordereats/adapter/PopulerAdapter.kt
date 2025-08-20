@@ -41,7 +41,7 @@ class PopulerAdapter(private val items:List<String>, private val price: List<Str
     }
 
     class PopulerViewHolder (private val binding : PopulerItemBinding): RecyclerView.ViewHolder(binding.root){
-        private val imagesView = binding.imageView6
+        private val imagesView = binding.ImageView
         fun bind(item: String, price: String, images: Int) {
             binding.foodNamePopuler.text = item
             binding.PricePopuler.text = price.toString()

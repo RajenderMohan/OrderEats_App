@@ -88,7 +88,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/viewAllMenu"
             app:layout_constraintVertical_bias="0.273" />
-    <!-- Optional: Add some bottom margin -->
+
+        <!-- Optional: Add some bottom margin -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

@@ -41,12 +41,13 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/statusMoney"
+                android:id="@+id/Textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="Payment"
                 android:textSize="16sp"
+                android:textColor="#5B4B4B"
                 android:fontFamily="@font/lato_regular"
                 app:layout_constraintEnd_toEndOf="@+id/customerName"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -54,7 +55,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/customerName" />
 
             <TextView
-                android:id="@+id/notReceviedTextView"
+                android:id="@+id/statusMoney"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -64,10 +65,10 @@
                 android:textSize="22sp"
                 android:fontFamily="@font/lato_blackitalic"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/statusMoney"
+                app:layout_constraintEnd_toEndOf="@+id/Textview"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/statusMoney"
-                app:layout_constraintTop_toBottomOf="@+id/statusMoney"
+                app:layout_constraintStart_toStartOf="@+id/Textview"
+                app:layout_constraintTop_toBottomOf="@+id/Textview"
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView

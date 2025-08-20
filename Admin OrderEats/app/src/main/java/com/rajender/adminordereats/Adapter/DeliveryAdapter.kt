@@ -1,18 +1,25 @@
 package com.rajender.adminordereats.Adapter
 
+import android.content.Context
 import android.graphics.Color
-import android.util.Log // Added for logging errors
+import android.util.Log
 import android.view.LayoutInflater
-// import android.view.View // This import was unused, removed for cleanliness
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.rajender.adminordereats.databinding.DeliveryItemBinding
 
 class DeliveryAdapter(
     private val customerNames: ArrayList<String>,
-    private val moneyStatus: ArrayList<String>
+    private val moneyStatus: ArrayList<String>,
+    private val context: Context // Context can be useful
 ) : RecyclerView.Adapter<DeliveryAdapter.DeliveryViewHolder>() {
 
+    // Color map using corrected spellings as keys
+    private val colorMap = mapOf(
+        "Received" to "#4CAF50",     // Green for received
+        "Not Received" to "#E20F0F", // Red for not received
+        "Pending" to "#FFC107"      // Yellow for pending
+    )
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DeliveryViewHolder {
         val binding =
@@ -21,44 +28,46 @@ class DeliveryAdapter(
     }
 
     override fun onBindViewHolder(holder: DeliveryViewHolder, position: Int) {
-        holder.bind(position)
+        // Check bounds to be safe, though lists should be the same size
+        if (position < customerNames.size && position < moneyStatus.size) {
+            holder.bind(customerNames[position], moneyStatus[position])
+        }
     }
 
-    override fun getItemCount(): Int = customerNames.size
+    override fun getItemCount(): Int {
+        // Ideally, ensure both lists are always the same size before passing to the adapter.
+        // This minOf is a safeguard.
+        return minOf(customerNames.size, moneyStatus.size)
+    }
 
     inner class DeliveryViewHolder(private val binding: DeliveryItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(position: Int) {
+
+        fun bind(customerNameText: String, moneyStatusText: String) {
             binding.apply {
-                customerName.text = customerNames[position]
-                notReceviedTextView.text = moneyStatus[position]
+                // Assuming your delivery_item.xml has:
+                // TextView with id "customerName"
+                // TextView with id "statusMoney"
+                // View (e.g., ImageView or simple View) with id "statusColor"
 
-                val colorMap = mapOf(
-                    "Recevied" to "#4CAF50",
-                    "Not Recevied" to "#E20F0F",
-                    "Pending" to "#FFC107"
-                )
+                customerName.text = customerNameText
+                statusMoney.text = moneyStatusText
 
-                // Get the value from the map (which can be a String or null)
-                val colorValueFromMap = colorMap[moneyStatus[position]]
+                val colorValueFromMap = colorMap[moneyStatusText] // Use the passed moneyStatusText
 
-                var finalColorInt: Int
-                if (colorValueFromMap != null) {
-                    // If we got a string from the map, parse it
+                val finalColorInt: Int = if (colorValueFromMap != null) {
                     try {
-                        finalColorInt = Color.parseColor(colorValueFromMap)
+                        Color.parseColor(colorValueFromMap)
                     } catch (e: IllegalArgumentException) {
-                        // Handle cases where the string in the map is not a valid color
-                        Log.e("DeliveryAdapter", "Invalid color string in map: $colorValueFromMap", e)
-                        finalColorInt = Color.BLACK // Default to black on error
+                        Log.e("DeliveryAdapter", "Invalid color string in map: $colorValueFromMap for status: $moneyStatusText", e)
+                        Color.DKGRAY // A different default for parsing errors
                     }
                 } else {
-                    // If not found in map, use Color.BLACK
-                    finalColorInt = Color.BLACK
+                    Log.w("DeliveryAdapter", "Status string '$moneyStatusText' not found in colorMap. Defaulting color.")
+                    Color.BLACK // Default if status string is not in map
                 }
 
-                // Apply the color
-                statusMoney.setTextColor(finalColorInt) // Assuming you also want to set text color
+                statusMoney.setTextColor(finalColorInt)
                 statusColor.backgroundTintList = android.content.res.ColorStateList.valueOf(finalColorInt)
             }
         }

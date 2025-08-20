@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.google.gms.google.services)
 }
 
 android {
@@ -49,10 +50,21 @@ dependencies {
 
     // KEEP THIS - This is the correct graphics library for Android Compose
     implementation(libs.androidx.ui.graphics.android)
+    implementation(libs.firebase.auth)
+    implementation(libs.androidx.credentials)
+    implementation(libs.androidx.credentials.play.services.auth)
+    implementation(libs.googleid)
+    implementation(libs.firebase.database)
+    implementation("com.google.android.gms:play-services-auth:21.2.0") // Or the latest version
+    // If you're also using Firebase Authentication
+    implementation(platform("com.google.firebase:firebase-bom:33.1.2")) // Or the latest BoM
+    implementation("com.google.firebase:firebase-auth")
 
-    // REMOVE these as they are for desktop or cause duplication
-    // implementation(libs.androidx.ui.graphics.desktop) // Removed (was listed twice)
-    // implementation(libs.androidx.ui.graphics.jvmstubs) // Removed
+    // For modern sign-in flows with Credential Manager (recommended by Google)
+    implementation("androidx.credentials:credentials:1.5.0")
+    implementation("androidx.credentials:credentials-play-services-auth:1.5.0")
+
+//    implementation("com.google.firebase:firebase-database-ktx:22.0.0")
 
     // Test dependencies
     testImplementation(libs.junit)

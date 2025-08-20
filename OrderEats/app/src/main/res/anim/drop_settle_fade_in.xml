@@ -1,0 +1,13 @@
+<!-- res/anim/drop_settle_fade_in.xml -->
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:interpolator="@android:anim/overshoot_interpolator"> <!-- Overshoot for the settle -->
+    <translate
+        android:fromYDelta="-30%p"
+    android:toYDelta="0%"
+    android:duration="700"/>
+    <alpha
+        android:fromAlpha="0.0"
+        android:toAlpha="1.0"
+        android:duration="500"
+        android:startOffset="100"/>
+</set>
