@@ -29,7 +29,7 @@ class CartFragment : Fragment() {
     private val cartFoodName = listOf("Burger", "Pizza", "Pasta", "Salad", "Fries", "Sandwich", "Sushi", "Tacos")
     private val cartItemPrice = listOf("$5", "$6", "$7", "$8", "$3", "$7", "$10", "$6")
     private val cartImage = listOf(
-        R.drawable.burger, R.drawable.logo_app1, R.drawable.logo_app, R.drawable.burger,
+        R.drawable.burger, R.drawable.pizza, R.drawable.logo_app, R.drawable.burger,
         R.drawable.burger, R.drawable.logo_app1, R.drawable.logo_app, R.drawable.burger
     )
 
