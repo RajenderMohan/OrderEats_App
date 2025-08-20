@@ -48,8 +48,8 @@ class CreateUserActivity : AppCompatActivity() {
         // (Set visibility to INVISIBLE to prevent flash)
         val viewsToAnimate = listOfNotNull(
             binding.backButton, binding.imageView3, binding.textView6, binding.textView8,
-            binding.adminName, binding.editTextTextEmailAddress,
-            binding.editTextTextPassword, binding.Createbutton
+            binding.adminName, binding.emailAddress,
+            binding.passwordText, binding.createButton
             // binding.textView12 // Add if you have this view from the XML
         )
         viewsToAnimate.forEach { it.visibility = View.INVISIBLE }
@@ -89,19 +89,19 @@ class CreateUserActivity : AppCompatActivity() {
         }, DELAY_ADMIN_NAME_FIELD)
 
         handler.postDelayed({
-            binding.editTextTextEmailAddress.visibility = View.VISIBLE
-            binding.editTextTextEmailAddress.startAnimation(slideInRightOvershoot)
+            binding.emailAddress.visibility = View.VISIBLE
+            binding.emailAddress.startAnimation(slideInRightOvershoot)
         }, DELAY_EMAIL_FIELD)
 
         handler.postDelayed({
-            binding.editTextTextPassword.visibility = View.VISIBLE
-            binding.editTextTextPassword.startAnimation(slideInLeftOvershoot)
+            binding.passwordText.visibility = View.VISIBLE
+            binding.passwordText.startAnimation(slideInLeftOvershoot)
         }, DELAY_PASSWORD_FIELD)
 
         // 6. Create Button
         handler.postDelayed({
-            binding.Createbutton.visibility = View.VISIBLE
-            binding.Createbutton.startAnimation(buttonEmergeRotate)
+            binding.createButton.visibility = View.VISIBLE
+            binding.createButton.startAnimation(buttonEmergeRotate)
         }, DELAY_CREATE_BUTTON)
 
         // If you have a textView12 for developer name at the bottom:
@@ -118,7 +118,7 @@ class CreateUserActivity : AppCompatActivity() {
             // The exit transition is handled in the finish() override
         }
 
-        binding.Createbutton.setOnClickListener {
+        binding.createButton.setOnClickListener {
             it.startAnimation(clickScale) // Apply click animation
             // TODO: Add your user creation logic here.
             // val name = binding.adminName.text.toString()

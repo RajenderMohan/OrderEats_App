@@ -140,7 +140,7 @@
         app:layout_constraintTop_toBottomOf="@+id/nameofOwner" />
 
     <EditText
-        android:id="@+id/EmailOrPhone"
+        android:id="@+id/emailOrPhone"
         android:layout_width="325dp"
         android:layout_height="56dp"
         android:layout_marginStart="16dp"
@@ -161,7 +161,7 @@
         app:layout_constraintTop_toBottomOf="@+id/nameOfRestaurant" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/passwordText"
         android:layout_width="325dp"
         android:layout_height="56dp"
         android:layout_marginStart="16dp"
@@ -177,13 +177,13 @@
         android:paddingLeft="15dp"
         android:textColor="@color/black"
         android:textColorHint="#726A6A"
-        app:layout_constraintEnd_toEndOf="@+id/EmailOrPhone"
-        app:layout_constraintStart_toStartOf="@+id/EmailOrPhone"
-        app:layout_constraintTop_toBottomOf="@+id/EmailOrPhone" />
+        app:layout_constraintEnd_toEndOf="@+id/emailOrPhone"
+        app:layout_constraintStart_toStartOf="@+id/emailOrPhone"
+        app:layout_constraintTop_toBottomOf="@+id/emailOrPhone" />
 
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/Createbutton"
+        android:id="@+id/createButton"
         android:layout_width="200dp"
         android:layout_height="56dp"
         android:layout_marginStart="32dp"
@@ -195,9 +195,9 @@
         android:textAllCaps="true"
         android:textColor="@color/white"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextPassword"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPassword"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
+        app:layout_constraintEnd_toEndOf="@+id/passwordText"
+        app:layout_constraintStart_toStartOf="@+id/passwordText"
+        app:layout_constraintTop_toBottomOf="@+id/passwordText" />
 
     <TextView
         android:id="@+id/alreadyhavebutton"
@@ -209,10 +209,10 @@
         android:text="Already Have An Account?"
         android:textColor="@color/text_color"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/Createbutton"
+        app:layout_constraintEnd_toEndOf="@+id/createButton"
         app:layout_constraintHorizontal_bias="0.448"
-        app:layout_constraintStart_toStartOf="@+id/Createbutton"
-        app:layout_constraintTop_toBottomOf="@+id/Createbutton"
+        app:layout_constraintStart_toStartOf="@+id/createButton"
+        app:layout_constraintTop_toBottomOf="@+id/createButton"
         app:layout_constraintVertical_bias="0.006" />
 
     <TextView
