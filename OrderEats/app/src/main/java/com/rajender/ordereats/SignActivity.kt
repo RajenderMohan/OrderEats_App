@@ -9,9 +9,21 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.rajender.ordereats.databinding.ActivitySignBinding
 
 class SignActivity : AppCompatActivity() {
+
+
+    private lateinit var email : String
+    private lateinit var password : String
+    private lateinit var username : String
+    private lateinit var auth : FirebaseAuth
+    private lateinit var database : DatabaseReference
+    private lateinit var googleSignInClient : GoogleSignInClient
+
     private val binding: ActivitySignBinding by lazy {
         ActivitySignBinding.inflate(layoutInflater)
     }
@@ -27,7 +39,8 @@ class SignActivity : AppCompatActivity() {
     private val DELAY_OR_TEXT = DELAY_PASSWORD_FIELD + 250L
     private val DELAY_SIGNUP_WITH_TEXT = DELAY_OR_TEXT // Converging, start at same time
     private val DELAY_GOOGLE_BUTTON = DELAY_OR_TEXT + 200L
-    private val DELAY_FACEBOOK_BUTTON = DELAY_GOOGLE_BUTTON // Can start simultaneously or slightly offset
+    private val DELAY_FACEBOOK_BUTTON =
+        DELAY_GOOGLE_BUTTON // Can start simultaneously or slightly offset
     private val DELAY_CREATE_ACCOUNT_BUTTON = DELAY_GOOGLE_BUTTON + 250L
     private val DELAY_ALREADY_HAVE_ACCOUNT_PROMPT = DELAY_CREATE_ACCOUNT_BUTTON + 200L
 
@@ -35,6 +48,10 @@ class SignActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge() // Good to call early
         setContentView(binding.root)
+
+        // --- Initialize Firebase Auth and Database ---
+        auth = FirebaseAuth.getInstance()
+        database = FirebaseDatabase.getInstance().reference
 
         // --- Click Listeners for SignActivity ---
         binding.createAccount.setOnClickListener {
@@ -61,9 +78,9 @@ class SignActivity : AppCompatActivity() {
         // --- Prepare Views (Set to INVISIBLE initially) ---
         val viewsToMakeInvisible = listOf(
             binding.imageView3, binding.textView6, binding.textView7, binding.textView8,
-            binding.editTextText, // Name field
-            binding.editTextTextEmailAddress2, // Email field
-            binding.editTextTextPassword, // Password field
+            binding.userName, // Name field
+            binding.userEmail, // Email field
+            binding.userPassword, // Password field
             binding.textView9, binding.textView10, binding.button2, binding.button3,
             binding.createAccount, binding.alreadyhavebutton
         )
@@ -78,7 +95,10 @@ class SignActivity : AppCompatActivity() {
 
         val slideInFromLeft = AnimationUtils.loadAnimation(this, R.anim.slide_in_from_left)
         // For the middle EditText, using a slide up. You can use fade_in_slide_up_delayed or a more specific one.
-        val slideUpForEmail = AnimationUtils.loadAnimation(this, R.anim.fade_in_slide_up_delayed) // Or a custom slide_from_bottom
+        val slideUpForEmail = AnimationUtils.loadAnimation(
+            this,
+            R.anim.fade_in_slide_up_delayed
+        ) // Or a custom slide_from_bottom
         val slideInFromRight = AnimationUtils.loadAnimation(this, R.anim.slide_in_from_right)
 
         val convergeLeftAnim = AnimationUtils.loadAnimation(this, R.anim.converge_fade_in_left)
@@ -86,7 +106,10 @@ class SignActivity : AppCompatActivity() {
         val flipInLeftAnim = AnimationUtils.loadAnimation(this, R.anim.flip_in_from_left_y)
         val flipInRightAnim = AnimationUtils.loadAnimation(this, R.anim.flip_in_from_right_y)
         val heroPulseAnim = AnimationUtils.loadAnimation(this, R.anim.hero_pulse_scale_fade_in)
-        val subtleRiseAnim = AnimationUtils.loadAnimation(this, R.anim.subtle_rise_fade_in) // For "Already have account"
+        val subtleRiseAnim = AnimationUtils.loadAnimation(
+            this,
+            R.anim.subtle_rise_fade_in
+        ) // For "Already have account"
 
         val handler = Handler(Looper.getMainLooper())
 
@@ -96,38 +119,102 @@ class SignActivity : AppCompatActivity() {
         applyAnimationWithDelay(binding.imageView3, dropSettleAnim, DELAY_LOGO, handler)
 
         // Top Text
-        applyAnimationWithDelay(binding.textView6, zoomCenterAnim, DELAY_APP_NAME, handler) // "OrderEats"
-        applyAnimationWithDelay(binding.textView7, slideUpRotateAnim, DELAY_TAGLINE, handler) // "Deliver Favorite Food"
-        applyAnimationWithDelay(binding.textView8, focusPulseAnim, DELAY_SIGNUP_PROMPT, handler) // "Sign Up Here"
+        applyAnimationWithDelay(
+            binding.textView6,
+            zoomCenterAnim,
+            DELAY_APP_NAME,
+            handler
+        ) // "OrderEats"
+        applyAnimationWithDelay(
+            binding.textView7,
+            slideUpRotateAnim,
+            DELAY_TAGLINE,
+            handler
+        ) // "Deliver Favorite Food"
+        applyAnimationWithDelay(
+            binding.textView8,
+            focusPulseAnim,
+            DELAY_SIGNUP_PROMPT,
+            handler
+        ) // "Sign Up Here"
 
         // EditTexts - Staggered entrance
-        applyAnimationWithDelay(binding.editTextText, slideInFromLeft, DELAY_NAME_FIELD, handler) // Name
-        applyAnimationWithDelay(binding.editTextTextEmailAddress2, slideUpForEmail, DELAY_EMAIL_FIELD, handler) // Email
-        applyAnimationWithDelay(binding.editTextTextPassword, slideInFromRight, DELAY_PASSWORD_FIELD, handler) // Password
+        applyAnimationWithDelay(
+            binding.userName,
+            slideInFromLeft,
+            DELAY_NAME_FIELD,
+            handler
+        ) // Name
+        applyAnimationWithDelay(
+            binding.userEmail,
+            slideUpForEmail,
+            DELAY_EMAIL_FIELD,
+            handler
+        ) // Email
+        applyAnimationWithDelay(
+            binding.userPassword,
+            slideInFromRight,
+            DELAY_PASSWORD_FIELD,
+            handler
+        ) // Password
 
         // "Or" and "Sign Up With" - Converging
         applyAnimationWithDelay(binding.textView9, convergeLeftAnim, DELAY_OR_TEXT, handler) // "Or"
-        applyAnimationWithDelay(binding.textView10, convergeRightAnim, DELAY_SIGNUP_WITH_TEXT, handler) // "Sign Up With"
+        applyAnimationWithDelay(
+            binding.textView10,
+            convergeRightAnim,
+            DELAY_SIGNUP_WITH_TEXT,
+            handler
+        ) // "Sign Up With"
 
         // Social Buttons - Flipping
-        applyAnimationWithDelay(binding.button2, flipInLeftAnim, DELAY_GOOGLE_BUTTON, handler)    // Google Button
-        applyAnimationWithDelay(binding.button3, flipInRightAnim, DELAY_FACEBOOK_BUTTON, handler)    // Facebook Button
+        applyAnimationWithDelay(
+            binding.button2,
+            flipInLeftAnim,
+            DELAY_GOOGLE_BUTTON,
+            handler
+        )    // Google Button
+        applyAnimationWithDelay(
+            binding.button3,
+            flipInRightAnim,
+            DELAY_FACEBOOK_BUTTON,
+            handler
+        )    // Facebook Button
 
         // Create Account Button
-        applyAnimationWithDelay(binding.createAccount, heroPulseAnim, DELAY_CREATE_ACCOUNT_BUTTON, handler)
+        applyAnimationWithDelay(
+            binding.createAccount,
+            heroPulseAnim,
+            DELAY_CREATE_ACCOUNT_BUTTON,
+            handler
+        )
 
         // "Already Have An Account?"
-        applyAnimationWithDelay(binding.alreadyhavebutton, subtleRiseAnim, DELAY_ALREADY_HAVE_ACCOUNT_PROMPT, handler)
+        applyAnimationWithDelay(
+            binding.alreadyhavebutton,
+            subtleRiseAnim,
+            DELAY_ALREADY_HAVE_ACCOUNT_PROMPT,
+            handler
+        )
     }
 
     /**
      * Helper function to apply an animation to a view after a delay.
      * Makes the view visible just before starting the animation.
      */
-    private fun applyAnimationWithDelay(view: View, animationToApply: Animation, delay: Long, animHandler: Handler) {
+    private fun applyAnimationWithDelay(
+        view: View,
+        animationToApply: Animation,
+        delay: Long,
+        animHandler: Handler
+    ) {
         animHandler.postDelayed({
             view.visibility = View.VISIBLE
             view.startAnimation(animationToApply)
         }, delay)
     }
+}
+
+class GoogleSignInClient {
+
 }

@@ -4,8 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.animation.AnimationUtils
+import android.widget.Toast // Import Toast for messages
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth // Import FirebaseAuth
 import com.rajender.adminordereats.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -13,10 +15,15 @@ class MainActivity : AppCompatActivity() {
         ActivityMainBinding.inflate(layoutInflater)
     }
 
+    private lateinit var auth: FirebaseAuth // Declare FirebaseAuth instance
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(binding.root)
+
+        // Initialize FirebaseAuth
+        auth = FirebaseAuth.getInstance()
 
         // --- Load Animations ---
         val fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in)
@@ -29,13 +36,11 @@ class MainActivity : AppCompatActivity() {
         binding.textView2.startAnimation(fadeIn)
         binding.cardView.startAnimation(slideInBottom)
 
-        // Staggered animations for menu CardViews
-        // It's cleaner to load them once if they are the same type or configure offsets directly
         val slideInLeft1 = AnimationUtils.loadAnimation(this, R.anim.slide_in_from_left)
         binding.cardView2.startAnimation(slideInLeft1)
 
         val slideInRight1 = AnimationUtils.loadAnimation(this, R.anim.slide_in_from_right)
-        slideInRight1.startOffset = 200 // Apply offset to the Animation object
+        slideInRight1.startOffset = 200
         binding.cardView3.startAnimation(slideInRight1)
 
         val slideInLeft2 = AnimationUtils.loadAnimation(this, R.anim.slide_in_from_left)
@@ -50,8 +55,8 @@ class MainActivity : AppCompatActivity() {
         slideInLeft3.startOffset = 600
         binding.cardView6.startAnimation(slideInLeft3)
 
-        // Assuming you've added android:id="@+id/logoutCardView" to the logout CardView in XML
-        binding.logoutCardView?.let { // Use safe call if ID might not exist
+
+        binding.logoutCardView?.let {
             val slideInRight3 = AnimationUtils.loadAnimation(this, R.anim.slide_in_from_right)
             slideInRight3.startOffset = 600
             it.startAnimation(slideInRight3)
@@ -60,7 +65,6 @@ class MainActivity : AppCompatActivity() {
 
         // --- Click Listeners with Animations and Activity Transitions ---
 
-        // Logo click animation
         binding.imageView.setOnClickListener {
             it.startAnimation(rotateOnceAnim)
         }
@@ -90,40 +94,61 @@ class MainActivity : AppCompatActivity() {
             navigateTo(CreateUserActivity::class.java)
         }
 
-        // Click listener for the parent CardView of "Pending Order"
-        // (assuming you want the whole card to be clickable for this)
-        // If you only want the text "Pending Order" to be clickable,
-        // you'd set the listener on binding.cardView.pendingOrder (if that ID exists directly under binding.cardView)
-        // Or, more likely, you mean the "Pending Orders" section within the first card (binding.cardView)
-        // Let's assume you have a specific view for pending orders you want to click:
-        // For example, if binding.pendingOrder is the TextView inside the first CardView
-        binding.pendingOrder.setOnClickListener { view -> // This is likely the TextView as per your original code
-            view.startAnimation(clickScaleAnimation) // Animate the TextView
-            // If you want to animate the whole cardView instead:
-            // binding.cardView.startAnimation(clickScaleAnimation)
+        binding.pendingOrder.setOnClickListener { view ->
+            view.startAnimation(clickScaleAnimation)
             navigateTo(PendingOrderActivity::class.java)
         }
 
-        // If you have a logout button inside the logoutCardView
-        binding.logoutCardView?.findViewById<View>(R.id.logoutButton)?.setOnClickListener { view ->
+        // --- Logout Button Click Listener ---
+        // Assuming your logout button has the ID "logoutButton" and is inside "logoutCardView"
+        // If "logoutCardView" itself is the clickable logout element,
+        // you can set the listener directly on binding.logoutCardView
+        // For this example, I'm assuming a distinct Button with R.id.logoutButton
+
+        val logoutButton = binding.logoutCardView?.findViewById<View>(R.id.logoutButton)
+        logoutButton?.setOnClickListener { view ->
             view.startAnimation(clickScaleAnimation)
-            // Add your logout logic here
-            // For example, navigate to a LoginActivity after logging out:
-            // navigateTo(LoginActivity::class.java, true) // clear task if it's a login screen
+
+            // Sign out from Firebase
+            auth.signOut()
+
+            // Optional: Show a toast message
+            Toast.makeText(this, "Logged out successfully", Toast.LENGTH_SHORT).show()
+
+            // Navigate to LoginActivity and clear the task stack
+            navigateTo(LoginActivity::class.java, true)
         }
+
+        // If the entire logoutCardView is supposed to be the logout button:
+        // Remove or comment out the block above
+
+// Use this if the ENTIRE logoutCardView should be clickable for logout
+        binding.logoutCardView?.setOnClickListener { view -> // Listener is now directly on logoutCardView
+            view.startAnimation(clickScaleAnimation)
+
+            // Sign out from Firebase
+            auth.signOut()
+
+            // Optional: Show a toast message
+            Toast.makeText(this, "Logged out successfully", Toast.LENGTH_SHORT).show()
+
+            // Navigate to LoginActivity and clear the task stack
+            navigateTo(LoginActivity::class.java, true)
+        }
+
     }
 
-    /**
-     * Helper function to start an activity with a standard fade transition.
-     * @param activityClass The class of the Activity to start.
-     * @param clearTask If true, clears the activity stack before starting the new one (e.g., for logout).
-     */
     private fun navigateTo(activityClass: Class<*>, clearTask: Boolean = false) {
         val intent = Intent(this, activityClass)
         if (clearTask) {
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
         startActivity(intent)
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+        if (!clearTask) { // Only apply standard fade if not clearing task (clearing task often has its own feel)
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+        }
+        // If clearing task (like for logout), you might not need a specific exit animation for MainActivity,
+        // as it will be removed from the stack. The LoginActivity will have its entrance.
     }
 }
+

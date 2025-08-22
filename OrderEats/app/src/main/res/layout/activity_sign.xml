@@ -70,7 +70,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
     <EditText
-        android:id="@+id/editTextText"
+        android:id="@+id/userName"
         android:layout_width="325dp"
         android:layout_height="56dp"
         android:layout_marginTop="16dp"
@@ -89,7 +89,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <EditText
-        android:id="@+id/editTextTextEmailAddress2"
+        android:id="@+id/userEmail"
         android:layout_width="325dp"
         android:layout_height="56dp"
         android:layout_marginTop="16dp"
@@ -103,12 +103,12 @@
         android:paddingLeft="15dp"
         android:textColor="@color/black"
         android:textColorHint="#726A6A"
-        app:layout_constraintEnd_toEndOf="@+id/editTextText"
-        app:layout_constraintStart_toStartOf="@+id/editTextText"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText" />
+        app:layout_constraintEnd_toEndOf="@+id/userName"
+        app:layout_constraintStart_toStartOf="@+id/userName"
+        app:layout_constraintTop_toBottomOf="@+id/userName" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/userPassword"
         android:layout_width="325dp"
         android:layout_height="56dp"
         android:layout_marginTop="16dp"
@@ -122,9 +122,9 @@
         android:paddingLeft="15dp"
         android:textColor="@color/black"
         android:textColorHint="#726A6A"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextEmailAddress2"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextEmailAddress2"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress2" />
+        app:layout_constraintEnd_toEndOf="@+id/userEmail"
+        app:layout_constraintStart_toStartOf="@+id/userEmail"
+        app:layout_constraintTop_toBottomOf="@+id/userEmail" />
 
     <TextView
         android:id="@+id/textView9"
@@ -136,9 +136,9 @@
         android:text="Or"
         android:textSize="16sp"
         android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextPassword"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPassword"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
+        app:layout_constraintEnd_toEndOf="@+id/userPassword"
+        app:layout_constraintStart_toStartOf="@+id/userPassword"
+        app:layout_constraintTop_toBottomOf="@+id/userPassword" />
 
     <TextView
         android:id="@+id/textView10"

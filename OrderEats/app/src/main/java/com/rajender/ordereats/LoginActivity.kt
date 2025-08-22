@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.rajender.ordereats.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
+
     private val binding: ActivityLoginBinding by lazy {
         ActivityLoginBinding.inflate(layoutInflater)
     }
@@ -25,7 +26,8 @@ class LoginActivity : AppCompatActivity() {
     private val DELAY_TAGLINE = DELAY_APP_NAME + 200L
     private val DELAY_LOGIN_PROMPT = DELAY_TAGLINE + 200L
     private val DELAY_EMAIL_FIELD = DELAY_LOGIN_PROMPT + 250L
-    private val DELAY_PASSWORD_FIELD = DELAY_EMAIL_FIELD // Can start simultaneously or slightly after
+    private val DELAY_PASSWORD_FIELD =
+        DELAY_EMAIL_FIELD // Can start simultaneously or slightly after
     private val DELAY_OR_TEXT = DELAY_PASSWORD_FIELD + 300L
     private val DELAY_CONTINUE_TEXT = DELAY_OR_TEXT // Converging, start at same time as "Or"
     private val DELAY_GOOGLE_BUTTON = DELAY_OR_TEXT + 250L
@@ -60,7 +62,7 @@ class LoginActivity : AppCompatActivity() {
         // This is good practice so they don't flash before animating
         val viewsToMakeInvisible = listOf(
             binding.imageView3, binding.textView6, binding.textView7, binding.textView8,
-            binding.editTextTextEmailAddress, binding.editTextTextPassword,
+            binding.editTextTextEmailAddress, binding.userPassword,
             binding.textView9, binding.textView10, binding.button2, binding.button3,
             binding.loginbutton, binding.donthavebutton, binding.textView12
         )
@@ -85,7 +87,10 @@ class LoginActivity : AppCompatActivity() {
         val heroPulseAnim = AnimationUtils.loadAnimation(this, R.anim.hero_pulse_scale_fade_in)
         val subtleRiseAnim = AnimationUtils.loadAnimation(this, R.anim.subtle_rise_fade_in)
         // You might want a simple slide_up_fade_in for the "donthavebutton"
-        val slideUpFadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in_slide_up_delayed) // Reusing your existing one for this
+        val slideUpFadeIn = AnimationUtils.loadAnimation(
+            this,
+            R.anim.fade_in_slide_up_delayed
+        ) // Reusing your existing one for this
 
         val handler = Handler(Looper.getMainLooper())
 
@@ -95,24 +100,69 @@ class LoginActivity : AppCompatActivity() {
         applyAnimationWithDelay(binding.imageView3, dropSettleAnim, DELAY_LOGO, handler)
 
         // Top Text
-        applyAnimationWithDelay(binding.textView6, zoomCenterAnim, DELAY_APP_NAME, handler) // "OrderEats"
-        applyAnimationWithDelay(binding.textView7, slideUpRotateAnim, DELAY_TAGLINE, handler) // "Deliver Favorite Food"
-        applyAnimationWithDelay(binding.textView8, focusPulseAnim, DELAY_LOGIN_PROMPT, handler) // "Login To Your Account"
+        applyAnimationWithDelay(
+            binding.textView6,
+            zoomCenterAnim,
+            DELAY_APP_NAME,
+            handler
+        ) // "OrderEats"
+        applyAnimationWithDelay(
+            binding.textView7,
+            slideUpRotateAnim,
+            DELAY_TAGLINE,
+            handler
+        ) // "Deliver Favorite Food"
+        applyAnimationWithDelay(
+            binding.textView8,
+            focusPulseAnim,
+            DELAY_LOGIN_PROMPT,
+            handler
+        ) // "Login To Your Account"
 
         // EditTexts
-        applyAnimationWithDelay(binding.editTextTextEmailAddress, slideInFromLeft, DELAY_EMAIL_FIELD, handler)
-        applyAnimationWithDelay(binding.editTextTextPassword, slideInFromRight, DELAY_PASSWORD_FIELD, handler)
+        applyAnimationWithDelay(
+            binding.editTextTextEmailAddress,
+            slideInFromLeft,
+            DELAY_EMAIL_FIELD,
+            handler
+        )
+        applyAnimationWithDelay(
+            binding.userPassword,
+            slideInFromRight,
+            DELAY_PASSWORD_FIELD,
+            handler
+        )
 
         // "Or" and "Continue With" - Converging
         applyAnimationWithDelay(binding.textView9, convergeLeftAnim, DELAY_OR_TEXT, handler) // "Or"
-        applyAnimationWithDelay(binding.textView10, convergeRightAnim, DELAY_CONTINUE_TEXT, handler) // "Continue With"
+        applyAnimationWithDelay(
+            binding.textView10,
+            convergeRightAnim,
+            DELAY_CONTINUE_TEXT,
+            handler
+        ) // "Continue With"
 
         // Social Buttons - Flipping
-        applyAnimationWithDelay(binding.button2, flipInLeftAnim, DELAY_GOOGLE_BUTTON, handler)    // Google Button
-        applyAnimationWithDelay(binding.button3, flipInRightAnim, DELAY_FACEBOOK_BUTTON, handler)    // Facebook Button
+        applyAnimationWithDelay(
+            binding.button2,
+            flipInLeftAnim,
+            DELAY_GOOGLE_BUTTON,
+            handler
+        )    // Google Button
+        applyAnimationWithDelay(
+            binding.button3,
+            flipInRightAnim,
+            DELAY_FACEBOOK_BUTTON,
+            handler
+        )    // Facebook Button
 
         // Login Button
-        applyAnimationWithDelay(binding.loginbutton, heroPulseAnim, DELAY_LOGIN_BUTTON, handler) // Login Button
+        applyAnimationWithDelay(
+            binding.loginbutton,
+            heroPulseAnim,
+            DELAY_LOGIN_BUTTON,
+            handler
+        ) // Login Button
 
         // "Don't have account"
         applyAnimationWithDelay(binding.donthavebutton, slideUpFadeIn, DELAY_SIGNUP_PROMPT, handler)
@@ -125,7 +175,12 @@ class LoginActivity : AppCompatActivity() {
      * Helper function to apply an animation to a view after a delay.
      * Makes the view visible just before starting the animation.
      */
-    private fun applyAnimationWithDelay(view: View, animation: Animation, delay: Long, handler: Handler) {
+    private fun applyAnimationWithDelay(
+        view: View,
+        animation: Animation,
+        delay: Long,
+        handler: Handler
+    ) {
         handler.postDelayed({
             view.visibility = View.VISIBLE
             view.startAnimation(animation)

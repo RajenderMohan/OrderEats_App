@@ -22,7 +22,7 @@ class MenuBottomSheetFragment : BottomSheetDialogFragment() {
     // Sample Data - Replace with your actual data source logic
     // Make sure the number of items in each list is the same
     private val menuFoodNames = listOf(
-        "Cheese Burger", "Veggie Pizza", "Chicken Noodles", "Paneer Tikka",
+        "Burger", "Veggie Pizza", "Chicken Noodles", "Paneer Tikka",
         "Masala Dosa", "Chole Bhature", "Spring Rolls", "Veg Sandwich", "Momo Platter"
     )
     private val menuItemPrices = listOf(

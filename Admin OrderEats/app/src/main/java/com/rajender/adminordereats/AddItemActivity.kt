@@ -1,16 +1,32 @@
 package com.rajender.adminordereats
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.view.animation.Animation // Keep this if you use Animation type elsewhere, otherwise can be removed if not directly used
 import android.view.animation.AnimationUtils
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.PickVisualMediaRequest // Your existing import
 import androidx.activity.result.contract.ActivityResultContracts // Your existing import
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.rajender.adminordereats.databinding.ActivityAddItemBinding
 
 class AddItemActivity : AppCompatActivity() {
+
+    // Food Item Details
+    private lateinit var foodName : String
+    private lateinit var foodPrice : String
+    private lateinit var foodDescription : String
+    private lateinit var foodIngredient : String
+    private var foodImageUri : Uri?= null
+    // Firebase
+    private lateinit var auth : FirebaseAuth
+    private lateinit var database : FirebaseDatabase
+
     private val binding: ActivityAddItemBinding by lazy {
         ActivityAddItemBinding.inflate(layoutInflater)
     }
@@ -32,6 +48,29 @@ class AddItemActivity : AppCompatActivity() {
         enableEdgeToEdge() // Handles edge-to-edge display
         setContentView(binding.root)
 
+            // Initialize Firebase
+        auth = FirebaseAuth.getInstance()
+        // Initialize Firebase Database
+        database = FirebaseDatabase.getInstance()
+
+    binding.AddItemButton.setOnClickListener {
+        // Get data from the form
+        foodName = binding.foodName.text.toString().trim()
+        foodPrice = binding.foodPrice.text.toString().trim()
+        foodDescription = binding.description.text.toString().trim()
+        foodIngredient = binding.ingredient.text.toString().trim()
+
+        if(!(foodName.isBlank() || foodPrice.isBlank() || foodDescription.isBlank() || foodIngredient.isBlank())){
+            uploadData()
+            Toast.makeText(this, "Item Add Successfully", Toast.LENGTH_SHORT).show()
+            finish()
+        } else {
+            Toast.makeText(this, "Please fill all the fields", Toast.LENGTH_SHORT).show()
+            finish()
+        }
+    }
+
+
         // --- Load Animations (those used directly, not in the helper) ---
         val fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in)
         // slideUpInput is now loaded inside startSequentialAnimations, so no need to load it here for that purpose
@@ -44,8 +83,8 @@ class AddItemActivity : AppCompatActivity() {
         // Stagger the animation for input fields
         startSequentialAnimations(
             listOf(
-                binding.enterFoodName,
-                binding.enterFoodPrice,
+                binding.foodName,
+                binding.foodPrice,
                 binding.selectImage,       // The TextView for "Select Image"
                 binding.descriptionTextView,
                 binding.description,
@@ -70,12 +109,7 @@ class AddItemActivity : AppCompatActivity() {
             overridePendingTransition(R.anim.slide_in_left_activity, R.anim.slide_out_right_activity)
         }
 
-        // 2. "Select Image" TextView Click (to open image picker)
-        binding.selectImage.setOnClickListener {
-            it.startAnimation(clickScale)
-            // Using your existing PickVisualMedia request
-            pickImage.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
-        }
+
 
         // 3. Click animation (transform) on "Add Item" Button
         binding.AddItemButton.setOnClickListener {
@@ -98,6 +132,17 @@ class AddItemActivity : AppCompatActivity() {
             it.startAnimation(clickScale)
             // pickImage.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)) // To re-select
         }
+    }
+
+    private fun uploadData() {
+        // get a reference to the "menu" node in the database
+        val menuRef : DatabaseReference = database.getReference("menu")
+
+        // create a unique key for the new menu item
+        val newItemKey: String? = menuRef.push().key
+
+
+
     }
 
     /**

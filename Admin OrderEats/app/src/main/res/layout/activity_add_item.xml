@@ -22,7 +22,6 @@
             android:layout_height="match_parent">
 
 
-
             <ImageView
                 android:id="@+id/backButton"
                 android:layout_width="32dp"
@@ -49,7 +48,7 @@
                 app:layout_constraintTop_toTopOf="@+id/backButton" />
 
             <EditText
-                android:id="@+id/enterFoodName"
+                android:id="@+id/foodName"
                 android:layout_width="0dp"
                 android:layout_height="56dp"
                 android:layout_marginStart="8dp"
@@ -60,15 +59,15 @@
                 android:hint="Enter Food Name*"
                 android:inputType="text"
                 android:paddingLeft="15dp"
-                android:textColorHint="@color/black"
-                android:textSize="20dp"
                 android:textColor="@color/black"
+                android:textColorHint="#423C3C"
+                android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
             <EditText
-                android:id="@+id/enterFoodPrice"
+                android:id="@+id/foodPrice"
                 android:layout_width="0dp"
                 android:layout_height="56dp"
                 android:layout_marginTop="20dp"
@@ -77,12 +76,12 @@
                 android:hint="Enter Food Price*"
                 android:inputType="text"
                 android:paddingLeft="15dp"
-                android:textColorHint="@color/black"
-                android:textSize="20dp"
                 android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="@+id/enterFoodName"
-                app:layout_constraintStart_toStartOf="@+id/enterFoodName"
-                app:layout_constraintTop_toBottomOf="@+id/enterFoodName" />
+                android:textColorHint="#423C3C"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="@+id/foodName"
+                app:layout_constraintStart_toStartOf="@+id/foodName"
+                app:layout_constraintTop_toBottomOf="@+id/foodName" />
 
             <TextView
                 android:id="@+id/selectImage"
@@ -97,10 +96,10 @@
                 android:text="Select Image*"
                 android:textColor="@color/black"
                 android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="@+id/enterFoodPrice"
+                app:layout_constraintEnd_toEndOf="@+id/foodPrice"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/enterFoodPrice"
-                app:layout_constraintTop_toBottomOf="@+id/enterFoodPrice" />
+                app:layout_constraintStart_toStartOf="@+id/foodPrice"
+                app:layout_constraintTop_toBottomOf="@+id/foodPrice" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView6"
@@ -164,8 +163,8 @@
                 android:background="@color/white"
                 android:fontFamily="@font/lato_regular"
                 android:padding="5dp"
+                android:text="Pizza is a popular Italian dish made with a baked flatbread base topped with cheese, tomato sauce, and a variety of toppings like vegetables or meat."
                 android:textColor="@color/black"
-                android:text="Sangam Vihar, Hamdard Nagar, Batra Hospitol, Ratiya Marg, Sangam Vihar, Hamdard Nagar, Batra Hospitol, Ratiya Marg  "
                 app:layout_constraintEnd_toEndOf="@+id/descriptionTextView"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/descriptionTextView"
@@ -173,15 +172,15 @@
 
             <EditText
                 android:id="@+id/ingredient"
-                android:layout_width="200dp"
+                android:layout_width="240dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="195dp"
                 android:background="@color/white"
                 android:fontFamily="@font/lato_regular"
                 android:paddingLeft="5dp"
+                android:text="Pizza Base (Dough) \nMaida (All-purpose flour)\nYeast\nSalt \nSugar \nOlive oil / normal oil \nWater"
                 android:textColor="@color/black"
-                android:text="Noddle Salad \nBurgur Herger \nPen Cake\nMomos"
                 app:layout_constraintEnd_toEndOf="@+id/ingredientTextView"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/ingredientTextView"

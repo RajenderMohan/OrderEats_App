@@ -38,17 +38,18 @@ class AllItemActivity : AppCompatActivity() {
         }
 
         // --- Prepare Data for Adapter ---
-        val menuFoodName = listOf("Burger", "bhel", "brownie", "sandwich", "Roll", "Momo", "paratha", "Paneer_tikka",
-            "Pasta", "Noddles", "Kachori", "jalebi","idli","Paneer_bun","Mojito","Cake","Chat","Dosa","Chicken","Chole_Kulche","Chai")
-        val menuItemPrice = listOf("₹39", "₹49", "₹30", "₹30", "₹40", "₹50", "₹30", "₹30", "₹50", "₹60", "₹50", "₹30","40","30","49","350","40","60","459","40","20")
+        val menuFoodName = listOf("Burger", "bhel", "Chai", "brownie", "sandwich", "Roll", "Momo", "paratha", "Paneer_tikka",
+            "Pasta", "Noddles", "Kachori", "jalebi","idli","Paneer_bun","Mojito","Cake","Chat","Dosa","Chicken","Chole_Kulche",)
+        val menuItemPrice = listOf("₹39", "₹49", "₹20", "₹30", "₹30", "₹40", "₹50", "₹30", "₹30", "₹50", "₹60", "₹50", "₹30","₹40","₹30","₹49","₹199","₹40","₹60","₹259","₹40",)
         val menuImage = listOf(
-            R.drawable.burger, R.drawable.bhel, R.drawable.brownie,
+            R.drawable.burger, R.drawable.bhel,
+            R.drawable.chai, R.drawable.brownie,
             R.drawable.sandwich, R.drawable.roll, R.drawable.momos,
             R.drawable.paratha, R.drawable.paneer_tikka, R.drawable.pasta,
             R.drawable.noddles, R.drawable.kachori, R.drawable.jalebi,
             R.drawable.idli, R.drawable.paneer_bun, R.drawable.mojito,
             R.drawable.cake, R.drawable.chat, R.drawable.dosa,
-            R.drawable.chicken, R.drawable.chole_kulche, R.drawable.chai
+            R.drawable.chicken, R.drawable.chole_kulche,
 
             // Ensure R.drawable.logo_app exists
         )

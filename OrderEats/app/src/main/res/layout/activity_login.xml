@@ -95,7 +95,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/userPassword"
         android:layout_width="325dp"
         android:layout_height="56dp"
         android:layout_marginStart="40dp"
@@ -125,9 +125,9 @@
         android:text="Or"
         android:textColor="@color/text_color"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextPassword"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPassword"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
+        app:layout_constraintEnd_toEndOf="@+id/userPassword"
+        app:layout_constraintStart_toStartOf="@+id/userPassword"
+        app:layout_constraintTop_toBottomOf="@+id/userPassword" />
 
     <TextView
         android:id="@+id/textView10"

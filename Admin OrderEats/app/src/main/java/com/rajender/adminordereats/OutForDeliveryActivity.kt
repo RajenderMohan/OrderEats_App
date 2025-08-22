@@ -52,10 +52,15 @@ class OutForDeliveryActivity : AppCompatActivity() {
 
         customerNames.addAll(listOf(
             "Rajender Mohan",
-            "Anushka Singh",
+            "Harsh Verma",
             "Shekhar Maurya",
             "Karuna Singh",
-            "Amit Patel"
+            "Amit Patel",
+            "Anushka Singh",
+            "Sazida Sahin",
+            "Riya Siwas",
+            "Vikram Singh",
+
         ))
 
         paymentStatuses.addAll(listOf(

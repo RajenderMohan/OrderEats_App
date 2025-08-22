@@ -3,6 +3,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.google.gms.google.services)
 }
 
 android {
@@ -54,8 +55,25 @@ dependencies {
     implementation(libs.androidx.fragment)
     implementation(libs.androidx.cardview)
     implementation(libs.androidx.recyclerview)
+    implementation(libs.firebase.auth)
+    implementation(libs.androidx.credentials)
+    implementation(libs.androidx.credentials.play.services.auth)
+    implementation(libs.googleid)
+    implementation(libs.firebase.database)
+    implementation(libs.firebase.firestore)
+    implementation(libs.firebase.database.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     implementation("com.github.denzcoskun:ImageSlideshow:0.1.2")
+    // For build.gradle.kts (Kotlin DSL)
+
+        // Add the dependency for the Firebase Realtime Database library
+        // When using the BoM, you don't specify versions in Firebase library dependencies
+        implementation("com.google.firebase:firebase-database")
+
+        // You'll also likely need Firebase Authentication if you plan to secure your database
+        implementation("com.google.firebase:firebase-auth")
+
+
 }
