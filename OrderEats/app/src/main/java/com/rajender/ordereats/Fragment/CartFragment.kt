@@ -26,11 +26,39 @@ class CartFragment : Fragment() {
     private val DELAY_PROCEED_BUTTON = 300L       // Adjusted delay
 
     // Data for the adapter (can be moved to a ViewModel or data source later)
-    private val cartFoodName = listOf("Burger", "Pizza", "Pasta", "Salad", "Fries", "Sandwich", "Sushi", "Tacos")
-    private val cartItemPrice = listOf("$5", "$6", "$7", "$8", "$3", "$7", "$10", "$6")
+    private val cartFoodName = listOf(
+        "Cheese Burger",
+        "Veggie Pizza",
+        "Noodles",
+        "Paneer Tikka",
+        "Masala Dosa",
+        "Chole Bhature",
+        "Makta Kulfi",
+        "Veg Sandwich",
+        "Momo Platter",
+        "Ice Cream",
+        "Kachori",
+        "Desi Jalebi",
+        "Mojito",
+        "Manchurian",
+        "Desi Aalu Paratha")
+    private val cartItemPrice = listOf("₹30", "₹120", "₹100", "₹99", "₹79", "₹58", "₹150", "₹50", "₹110","₹99","₹30","₹50","₹50","₹70","₹40")
     private val cartImage = listOf(
-        R.drawable.burger, R.drawable.pizza, R.drawable.logo_app, R.drawable.burger,
-        R.drawable.burger, R.drawable.logo_app1, R.drawable.logo_app, R.drawable.burger
+        R.drawable.burger,
+        R.drawable.banner_pizza,
+        R.drawable.noddles,
+        R.drawable.paneer_tikka, // Replace with your actual drawables
+        R.drawable.dosas,
+        R.drawable.chole_kulche,
+        R.drawable.matka_kulfi,
+        R.drawable.sandwich,
+        R.drawable.momos_2,
+        R.drawable.ice_cream,
+        R.drawable.kachori,
+        R.drawable.jalebi,
+        R.drawable.mojito,
+        R.drawable.manchurian,
+        R.drawable.paratha
     )
 
     override fun onCreateView(
