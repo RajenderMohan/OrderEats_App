@@ -59,7 +59,7 @@ class HistoryFragment : Fragment() {
     // Dummy data for the static card view (if it's dynamic, fetch this too)
     // You'll need to decide what to show in the top card or if it's also from history
     private val staticBuyAgainFoodName = "Last Order Item" // Example
-    private val staticBuyAgainFoodPrice = "$7" // Example
+    private val staticBuyAgainFoodPrice = "₹35" // Example
     private val staticBuyAgainFoodImage = R.drawable.noodles // Example, ensure this drawable exists
 
     // Animation Delays

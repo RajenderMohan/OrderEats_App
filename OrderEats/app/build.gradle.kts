@@ -19,9 +19,9 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
-buildFeatures{
-    viewBinding = true
-}
+    buildFeatures {
+        viewBinding = true
+    }
 
     buildTypes {
         release {
@@ -43,37 +43,45 @@ buildFeatures{
 
 dependencies {
 
-    implementation("com.github.bumptech.glide:glide:4.16.0")
-    implementation("com.google.android.material:material:1.12.0") // Or the latest version
+    implementation("com.github.denzcoskun:ImageSlideshow:0.1.0")
+// Keep standard Android and Jetpack libraries
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-    implementation(libs.androidx.navigation.fragment.ktx)
-    implementation(libs.androidx.navigation.ui.ktx)
-    implementation(libs.androidx.fragment)
-    implementation(libs.androidx.cardview)
-    implementation(libs.androidx.recyclerview)
-    implementation(libs.firebase.auth)
+
     implementation(libs.androidx.credentials)
     implementation(libs.androidx.credentials.play.services.auth)
     implementation(libs.googleid)
     implementation(libs.firebase.database)
-    implementation(libs.firebase.firestore)
-    implementation(libs.firebase.database.ktx)
+
+    // For modern sign-in flows with Credential Manager (recommended by Google)
+    implementation("androidx.credentials:credentials:1.5.0")
+    implementation("androidx.credentials:credentials-play-services-auth:1.5.0")
+
+
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
+
+    // For modern sign-in flows with Credential Manager (Google's recommendation)
+    // Even if using older GoogleSignInClient, these are good to be aware of
+    implementation("androidx.credentials:credentials:1.5.0") // Or latest
+    implementation("androidx.credentials:credentials-play-services-auth:1.5.0") // Or latest
+
+    // Firebase BoM
+    implementation(platform("com.google.firebase:firebase-bom:33.1.2")) // Or latest version
+    implementation("com.google.firebase:firebase-auth")
+
+    // Google Sign-In
+    implementation("com.google.android.gms:play-services-auth:21.2.0") // Or latest version
+
+    implementation(libs.firebase.database) // For Realtime datbase
+//    implementation("com.google.firebase:firebase-database-ktx:22.0.0")
+
+    // Test dependencies
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    implementation("com.github.denzcoskun:ImageSlideshow:0.1.2")
-    // For build.gradle.kts (Kotlin DSL)
-
-        // Add the dependency for the Firebase Realtime Database library
-        // When using the BoM, you don't specify versions in Firebase library dependencies
-        implementation("com.google.firebase:firebase-database")
-
-        // You'll also likely need Firebase Authentication if you plan to secure your database
-        implementation("com.google.firebase:firebase-auth")
-
-
 }

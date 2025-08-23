@@ -4,40 +4,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
     android:layout_marginBottom="65dp"
     android:background="@color/white"
+    android:fillViewport="true"
     tools:context=".Fragment.HomeFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:paddingBottom="16dp">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView3"
             android:layout_width="0dp"
-        android:layout_height="200dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginTop="4dp"
-        app:cardCornerRadius="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="200dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <com.denzcoskun.imageslider.ImageSlider
-            android:id="@+id/image_slider"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#53E88b"
-            android:padding="10dp"
-            app:iss_auto_cycle="true"
-            app:iss_delay="2000"
-            app:iss_no_dots="true"
-            app:iss_period="2000"
-            app:iss_text_align="CENTER" />
-    </androidx.cardview.widget.CardView>
+            <com.denzcoskun.imageslider.ImageSlider
+                android:id="@+id/image_slider"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#53E88b"
+                android:padding="10dp"
+                app:iss_auto_cycle="true"
+                app:iss_delay="2000"
+                app:iss_period="2000"
+                app:iss_text_align="CENTER" />
+        </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/textView15"
@@ -45,7 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:fontFamily="@font/lato_blackitalic"
-            android:text="Populer"
+            android:text="Popular"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -61,14 +62,15 @@
             android:background="@drawable/textviewshape"
             android:elevation="4dp"
             android:fontFamily="@font/lato_blackitalic"
+            android:foreground="?attr/selectableItemBackground"
             android:gravity="center"
             android:paddingStart="12dp"
             android:paddingTop="6dp"
             android:paddingEnd="12dp"
             android:paddingBottom="6dp"
             android:text="View Menu"
-            android:textSize="14sp"
             android:textColor="@color/text_color"
+            android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardView3" />
@@ -78,18 +80,15 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
             android:background="@color/white"
-            android:nestedScrollingEnabled="false"
-            tools:listitem="@layout/populer_item"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/viewAllMenu"
-            app:layout_constraintVertical_bias="0.273" />
+            app:layout_constraintVertical_bias="0.0"
+            tools:listitem="@layout/populer_item" />
 
-        <!-- Optional: Add some bottom margin -->
-
-</androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
