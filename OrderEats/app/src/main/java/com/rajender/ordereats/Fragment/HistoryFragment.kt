@@ -19,25 +19,14 @@ class HistoryFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var buyAgainAdapter: BuyAgainAdapter // Keep this
-
     // Data for the RecyclerView (can be kept as is for this example)
     private val buyAgainFoodName = arrayListOf(
-        "Cheese Burger",
-        "Veggie Pizza",
-        "Noodles",
-        "Paneer Tikka",
-        "Masala Dosa",
-        "Chole Bhature",
-        "Makta Kulfi",
-        "Veg Sandwich",
-        "Momo Platter",
-        "Ice Cream",
-        "Kachori",
-        "Desi Jalebi",
-        "Mojito",
-        "Manchurian",
-        "Desi Aalu Paratha")
-    private val buyAgainFoodPrice = arrayListOf("₹30", "₹120", "₹100", "₹99", "₹79", "₹58", "₹150", "₹50", "₹110","₹99","₹30","₹50","₹50","₹70","₹40")
+        "Cheese Burger", "Veggie Pizza", "Noodles", "Paneer Tikka",
+        "Masala Dosa", "Chole Bhature", "Makta Kulfi", "Veg Sandwich",
+        "Momo Platter", "Ice Cream", "Kachori", "Desi Jalebi", "Mojito",
+        "Manchurian", "Desi Aalu Paratha")
+    private val buyAgainFoodPrice = arrayListOf("₹30", "₹120", "₹100", "₹99",
+        "₹79", "₹58", "₹150", "₹50", "₹110","₹99","₹30","₹50","₹50","₹70","₹40")
     private val buyAgainFoodImage = arrayListOf(
         R.drawable.burger,
         R.drawable.banner_pizza,

@@ -20,18 +20,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // enableEdgeToEdge() // If you are using this, call it before setContentView or right after super.onCreate()
-        // And handle window insets if edge-to-edge is enabled:
-        // ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, windowInsets ->
-        //     val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
-        //     view.setPadding(insets.left, insets.top, insets.right, insets.bottom)
-        //     WindowInsetsCompat.CONSUMED // Or return windowInsets if you want children to also consume
-        // }
-
-        // --- Correct way to get NavController ---
-        // 1. Find the NavHostFragment using its ID from your layout XML
-        // Ensure R.id.fragmentContainerView is the ID of your NavHostFragment
-        // in activity_main.xml
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
 

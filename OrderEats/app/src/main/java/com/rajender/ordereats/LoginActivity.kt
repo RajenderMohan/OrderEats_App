@@ -265,11 +265,11 @@ class LoginActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
 //         Optional: Check if user is already signed in and navigate to MainActivity
-         val currentUser = auth.currentUser
-         if (currentUser != null) {
-             val intent = Intent(this, MainActivity::class.java)
-             startActivity(intent)
-             finish()
-         }
+        val currentUser = auth.currentUser
+        if (currentUser != null) {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 }

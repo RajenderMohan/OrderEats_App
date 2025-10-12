@@ -15,11 +15,9 @@ import com.rajender.ordereats.R
 import com.rajender.ordereats.adapter.CartAdapter
 import com.rajender.ordereats.databinding.FragmentCartBinding
 
-
 class CartFragment : Fragment() {
     // Replace _binding and binding getter with lateinit var
     private lateinit var binding: FragmentCartBinding
-
     // Animation Delays
     private val DELAY_TITLE = 0L
     private val DELAY_RECYCLER_VIEW_CONTAINER = 150L // Adjusted delay
@@ -27,39 +25,14 @@ class CartFragment : Fragment() {
 
     // Data for the adapter (can be moved to a ViewModel or data source later)
     private val cartFoodName = listOf(
-        "Cheese Burger",
-        "Veggie Pizza",
-        "Noodles",
-        "Paneer Tikka",
-        "Masala Dosa",
-        "Chole Bhature",
-        "Makta Kulfi",
-        "Veg Sandwich",
-        "Momo Platter",
-        "Ice Cream",
-        "Kachori",
-        "Desi Jalebi",
-        "Mojito",
-        "Manchurian",
-        "Desi Aalu Paratha")
-    private val cartItemPrice = listOf("₹30", "₹120", "₹100", "₹99", "₹79", "₹58", "₹150", "₹50", "₹110","₹99","₹30","₹50","₹50","₹70","₹40")
+        "Cheese Burger", "Veggie Pizza", "Noodles", "Paneer Tikka",
+        "Masala Dosa", "Chole Bhature", "Makta Kulfi", "Veg Sandwich",)
+    private val cartItemPrice = listOf("₹30", "₹120", "₹100", "₹99", "₹79",
+        "₹58", "₹150", "₹50",)
     private val cartImage = listOf(
-        R.drawable.burger,
-        R.drawable.banner_pizza,
-        R.drawable.noddles,
-        R.drawable.paneer_tikka, // Replace with your actual drawables
-        R.drawable.dosas,
-        R.drawable.chole_kulche,
-        R.drawable.matka_kulfi,
-        R.drawable.sandwich,
-        R.drawable.momos_2,
-        R.drawable.ice_cream,
-        R.drawable.kachori,
-        R.drawable.jalebi,
-        R.drawable.mojito,
-        R.drawable.manchurian,
-        R.drawable.paratha
-    )
+        R.drawable.burger, R.drawable.banner_pizza, R.drawable.noddles,
+        R.drawable.paneer_tikka, R.drawable.dosas, R.drawable.chole_kulche,
+        R.drawable.matka_kulfi, R.drawable.sandwich,)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

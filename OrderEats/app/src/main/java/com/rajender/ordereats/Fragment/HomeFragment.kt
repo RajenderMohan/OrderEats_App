@@ -1,8 +1,11 @@
 package com.rajender.ordereats.Fragment // Your actual package
 
+// *** IMPORTANT: Make sure this import is correct for YOUR project structure ***
+// If MenuBottomSheetFragment is in the same 'Fragment' package:
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,32 +20,39 @@ import com.rajender.ordereats.R
 import com.rajender.ordereats.adapter.PopulerAdapter
 import com.rajender.ordereats.databinding.FragmentHomeBinding
 
-// Make sure to import your actual MenuBottomSheetFragment if it's in a different package
-// For example:
-// import com.rajender.ordereats.MenuBottomSheetFragment // If MenuBottomSheetFragment is in the root of your app package
-// or
-// import com.rajender.ordereats.bottomsheet.MenuBottomSheetFragment // If it's in a subpackage 'bottomsheet'
+// If MenuBottomSheetFragment is in the root 'com.rajender.ordereats' package:
+// import com.rajender.ordereats.MenuBottomSheetFragment
+// If it's in a subpackage like 'bottomsheet':
+// import com.rajender.ordereats.bottomsheet.MenuBottomSheetFragment
+
 
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
+    // Using lateinit var for binding, so no need for nullable _binding and separate getter
 
     // Animation Delays
-    private val DELAY_IMAGE_SLIDER = 0L // Start immediately
+    private val DELAY_IMAGE_SLIDER = 0L
     private val DELAY_POPULAR_TITLE = 200L
-    private val DELAY_VIEW_MENU_BUTTON = 200L // Can be same as title or slightly offset
+    private val DELAY_VIEW_MENU_BUTTON = 200L
     private val DELAY_RECYCLER_VIEW_CONTAINER = 400L
+
+    companion object {
+        private const val TAG = "HomeFragment" // For logging
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        Log.d(TAG, "onCreateView called")
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        Log.d(TAG, "onViewCreated called")
 
         // --- Load Animations ---
         val scaleFadeInCard = AnimationUtils.loadAnimation(requireContext(), R.anim.scale_fade_in_card)
@@ -52,8 +62,6 @@ class HomeFragment : Fragment() {
         val clickScale = AnimationUtils.loadAnimation(requireContext(), R.anim.click_scale)
 
         // --- Prepare Views for Animation ---
-        // Setting visibility to INVISIBLE before starting animations is a good practice
-        // to prevent a "flash" of unstyled content.
         binding.cardView3.visibility = View.INVISIBLE
         binding.textView15.visibility = View.INVISIBLE
         binding.viewAllMenu.visibility = View.INVISIBLE
@@ -80,53 +88,47 @@ class HomeFragment : Fragment() {
         handler.postDelayed({
             binding.PopulerRecyclerView.visibility = View.VISIBLE
             binding.PopulerRecyclerView.startAnimation(fadeInRecyclerContainer)
-            // Setup RecyclerView after its container is visible and animated
             setupPopularRecyclerView()
         }, DELAY_RECYCLER_VIEW_CONTAINER)
 
         // --- Setup Views and Click Listeners ---
         setupImageSlider()
 
+        // --- Corrected Click Listener for viewAllMenu ---
         binding.viewAllMenu.setOnClickListener { viewClicked ->
-            viewClicked.startAnimation(clickScale)
+            Log.d(TAG, "viewAllMenu clicked")
+            viewClicked.startAnimation(clickScale) // Apply click animation
 
-            // Ensure MenuBottomSheetFragment is correctly named, imported, and has a newInstance() method and TAG constant.
-            // Example of how MenuBottomSheetFragment might be defined:
-            // class MenuBottomSheetFragment : BottomSheetDialogFragment() {
-            //     companion object {
-            //         const val TAG = "MenuBottomSheetFragment"
-            //         fun newInstance(): MenuBottomSheetFragment {
-            //             return MenuBottomSheetFragment()
-            //         }
-            //     }
-            //     // ... other fragment code ...
-            // }
+            // --- Show the MenuBottomSheetFragment ---
+            // Ensure MenuBottomSheetFragment.kt exists and is correctly defined
+            // as a BottomSheetDialogFragment.
 
-            // Replace this with your actual BottomSheetFragment invocation
-            // If MenuBottomSheetFragment is correctly set up as a BottomSheetDialogFragment:
-            // val bottomSheetDialog = MenuBottomSheetFragment.newInstance()
-            // bottomSheetDialog.show(parentFragmentManager, MenuBottomSheetFragment.TAG)
+            // Option 1: Simple instantiation if no arguments are needed
+            // val menuBottomSheet = MenuBottomSheetFragment()
 
-            // For now, to avoid a crash if MenuBottomSheetFragment is not ready,
-            // let's just show the Toast. You need to implement/uncomment the above.
-            Toast.makeText(requireContext(), "View Menu Clicked - Implement BottomSheet", Toast.LENGTH_LONG).show()
+            // Option 2: Using a newInstance pattern (recommended if you might add arguments later)
+            // This assumes your MenuBottomSheetFragment has a companion object with newInstance()
+            try {
+                val menuBottomSheet = MenuBottomSheetFragment.newInstance() // Make sure newInstance() exists
+                // The TAG used here should ideally be a public constant in MenuBottomSheetFragment
+                menuBottomSheet.show(parentFragmentManager, MenuBottomSheetFragment.TAG)
+                Log.d(TAG, "MenuBottomSheetFragment shown successfully.")
+            } catch (e: Exception) {
+                Log.e(TAG, "Error showing MenuBottomSheetFragment: ${e.message}", e)
+                Toast.makeText(requireContext(), "Error: Could not open menu.", Toast.LENGTH_SHORT).show()
+            }
 
-            // Remove the placeholder function if MenuBottomSheetFragment is properly defined elsewhere.
-            // menuBottomSheetFragment() // This line would call your TODO function and crash.
+            // The old Toast is now replaced by the actual BottomSheet display logic.
+            // Toast.makeText(requireContext(), "View Menu Clicked - Implement BottomSheet", Toast.LENGTH_LONG).show()
         }
     }
 
-    // This placeholder function should be removed.
-    // The actual BottomSheetFragment logic should be in its own class.
-    /*
-    private fun menuBottomSheetFragment(): Any {
-        val todo = TODO("Not yet implemented")
-    }
-    */
+    // The placeholder menuBottomSheetFragment() function is correctly commented out / removed.
+    // Ensure it's fully removed if it was a placeholder.
 
     private fun setupImageSlider() {
+        Log.d(TAG, "setupImageSlider called")
         val imageList = ArrayList<SlideModel>()
-        // Add your images - ensure these drawables exist in your res/drawable folders
         imageList.add(SlideModel(R.drawable.banner_burger, ScaleTypes.FIT))
         imageList.add(SlideModel(R.drawable.chole_kulche, ScaleTypes.FIT))
         imageList.add(SlideModel(R.drawable.dosa, ScaleTypes.FIT))
@@ -138,24 +140,17 @@ class HomeFragment : Fragment() {
 
         binding.imageSlider.setImageList(imageList, ScaleTypes.FIT)
         binding.imageSlider.setItemClickListener(object : ItemClickListener {
-            // The 'doubleClick' method does not exist in the ItemClickListener interface
-            // of the denzcoskun:ImageSlideshow:0.1.0 library.
-            // Removing it will fix the "overrides nothing" error.
-            /*
-            override fun doubleClick(position: Int) {
-                // This method is not part of the interface you are implementing.
-            }
-            */
-
             override fun onItemSelected(position: Int) {
                 val itemMessage = "Selected Image ${position + 1}"
                 Toast.makeText(requireContext(), itemMessage, Toast.LENGTH_SHORT).show()
+                Log.d(TAG, "ImageSlider item selected: $position")
             }
+            // The doubleClick method was correctly removed as it's not in the interface.
         })
     }
 
     private fun setupPopularRecyclerView() {
-        // Sample Data - Replace with your actual data source if needed
+        Log.d(TAG, "setupPopularRecyclerView called")
         val foodName = listOf(
             "Cheese Burger", "Veggie Pizza", "Noodles", "Paneer Tikka", "Masala Dosa",
             "Chole Bhature", "Makta Kulfi", "Veg Sandwich", "Momo Platter", "Ice Cream",
@@ -166,34 +161,32 @@ class HomeFragment : Fragment() {
             "₹99", "₹30", "₹50", "₹50", "₹70", "₹40"
         )
         val populerFoodImages = listOf(
-            R.drawable.burger, R.drawable.banner_pizza, R.drawable.noddles, // Ensure 'noddles' isn't a typo for 'noodles' drawable
+            R.drawable.burger, R.drawable.banner_pizza, R.drawable.noddles,
             R.drawable.paneer_tikka, R.drawable.dosas, R.drawable.chole_kulche,
             R.drawable.matka_kulfi, R.drawable.sandwich, R.drawable.momos_2,
             R.drawable.ice_cream, R.drawable.kachori, R.drawable.jalebi,
             R.drawable.mojito, R.drawable.manchurian, R.drawable.paratha
         )
 
-        // Ensure context is available. Using requireContext() is safe within onViewCreated lifecycle and after.
         val adapter = PopulerAdapter(foodName, price, populerFoodImages, requireContext())
         binding.PopulerRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.PopulerRecyclerView.adapter = adapter
 
-        // Apply layout animation for items appearing in the RecyclerView
         val layoutAnimationController =
             AnimationUtils.loadLayoutAnimation(requireContext(), R.anim.layout_animation_from_bottom)
         binding.PopulerRecyclerView.layoutAnimation = layoutAnimationController
-        // If you want the animation to run every time data changes (and not just the first time),
-        // you might need to call adapter.notifyDataSetChanged() followed by
-        // binding.PopulerRecyclerView.scheduleLayoutAnimation()
-        // However, for initial population, this is generally fine.
     }
 
-    // No need to explicitly nullify 'binding' when using lateinit var
-    // and Fragment View Binding pattern with `return binding.root`.
-    // The binding will be valid between onCreateView and onDestroyView.
-    // override fun onDestroyView() {
-    //     super.onDestroyView()
-    //     // _binding = null // This line is for the nullable var _binding pattern. Not needed for lateinit.
-    // }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        Log.d(TAG, "onDestroyView called")
+        // No need to explicitly nullify 'binding' when using 'private lateinit var binding'
+        // and returning binding.root directly from onCreateView.
+        // The binding is automatically cleared by the Fragment's view lifecycle.
+        // If you were using the pattern:
+        // private var _binding: FragmentHomeBinding? = null
+        // private val binding get() = _binding!!
+        // Then you would do: _binding = null here.
+    }
 }
 

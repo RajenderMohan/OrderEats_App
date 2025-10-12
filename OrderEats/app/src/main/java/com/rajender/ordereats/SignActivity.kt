@@ -33,15 +33,12 @@ class SignActivity : AppCompatActivity() {
     private var inputUsername: String = ""
     private var inputEmail: String = ""
     private var inputPassword: String = ""
-
     private lateinit var auth: FirebaseAuth
     private lateinit var database: DatabaseReference
     private lateinit var googleSignInClient: GoogleSignInClient
-
     private val binding: ActivitySignBinding by lazy {
         ActivitySignBinding.inflate(layoutInflater)
     }
-
     // Animation Delays
     private val DELAY_LOGO = 100L
     private val DELAY_APP_NAME = DELAY_LOGO + 150L

@@ -3,6 +3,7 @@ package com.rajender.ordereats.Fragment // Ensure this is your correct package
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,31 +14,24 @@ import com.rajender.ordereats.R
 import com.rajender.ordereats.adapter.MenuAdapter
 import com.rajender.ordereats.databinding.FragmentMenuBottomSheetBinding
 
-// It's a Kotlin convention to use PascalCase for class names
 class MenuBottomSheetFragment : BottomSheetDialogFragment() {
-
-    // Using lateinit for view binding as per previous discussions
     private lateinit var binding: FragmentMenuBottomSheetBinding
 
-    // Sample Data - Replace with your actual data source logic
-    // Make sure the number of items in each list is the same
     private val menuFoodNames = listOf(
-        "Burger", "Veggie Pizza", "Chicken Noodles", "Paneer Tikka",
-        "Masala Dosa", "Chole Bhature", "Spring Rolls", "Veg Sandwich", "Momo Platter"
+        "Cheese Burger", "Veggie Pizza", "Noodles", "Paneer Tikka", "Masala Dosa",
+        "Chole Bhature", "Makta Kulfi", "Veg Sandwich", "Momo Platter", "Ice Cream",
+        "Kachori", "Desi Jalebi", "Mojito", "Manchurian", "Desi Aalu Paratha"
     )
     private val menuItemPrices = listOf(
-        "$8", "$12", "$10", "$9", "$7", "$8", "$6", "$5", "$11"
+        "₹30", "₹120", "₹100", "₹99", "₹79", "₹58", "₹150", "₹50", "₹110",
+        "₹99", "₹30", "₹50", "₹50", "₹70", "₹40"
     )
     private val menuImages = listOf(
-        R.drawable.burger,
-        R.drawable.banner_pizza,
-        R.drawable.noodles,
-        R.drawable.paneer, // Replace with your actual drawables
-        R.drawable.dosa,
-        R.drawable.chole_kulche,
-        R.drawable.momo,
-        R.drawable.logo_app,
-        R.drawable.momos_2
+        R.drawable.burger, R.drawable.banner_pizza, R.drawable.noddles,
+        R.drawable.paneer_tikka, R.drawable.dosas, R.drawable.chole_kulche,
+        R.drawable.matka_kulfi, R.drawable.sandwich, R.drawable.momos_2,
+        R.drawable.ice_cream, R.drawable.kachori, R.drawable.jalebi,
+        R.drawable.mojito, R.drawable.manchurian, R.drawable.paratha
     )
 
     // Animation Delays (in milliseconds)
@@ -47,6 +41,7 @@ class MenuBottomSheetFragment : BottomSheetDialogFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d(TAG, "onCreate")
         // Optional: Apply a custom style for the BottomSheetDialog if needed
         // e.g., setStyle(STYLE_NORMAL, R.style.CustomBottomSheetDialogTheme)
     }
@@ -54,87 +49,110 @@ class MenuBottomSheetFragment : BottomSheetDialogFragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View { // Return type should be non-nullable View
+    ): View {
+        Log.d(TAG, "onCreateView")
         binding = FragmentMenuBottomSheetBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        Log.d(TAG, "onViewCreated")
 
         // --- 1. Load All Necessary Animations ---
-        val slideInFromLeft =
-            AnimationUtils.loadAnimation(requireContext(), R.anim.slide_in_from_left_simple)
+        val slideInFromLeft = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_in_from_left_simple)
         val fadeInText = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in_text)
-        val fadeInRecyclerContainer =
-            AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in_recycler)
-        val clickScale = AnimationUtils.loadAnimation(
-            requireContext(),
-            R.anim.click_scale
-        ) // Optional click animation
+        val fadeInRecyclerContainer = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in_recycler)
+        val clickScale = AnimationUtils.loadAnimation(requireContext(), R.anim.click_scale)
 
         // --- 2. Prepare Views for Animation (Set initial visibility to INVISIBLE) ---
-        // Ensure menuTitleTextView ID exists in your fragment_menu_bottom_sheet.xml
         binding.buttonBack.visibility = View.INVISIBLE
-        binding.menuTitleTextView.visibility = View.INVISIBLE // This ID must be in your XML
+        binding.menuTitleTextView.visibility = View.INVISIBLE // Ensure ID 'menuTitleTextView' exists in XML
         binding.menuRecyclerView.visibility = View.INVISIBLE
 
         val handler = Handler(Looper.getMainLooper())
 
-        // --- 3. Apply Staggered Entrance Animations to individual UI elements ---
+        // --- 3. Apply Staggered Entrance Animations ---
         handler.postDelayed({
-            binding.buttonBack.visibility = View.VISIBLE
-            binding.buttonBack.startAnimation(slideInFromLeft)
+            if (isAdded) { // Check if fragment is still added to its activity
+                binding.buttonBack.visibility = View.VISIBLE
+                binding.buttonBack.startAnimation(slideInFromLeft)
+            }
         }, DELAY_BACK_BUTTON)
 
         handler.postDelayed({
-            binding.menuTitleTextView.visibility = View.VISIBLE // Ensure ID is correct
-            binding.menuTitleTextView.startAnimation(fadeInText)
+            if (isAdded) {
+                binding.menuTitleTextView.visibility = View.VISIBLE
+                binding.menuTitleTextView.startAnimation(fadeInText)
+            }
         }, DELAY_TITLE)
 
         handler.postDelayed({
-            binding.menuRecyclerView.visibility =
-                View.VISIBLE // Make RecyclerView container visible
-            binding.menuRecyclerView.startAnimation(fadeInRecyclerContainer) // Animate the container
-            setupMenuRecyclerViewAndItemAnimations() // Setup adapter and then item animations
+            if (isAdded) {
+                binding.menuRecyclerView.visibility = View.VISIBLE
+                binding.menuRecyclerView.startAnimation(fadeInRecyclerContainer)
+                setupMenuRecyclerViewAndItemAnimations()
+            }
         }, DELAY_RECYCLER_VIEW_CONTAINER)
 
-
-        // --- 4. Setup Click Listener for Back Button (with optional click animation) ---
+        // --- 4. Setup Click Listener for Back Button ---
         binding.buttonBack.setOnClickListener {
-            it.startAnimation(clickScale) // Apply click feedback
-            // Add a small delay for the click animation to be visible before dismissing
+            Log.d(TAG, "Back button clicked")
+            it.startAnimation(clickScale)
             Handler(Looper.getMainLooper()).postDelayed({
-                dismiss() // Close the bottom sheet
-            }, 150) // Adjust delay as needed, or remove if not desired
+                if (isAdded) {
+                    dismiss()
+                }
+            }, 150)
         }
     }
 
     private fun setupMenuRecyclerViewAndItemAnimations() {
-        // --- 5. Setup RecyclerView Adapter ---
-        // Ensure you have a MenuAdapter and it's correctly configured
-        val adapter = MenuAdapter(
-            ArrayList(menuFoodNames),
-            ArrayList(menuItemPrices),
-            ArrayList(menuImages), requireContext()
-        )
-        binding.menuRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        binding.menuRecyclerView.adapter = adapter
-
-        // --- 6. Apply LayoutAnimation for RecyclerView item entrance ---
-        val itemLayoutAnimationController =
-            AnimationUtils.loadLayoutAnimation(
-                requireContext(),
-                R.anim.layout_animation_from_bottom
+        Log.d(TAG, "setupMenuRecyclerViewAndItemAnimations")
+        // Ensure adapter and layout manager are setup correctly
+        // Ensure all drawable resources for images exist.
+        if (menuFoodNames.size == menuItemPrices.size && menuFoodNames.size == menuImages.size) {
+            val adapter = MenuAdapter(
+                ArrayList(menuFoodNames),
+                ArrayList(menuItemPrices),
+                ArrayList(menuImages),
+                requireContext()
             )
-        binding.menuRecyclerView.layoutAnimation = itemLayoutAnimationController
+            binding.menuRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+            binding.menuRecyclerView.adapter = adapter
+
+            val itemLayoutAnimationController =
+                AnimationUtils.loadLayoutAnimation(requireContext(), R.anim.layout_animation_from_bottom)
+            binding.menuRecyclerView.layoutAnimation = itemLayoutAnimationController
+        } else {
+            Log.e(TAG, "Data lists (food names, prices, images) have different sizes! Adapter cannot be created correctly.")
+            // Optionally, show a toast or handle this error state in the UI
+            // Toast.makeText(context, "Error loading menu items.", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        Log.d(TAG, "onDestroyView")
+        // Since 'binding' is lateinit and initialized in onCreateView,
+        // and its root is returned, it will be managed by the view lifecycle.
+        // Explicitly nullifying is not strictly necessary for this pattern,
+        // but if you used a nullable _binding, you would do _binding = null here.
     }
 
     companion object {
-        const val TAG = "MenuBottomSheetFragment" // TAG for identifying the fragment
+        // TAG for identifying the fragment, used when showing
+        const val TAG = "MenuBottomSheetFragment"
 
         // Factory method to create new instances of this fragment
+        @JvmStatic // Good practice if calling from Java
         fun newInstance(): MenuBottomSheetFragment {
+            // If you needed to pass arguments:
+            // val fragment = MenuBottomSheetFragment()
+            // val args = Bundle()
+            // args.putString("SOME_KEY", "some_value")
+            // fragment.arguments = args
+            // return fragment
             return MenuBottomSheetFragment()
         }
     }

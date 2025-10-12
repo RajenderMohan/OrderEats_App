@@ -14,9 +14,7 @@ import com.rajender.ordereats.R
 import com.rajender.ordereats.databinding.FragmentCongratsBottomSheetBinding
 
 class CongratsBottomSheet : BottomSheetDialogFragment() {
-
     private lateinit var binding: FragmentCongratsBottomSheetBinding
-
     // Animation Delays
     private val DELAY_TEXT = 100L
     private val DELAY_IMAGE = 250L
@@ -24,8 +22,6 @@ class CongratsBottomSheet : BottomSheetDialogFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // Optional: Apply a custom style for the BottomSheetDialog if needed
-        // setStyle(STYLE_NORMAL, R.style.YourCustomBottomSheetStyle)
     }
 
     override fun onCreateView(
@@ -38,7 +34,6 @@ class CongratsBottomSheet : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         // --- 1. Load Animations ---
         val fadeInScaleTextAnim = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in_scale_text)
         val scaleBounceImageAnim = AnimationUtils.loadAnimation(requireContext(), R.anim.scale_bounce_fade_in_image)

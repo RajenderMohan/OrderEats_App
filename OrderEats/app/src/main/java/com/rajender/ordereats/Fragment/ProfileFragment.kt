@@ -12,10 +12,6 @@ import androidx.fragment.app.Fragment
 import com.rajender.ordereats.R
 import com.rajender.ordereats.databinding.FragmentProfileBinding
 
-// Remove the generated ARG_PARAM constants and newInstance if not actively used
-// private const val ARG_PARAM1 = "param1"
-// private const val ARG_PARAM2 = "param2"
-
 class ProfileFragment : Fragment() {
     // Use ViewBinding
     private var _binding: FragmentProfileBinding? = null
@@ -28,22 +24,14 @@ class ProfileFragment : Fragment() {
     // Calculate delay for save button to appear after the last field
     private val DELAY_SAVE_BUTTON = DELAY_FIELD_INITIAL + (DELAY_FIELD_INCREMENT * 3) + DELAY_FIELD_INCREMENT // *3 because 4 fields (0,1,2,3 index)
 
-    // TODO: Remove param1 and param2 if they are not being used from arguments
-    // private var param1: String? = null
-    // private var param2: String? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // arguments?.let {
-        //     param1 = it.getString(ARG_PARAM1)
-        //     param2 = it.getString(ARG_PARAM2)
-        // }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View { // Return type changed to non-nullable View
+    ): View {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         return binding.root
     }

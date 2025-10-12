@@ -77,7 +77,8 @@ dependencies {
     // Google Sign-In
     implementation("com.google.android.gms:play-services-auth:21.2.0") // Or latest version
 
-    implementation(libs.firebase.database) // For Realtime datbase
+    implementation(libs.firebase.database)
+    implementation(libs.firebase.firestore) // For Realtime datbase
 //    implementation("com.google.firebase:firebase-database-ktx:22.0.0")
 
     // Test dependencies
