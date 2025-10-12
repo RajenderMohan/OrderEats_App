@@ -1,5 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="@color/red" />
-    <corners android:radius="15dp" />
-</shape>
+<!-- Selector: Yeh button ke alag-alag states (avastha) ko handle karta hai -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- State 1: Jab button daba hua hai (state_pressed="true") -->
+    <item android:state_pressed="true">
+        <!-- 'red_button_pressed' drawable dikhao -->
+        <shape>
+            <solid android:color="#D32F2F"/>
+            <corners android:radius="15dp"/>
+        </shape>
+    </item>
+
+    <!-- State 2: Default state (jab button normal hai) -->
+    <item>
+        <!-- Yahaan aapka original 3D effect wala code hai -->
+        <layer-list>
+            <!-- Layer 1: Shadow -->
+            <item>
+                <shape android:shape="rectangle">
+                    <solid android:color="#A82828" />
+                    <corners android:radius="15dp" />
+                </shape>
+            </item>
+            <!-- Layer 2: Main Gradient Button -->
+            <item android:bottom="2dp" android:left="1dp" android:right="1dp">
+                <shape android:shape="rectangle">
+                    <gradient
+                        android:angle="90"
+                        android:endColor="#D32F2F"
+                        android:startColor="#FF6B6B"
+                        android:type="linear" />
+                    <stroke
+                        android:width="1dp"
+                        android:color="#B71C1C" />
+                    <corners android:radius="15dp" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+
+</selector>
