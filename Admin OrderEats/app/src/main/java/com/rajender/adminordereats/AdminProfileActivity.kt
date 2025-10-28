@@ -1,103 +1,119 @@
 package com.rajender.adminordereats
 
 import android.os.Bundle
-// Removed enableEdgeToEdge and specific ViewCompat/WindowInsetsCompat imports
-// if not strictly needed for other purposes, as basic animations don't require them.
-// Keep them if you use them for edge-to-edge display.
-import android.view.animation.AnimationUtils // Import for animations
+import android.view.animation.AnimationUtils
+import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.rajender.adminordereats.databinding.ActivityAdminProfileBinding
-import com.rajender.adminordereats.R // Import R for resources (R.anim)
 
 class AdminProfileActivity : AppCompatActivity() {
+
     private val binding: ActivityAdminProfileBinding by lazy {
         ActivityAdminProfileBinding.inflate(layoutInflater)
     }
 
-    // Variable to track edit state, you already have this
-    private var isEditingEnabled = false // Renamed for clarity from 'isEnable'
+    // ट्रैक करें कि क्या यूजर अभी एडिट कर रहा है
+    private var isEditingEnabled = false
 
-    // Helper function to set the editable state of fields, adapted from your logic
-    private fun setFieldsEditable(editable: Boolean) {
-        binding.name.isEnabled = editable
-        binding.address.isEnabled = editable
-        binding.email.isEnabled = editable
-        binding.phone.isEnabled = editable
-        binding.password.isEnabled = editable
-
-        if (editable) {
-            binding.name.requestFocus()
-            binding.editProfileButton.text = "Editing..." // Visual feedback
-            // Consider changing icon or disabling edit button temporarily
-        } else {
-            binding.editProfileButton.text = "Click Here To Edit" // Reset text
-        }
-        isEditingEnabled = editable // Update the tracking variable
-    }
-
+    // सभी EditTexts की लिस्ट, ताकि उन पर एक साथ काम कर सकें
+    private lateinit var editableFields: List<EditText>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        // --- Load Animations ---
-        val fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in)
-        val slideUp = AnimationUtils.loadAnimation(this, R.anim.slide_up_input) // Assuming you have slide_up_input.xml
-        val clickScale = AnimationUtils.loadAnimation(this, R.anim.click_scale)
+        // 1. Toolbar को एक्शन बार के रूप में सेट करें
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(false) // Toolbar के डिफ़ॉल्ट टाइटल को छिपाएं
 
-        // --- Apply Entrance Animations ---
-        // Top elements fade in
-        binding.backButton.startAnimation(fadeIn)
-        binding.textView13.startAnimation(fadeIn) // "Admin Profile" title
-        binding.textView14.startAnimation(fadeIn) // "Edit Your Profile"
-        binding.editProfileButton.startAnimation(fadeIn)
+        // 2. सभी एडिटेबल फील्ड्स को एक लिस्ट में डालें
+        editableFields = listOf(binding.name, binding.address, binding.email, binding.phone, binding.password)
 
-        // Form fields container slides up (with a slight delay)
-        val formSlideUp = AnimationUtils.loadAnimation(this, R.anim.slide_up_input)
-        formSlideUp.startOffset = 200 // ms delay
-        binding.linearLayout.startAnimation(formSlideUp) // The LinearLayout holding all profile fields
+        // 3. शुरू में सभी फील्ड्स को नॉन-एडिटेबल रखें और सेव बटन को छिपाएं
+        setFieldsEditable(false)
+        binding.saveInfoButton.hide() // FAB को छिपाने का सही तरीका
 
-        // Save button slides up (with a bit more delay)
-        // Assuming your save button in XML has id "button4"
-        val saveButtonSlideUp = AnimationUtils.loadAnimation(this, R.anim.slide_up_input)
-        saveButtonSlideUp.startOffset = 400 // ms delay
-        binding.button4.startAnimation(saveButtonSlideUp) // "Save Information" button
+        // 4. क्लिक लिसनर्स सेट करें
+        setupClickListeners()
 
+        // 5. एंट्री एनिमेशन चलाएं
+        runEnterAnimation()
+    }
 
-        // --- Initialize Field State ---
-        // Set initial editable state based on your 'isEnable' logic (now 'isEditingEnabled')
-        setFieldsEditable(isEditingEnabled) // This will set them to false initially
-
-        // --- Click Listeners ---
+    private fun setupClickListeners() {
+        // बैक बटन का क्लिक लिसनर
         binding.backButton.setOnClickListener {
-            it.startAnimation(clickScale)
-            finish()
-            // Activity exit transition
-            overridePendingTransition(R.anim.slide_in_left_activity, R.anim.slide_out_right_activity)
+            finish() // एक्टिविटी बंद करें
         }
 
+        // एडिट FAB का क्लिक लिसनर
         binding.editProfileButton.setOnClickListener {
-            it.startAnimation(clickScale)
-            // Toggle the editing state using your existing logic
-            setFieldsEditable(!isEditingEnabled) // Toggle based on the current state
+            isEditingEnabled = !isEditingEnabled // एडिट मोड को टॉगल करें
+            setFieldsEditable(isEditingEnabled)
         }
 
-        // Add OnClickListener for the Save button (button4)
-        binding.button4.setOnClickListener {
-            it.startAnimation(clickScale)
-            // TODO: Add your logic to save the profile information from EditText fields.
-            // For example, retrieve text from binding.name.text, etc.
+        // सेव बटन (saveInfoButton) का क्लिक लिसनर
+        binding.saveInfoButton.setOnClickListener {
+            // TODO: यहां डेटाबेस में जानकारी सेव करने का लॉजिक लिखें
+            val name = binding.name.text.toString()
+            val address = binding.address.text.toString()
+            // ...
 
-            // After saving (or attempting to save), disable fields again
+            // सेव करने के बाद, एडिट मोड को बंद कर दें
+            isEditingEnabled = false
             setFieldsEditable(false)
-            // Optionally, show a Toast message
-            // Toast.makeText(this, "Information Saved!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Information Saved!", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    /**
+     * यह फंक्शन सभी इनपुट फील्ड्स की एडिटिंग को इनेबल या डिसेबल करता है।
+     */
+    private fun setFieldsEditable(isEditable: Boolean) {
+        // सभी फील्ड्स पर isEnabled सेट करें
+        editableFields.forEach { field ->
+            field.isEnabled = isEditable
+        }
+
+        if (isEditable) {
+            // जब एडिट मोड ऑन हो:
+            // कर्सर को नाम वाले फील्ड पर ले जाएं और उसे सेलेक्ट करें
+            binding.name.requestFocus()
+            binding.name.setSelection(binding.name.text.length)
+
+            // एडिट FAB के आइकॉन को 'close' में बदलें
+            binding.editProfileButton.setImageResource(R.drawable.ic_close)
+
+            // सेव बटन को एनिमेशन के साथ दिखाएं
+            binding.saveInfoButton.show()
+
+        } else {
+            // जब एडिट मोड ऑफ हो:
+            // एडिट FAB के आइकॉन को वापस 'edit' में बदलें
+            binding.editProfileButton.setImageResource(R.drawable.edit_icon)
+
+            // सेव बटन को एनिमेशन के साथ छिपाएं
+            binding.saveInfoButton.hide()
+        }
+    }
+
+    /**
+     * स्क्रीन खुलने पर शुरुआती एनिमेशन चलाता है।
+     */
+    private fun runEnterAnimation() {
+        // CollapsingToolbarLayout में एनिमेशन की ज़रूरत नहीं, यह खुद स्क्रॉल पर एनिमेट होता है।
+
+        // LinearLayout में लेआउट एनिमेशन शुरू करें
+        // यह XML में android:layoutAnimation से हैंडल हो रहा है
+        binding.linearLayout.layoutAnimation = AnimationUtils.loadLayoutAnimation(this, R.anim.slide_up_animation)
+        binding.linearLayout.scheduleLayoutAnimation()
     }
 
     override fun finish() {
         super.finish()
-        // Ensure consistent exit transition
-        overridePendingTransition(R.anim.slide_in_left_activity, R.anim.slide_out_right_activity)
+        // एक्टिविटी बंद होते समय ट्रांज़िशन लगाएं
+        // (अगर आप चाहें तो यहां fade ट्रांज़िशन भी इस्तेमाल कर सकते हैं)
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
     }
 }

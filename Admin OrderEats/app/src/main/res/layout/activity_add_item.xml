@@ -21,7 +21,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-
             <ImageView
                 android:id="@+id/backButton"
                 android:layout_width="32dp"
@@ -46,7 +45,6 @@
                 app:layout_constraintHorizontal_bias="0.405"
                 app:layout_constraintStart_toEndOf="@+id/backButton"
                 app:layout_constraintTop_toTopOf="@+id/backButton" />
-
             <EditText
                 android:id="@+id/foodName"
                 android:layout_width="0dp"
@@ -100,7 +98,6 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/foodPrice"
                 app:layout_constraintTop_toBottomOf="@+id/foodPrice" />
-
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView6"
                 android:layout_width="wrap_content"
@@ -163,8 +160,9 @@
                 android:background="@color/white"
                 android:fontFamily="@font/lato_regular"
                 android:padding="5dp"
-                android:text="Pizza is a popular Italian dish made with a baked flatbread base topped with cheese, tomato sauce, and a variety of toppings like vegetables or meat."
+                android:hint="Pizza is a popular Italian dish made with a baked flatbread base topped with cheese, tomato sauce, and a variety of toppings like vegetables or meat."
                 android:textColor="@color/black"
+                android:textColorHint="@color/black"
                 app:layout_constraintEnd_toEndOf="@+id/descriptionTextView"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/descriptionTextView"
@@ -179,13 +177,13 @@
                 android:background="@color/white"
                 android:fontFamily="@font/lato_regular"
                 android:paddingLeft="5dp"
-                android:text="Pizza Base (Dough) \nMaida (All-purpose flour)\nYeast\nSalt \nSugar \nOlive oil / normal oil \nWater"
+                android:hint="Pizza Base (Dough) \nMaida (All-purpose flour)\nYeast\nSalt \nSugar \nOlive oil / normal oil \nWater"
                 android:textColor="@color/black"
+                android:textColorHint="@color/black"
                 app:layout_constraintEnd_toEndOf="@+id/ingredientTextView"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/ingredientTextView"
                 app:layout_constraintTop_toBottomOf="@+id/ingredientTextView" />
-
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/AddItemButton"
                 android:layout_width="156dp"

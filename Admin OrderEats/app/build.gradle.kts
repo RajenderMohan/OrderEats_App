@@ -41,6 +41,8 @@ android {
 }
 
 dependencies {
+    // Firebase Storage for image uploads
+    implementation("com.google.firebase:firebase-storage-ktx")
     // Keep standard Android and Jetpack libraries
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
