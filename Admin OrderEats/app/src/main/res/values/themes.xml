@@ -9,4 +9,12 @@
     </style>
 
     <style name="Theme.AdminOrderEats" parent="Base.Theme.AdminOrderEats" />
+
+    <style name="Widget.App.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:textColorHint">#CCFFFFFF</item>
+        <item name="boxStrokeColor">#FFFFFF</item>
+        <item name="hintTextColor">#FFFFFF</item>
+        <item name="endIconTint">@android:color/white</item>
+        <item name="counterTextColor">@android:color/white</item>
+    </style>
 </resources>

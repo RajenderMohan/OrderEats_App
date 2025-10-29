@@ -3,12 +3,13 @@ package com.rajender.adminordereats
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
-import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.view.animation.LayoutAnimationController
 import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.doOnTextChanged
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -17,10 +18,6 @@ import com.rajender.adminordereats.databinding.ActivityAddItemBinding
 class AddItemActivity : AppCompatActivity() {
 
     // Food Item Details
-    private lateinit var foodName: String
-    private lateinit var foodPrice: String
-    private lateinit var foodDescription: String
-    private lateinit var foodIngredient: String
     private var foodImageUri: Uri? = null
 
     // Firebase
@@ -52,6 +49,7 @@ class AddItemActivity : AppCompatActivity() {
 
         setupAnimations()
         setupClickListeners()
+        setupInputValidation()
     }
 
     private fun setupAnimations() {
@@ -59,27 +57,14 @@ class AddItemActivity : AppCompatActivity() {
         val slideDown = AnimationUtils.loadAnimation(this, R.anim.slide_down)
         binding.headerTitle.startAnimation(slideDown)
 
-        // Staggered slide-up animation for input fields
+        // Staggered slide-up animation for the form
         val slideUp = AnimationUtils.loadAnimation(this, R.anim.slide_up)
-        val fieldsToAnimate = listOf(
-            binding.foodName,
-            binding.foodPrice,
-            binding.foodImageLabel,
-            binding.selectImage,
-            binding.description,
-            binding.ingredient,
-            binding.AddItemButton
-        )
+        val controller = LayoutAnimationController(slideUp)
+        controller.delay = 0.2f // a delay of 20% of the animation duration
+        controller.order = LayoutAnimationController.ORDER_NORMAL
 
-        fieldsToAnimate.forEachIndexed { index, view ->
-            val animation = AnimationUtils.loadAnimation(this, R.anim.slide_up)
-            animation.startOffset = (index * 100L)
-            view.startAnimation(animation)
-        }
-
-        // Pulsate animation for the Add Item button
-        val pulsate = AnimationUtils.loadAnimation(this, R.anim.pulsate)
-        binding.AddItemButton.startAnimation(pulsate)
+        binding.formContainer.layoutAnimation = controller
+        binding.formContainer.startLayoutAnimation()
     }
 
     private fun setupClickListeners() {
@@ -92,33 +77,92 @@ class AddItemActivity : AppCompatActivity() {
         }
 
         binding.AddItemButton.setOnClickListener {
-            foodName = binding.foodName.text.toString().trim()
-            foodPrice = binding.foodPrice.text.toString().trim()
-            foodDescription = binding.description.text.toString().trim()
-            foodIngredient = binding.ingredient.text.toString().trim()
-
-            if (foodName.isNotBlank() && foodPrice.isNotBlank() && foodDescription.isNotBlank() && foodIngredient.isNotBlank()) {
-                if (foodImageUri != null) {
-                    uploadData()
-                } else {
-                    Toast.makeText(this, "Please select an image", Toast.LENGTH_SHORT).show()
-                }
-            } else {
-                Toast.makeText(this, "Please fill all the fields", Toast.LENGTH_SHORT).show()
+            if (validateInput()) {
+                uploadData()
             }
         }
     }
 
+    private fun setupInputValidation() {
+        binding.foodName.doOnTextChanged { text, _, _, _ ->
+            if (text.isNullOrBlank()) {
+                binding.foodNameLayout.error = "Food name is required"
+            } else {
+                binding.foodNameLayout.error = null
+            }
+        }
+
+        binding.foodPrice.doOnTextChanged { text, _, _, _ ->
+            if (text.isNullOrBlank()) {
+                binding.foodPriceLayout.error = "Food price is required"
+            } else {
+                binding.foodPriceLayout.error = null
+            }
+        }
+
+        binding.description.doOnTextChanged { text, _, _, _ ->
+            if (text.isNullOrBlank()) {
+                binding.descriptionLayout.error = "Description is required"
+            } else {
+                binding.descriptionLayout.error = null
+            }
+        }
+
+        binding.ingredient.doOnTextChanged { text, _, _, _ ->
+            if (text.isNullOrBlank()) {
+                binding.ingredientLayout.error = "Ingredients are required"
+            } else {
+                binding.ingredientLayout.error = null
+            }
+        }
+    }
+
+    private fun validateInput(): Boolean {
+        val isFoodNameValid = !binding.foodName.text.isNullOrBlank()
+        val isFoodPriceValid = !binding.foodPrice.text.isNullOrBlank()
+        val isDescriptionValid = !binding.description.text.isNullOrBlank()
+        val isIngredientValid = !binding.ingredient.text.isNullOrBlank()
+        val isImageSelected = foodImageUri != null
+
+        if (!isFoodNameValid) binding.foodNameLayout.error = "Food name is required"
+        if (!isFoodPriceValid) binding.foodPriceLayout.error = "Food price is required"
+        if (!isDescriptionValid) binding.descriptionLayout.error = "Description is required"
+        if (!isIngredientValid) binding.ingredientLayout.error = "Ingredients are required"
+
+        if (!isImageSelected) {
+            Toast.makeText(this, "Please select an image", Toast.LENGTH_SHORT).show()
+        }
+
+        return isFoodNameValid && isFoodPriceValid && isDescriptionValid && isIngredientValid && isImageSelected
+    }
+
     private fun uploadData() {
+        setInProgress(true)
+
         val menuRef: DatabaseReference = database.getReference("menu")
         val newItemKey: String? = menuRef.push().key
 
         if (newItemKey != null) {
             // Here you would upload the image to Firebase Storage and then save the item details
-            Toast.makeText(this, "Item Added Successfully", Toast.LENGTH_LONG).show()
-            finish()
+            // For now, we'll just simulate a delay
+            binding.root.postDelayed({
+                setInProgress(false)
+                Toast.makeText(this, "Item Added Successfully", Toast.LENGTH_LONG).show()
+                finish()
+            }, 2000)
         } else {
+            setInProgress(false)
             Toast.makeText(this, "Could not create new item key.", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun setInProgress(inProgress: Boolean) {
+        if (inProgress) {
+            binding.progressBar.visibility = View.VISIBLE
+            binding.AddItemButton.isEnabled = false
+        } else {
+            binding.progressBar.visibility = View.GONE
+            binding.AddItemButton.isEnabled = true
         }
     }
 
