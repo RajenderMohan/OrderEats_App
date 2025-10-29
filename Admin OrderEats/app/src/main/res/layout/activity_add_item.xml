@@ -5,202 +5,203 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@drawable/add_item_background_gradient"
     tools:context=".AddItemActivity">
 
-    <ScrollView
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:scrollbars="none"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Back"
+        android:src="@drawable/arrow_left_white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/header_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lato_bolditalic"
+        android:text="Add New Item"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/backButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="@+id/backButton" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/foodNameLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="24dp"
+        android:textColorHint="#CCFFFFFF"
+        app:boxStrokeColor="#FFFFFF"
+        app:hintTextColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header_title">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/foodName"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_food_name"
+            android:drawablePadding="15dp"
+            android:fontFamily="@font/lato_regular"
+            android:hint="Food Name"
+            android:inputType="text"
+            android:textColor="@android:color/white"
+            android:textSize="16sp" />
 
-            <ImageView
-                android:id="@+id/backButton"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
-                android:background="@color/transparent"
-                android:scaleType="centerCrop"
-                android:src="@drawable/arrow_left_icon"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
-                android:id="@+id/textView13"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/lato_bolditalic"
-                android:text="Add Item"
-                android:textColor="@color/black"
-                android:textSize="40sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.405"
-                app:layout_constraintStart_toEndOf="@+id/backButton"
-                app:layout_constraintTop_toTopOf="@+id/backButton" />
-            <EditText
-                android:id="@+id/foodName"
-                android:layout_width="0dp"
-                android:layout_height="56dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="28dp"
-                android:layout_marginEnd="8dp"
-                android:background="@drawable/edittextshape"
-                android:fontFamily="@font/lato_regular"
-                android:hint="Enter Food Name*"
-                android:inputType="text"
-                android:paddingLeft="15dp"
-                android:textColor="@color/black"
-                android:textColorHint="#423C3C"
-                android:textSize="20dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView13" />
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/foodPriceLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textColorHint="#CCFFFFFF"
+        app:boxStrokeColor="#FFFFFF"
+        app:hintTextColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="@+id/foodNameLayout"
+        app:layout_constraintStart_toStartOf="@+id/foodNameLayout"
+        app:layout_constraintTop_toBottomOf="@+id/foodNameLayout">
 
-            <EditText
-                android:id="@+id/foodPrice"
-                android:layout_width="0dp"
-                android:layout_height="56dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/edittextshape"
-                android:fontFamily="@font/lato_regular"
-                android:hint="Enter Food Price*"
-                android:inputType="text"
-                android:paddingLeft="15dp"
-                android:textColor="@color/black"
-                android:textColorHint="#423C3C"
-                android:textSize="20dp"
-                app:layout_constraintEnd_toEndOf="@+id/foodName"
-                app:layout_constraintStart_toStartOf="@+id/foodName"
-                app:layout_constraintTop_toBottomOf="@+id/foodName" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/foodPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_price_tag"
+            android:drawablePadding="15dp"
+            android:fontFamily="@font/lato_regular"
+            android:hint="Food Price"
+            android:inputType="numberDecimal"
+            android:textColor="@android:color/white"
+            android:textSize="16sp" />
 
-            <TextView
-                android:id="@+id/selectImage"
-                android:layout_width="0dp"
-                android:layout_height="56dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/edittextshape"
-                android:drawableRight="@drawable/add_menu_icon"
-                android:gravity="center_vertical"
-                android:paddingLeft="15dp"
-                android:paddingRight="35dp"
-                android:text="Select Image*"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="@+id/foodPrice"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/foodPrice"
-                app:layout_constraintTop_toBottomOf="@+id/foodPrice" />
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardView6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                app:cardCornerRadius="15dp"
-                app:layout_constraintEnd_toEndOf="@+id/selectImage"
-                app:layout_constraintHorizontal_bias="0.45"
-                app:layout_constraintStart_toStartOf="@+id/selectImage"
-                app:layout_constraintTop_toBottomOf="@+id/selectImage">
+    </com.google.android.material.textfield.TextInputLayout>
 
-                <ImageView
-                    android:id="@+id/selectedImage"
-                    android:layout_width="175dp"
-                    android:layout_height="120dp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/add_image_icon" />
+    <TextView
+        android:id="@+id/foodImageLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/lato_bold"
+        android:text="Food Image"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/foodPriceLayout"
+        app:layout_constraintTop_toBottomOf="@+id/foodPriceLayout" />
 
-            </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/selectImage"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="8dp"
+        app:cardBackgroundColor="#4DFFFFFF"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="0dp"
+        app:layout_constraintEnd_toEndOf="@+id/foodPriceLayout"
+        app:layout_constraintStart_toStartOf="@+id/foodPriceLayout"
+        app:layout_constraintTop_toBottomOf="@+id/foodImageLabel">
 
-            <TextView
-                android:id="@+id/descriptionTextView"
-                android:layout_width="match_parent"
-                android:layout_height="46dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="8dp"
-                android:background="@drawable/edittextshape"
-                android:fontFamily="@font/lato_bolditalic"
-                android:gravity="center_vertical"
-                android:paddingLeft="15dp"
-                android:text="Short Description*"
-                android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/selectImage"
-                app:layout_constraintTop_toBottomOf="@+id/cardView6" />
+        <ImageView
+            android:id="@+id/selectedImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop" />
 
-            <TextView
-                android:id="@+id/ingredientTextView"
-                android:layout_width="match_parent"
-                android:layout_height="46dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="8dp"
-                android:background="@drawable/edittextshape"
-                android:fontFamily="@font/lato_bolditalic"
-                android:gravity="center_vertical"
-                android:paddingLeft="15dp"
-                android:text="Ingredients*"
-                android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/description" />
+        <TextView
+            android:id="@+id/tapToSelectImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:drawableTop="@drawable/ic_add_a_photo"
+            android:drawablePadding="8dp"
+            android:fontFamily="@font/lato_regular"
+            android:gravity="center"
+            android:text="Tap to select image"
+            android:textColor="#CCFFFFFF"
+            android:textSize="14sp" />
 
-            <EditText
-                android:id="@+id/description"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="@color/white"
-                android:fontFamily="@font/lato_regular"
-                android:padding="5dp"
-                android:hint="Pizza is a popular Italian dish made with a baked flatbread base topped with cheese, tomato sauce, and a variety of toppings like vegetables or meat."
-                android:textColor="@color/black"
-                android:textColorHint="@color/black"
-                app:layout_constraintEnd_toEndOf="@+id/descriptionTextView"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/descriptionTextView"
-                app:layout_constraintTop_toBottomOf="@+id/descriptionTextView" />
+    </androidx.cardview.widget.CardView>
 
-            <EditText
-                android:id="@+id/ingredient"
-                android:layout_width="240dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="195dp"
-                android:background="@color/white"
-                android:fontFamily="@font/lato_regular"
-                android:paddingLeft="5dp"
-                android:hint="Pizza Base (Dough) \nMaida (All-purpose flour)\nYeast\nSalt \nSugar \nOlive oil / normal oil \nWater"
-                android:textColor="@color/black"
-                android:textColorHint="@color/black"
-                app:layout_constraintEnd_toEndOf="@+id/ingredientTextView"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/ingredientTextView"
-                app:layout_constraintTop_toBottomOf="@+id/ingredientTextView" />
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/AddItemButton"
-                android:layout_width="156dp"
-                android:layout_height="56dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginBottom="24dp"
-                android:background="@drawable/greenbuttongradient"
-                android:fontFamily="@font/lato_regular"
-                android:text="Add Item"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="20dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ingredient" />
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/descriptionLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textColorHint="#CCFFFFFF"
+        app:boxStrokeColor="#FFFFFF"
+        app:hintTextColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="@+id/selectImage"
+        app:layout_constraintStart_toStartOf="@+id/selectImage"
+        app:layout_constraintTop_toBottomOf="@+id/selectImage">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_description"
+            android:drawablePadding="15dp"
+            android:fontFamily="@font/lato_regular"
+            android:hint="Short Description"
+            android:inputType="textMultiLine"
+            android:minLines="2"
+            android:textColor="@android:color/white"
+            android:textSize="16sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/ingredientLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textColorHint="#CCFFFFFF"
+        app:boxStrokeColor="#FFFFFF"
+        app:hintTextColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="@+id/descriptionLayout"
+        app:layout_constraintStart_toStartOf="@+id/descriptionLayout"
+        app:layout_constraintTop_toBottomOf="@+id/descriptionLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ingredient"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_ingredients"
+            android:drawablePadding="15dp"
+            android:fontFamily="@font/lato_regular"
+            android:hint="Ingredients (comma-separated)"
+            android:inputType="text"
+            android:textColor="@android:color/white"
+            android:textSize="16sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/AddItemButton"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/add_item_button_background"
+        android:fontFamily="@font/lato_bold"
+        android:text="ADD ITEM"
+        android:textAllCaps="true"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/ingredientLayout"
+        app:layout_constraintStart_toStartOf="@+id/ingredientLayout" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
