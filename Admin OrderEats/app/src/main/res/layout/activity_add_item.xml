@@ -204,6 +204,26 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/foodCategoryLayout"
+                style="@style/Widget.App.ExposedDropdownMenu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="@+id/ingredientLayout"
+                app:layout_constraintStart_toStartOf="@+id/ingredientLayout"
+                app:layout_constraintTop_toBottomOf="@+id/ingredientLayout">
+
+                <AutoCompleteTextView
+                    android:id="@+id/foodCategory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none"
+                    android:hint="Select Food Category"
+                    android:textColor="@android:color/white"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
@@ -215,11 +235,11 @@
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="24dp"
+        android:background="@drawable/add_item_button_gradient"
         android:fontFamily="@font/lato_bold"
         android:text="ADD ITEM"
         android:textColor="@android:color/white"
         android:textSize="18sp"
-        app:backgroundTint="#6200EE"
         app:cornerRadius="28dp"
         app:icon="@drawable/ic_save"
         app:iconGravity="textStart"

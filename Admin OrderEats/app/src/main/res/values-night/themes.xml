@@ -17,4 +17,11 @@
         <item name="endIconTint">@android:color/white</item>
         <item name="counterTextColor">@android:color/white</item>
     </style>
+
+    <style name="Widget.App.ExposedDropdownMenu" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="android:textColorHint">#CCFFFFFF</item>
+        <item name="boxStrokeColor">#FFFFFF</item>
+        <item name="hintTextColor">#FFFFFF</item>
+        <item name="endIconTint">@android:color/white</item>
+    </style>
 </resources>

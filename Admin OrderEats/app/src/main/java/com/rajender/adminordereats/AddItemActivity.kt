@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.view.animation.LayoutAnimationController
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
@@ -33,7 +34,8 @@ class AddItemActivity : AppCompatActivity() {
                 foodImageUri = uri
                 binding.selectedImage.setImageURI(uri)
                 binding.tapToSelectImage.visibility = View.GONE
-                Toast.makeText(this, "Image Selected", Toast.LENGTH_SHORT).show()
+                val popInAnimation = AnimationUtils.loadAnimation(this, R.anim.image_pop_in)
+                binding.selectedImage.startAnimation(popInAnimation)
             } else {
                 Toast.makeText(this, "No image selected", Toast.LENGTH_SHORT).show()
             }
@@ -50,6 +52,7 @@ class AddItemActivity : AppCompatActivity() {
         setupAnimations()
         setupClickListeners()
         setupInputValidation()
+        setupCategoryDropdown()
     }
 
     private fun setupAnimations() {
@@ -65,6 +68,10 @@ class AddItemActivity : AppCompatActivity() {
 
         binding.formContainer.layoutAnimation = controller
         binding.formContainer.startLayoutAnimation()
+
+        // Pulsate animation for the Add Item button
+        val pulsate = AnimationUtils.loadAnimation(this, R.anim.pulsate)
+        binding.AddItemButton.startAnimation(pulsate)
     }
 
     private fun setupClickListeners() {
@@ -117,23 +124,31 @@ class AddItemActivity : AppCompatActivity() {
         }
     }
 
+    private fun setupCategoryDropdown() {
+        val categories = resources.getStringArray(R.array.food_categories)
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, categories)
+        binding.foodCategory.setAdapter(adapter)
+    }
+
     private fun validateInput(): Boolean {
         val isFoodNameValid = !binding.foodName.text.isNullOrBlank()
         val isFoodPriceValid = !binding.foodPrice.text.isNullOrBlank()
         val isDescriptionValid = !binding.description.text.isNullOrBlank()
         val isIngredientValid = !binding.ingredient.text.isNullOrBlank()
+        val isCategorySelected = !binding.foodCategory.text.isNullOrBlank()
         val isImageSelected = foodImageUri != null
 
         if (!isFoodNameValid) binding.foodNameLayout.error = "Food name is required"
         if (!isFoodPriceValid) binding.foodPriceLayout.error = "Food price is required"
         if (!isDescriptionValid) binding.descriptionLayout.error = "Description is required"
         if (!isIngredientValid) binding.ingredientLayout.error = "Ingredients are required"
+        if (!isCategorySelected) binding.foodCategoryLayout.error = "Category is required"
 
         if (!isImageSelected) {
             Toast.makeText(this, "Please select an image", Toast.LENGTH_SHORT).show()
         }
 
-        return isFoodNameValid && isFoodPriceValid && isDescriptionValid && isIngredientValid && isImageSelected
+        return isFoodNameValid && isFoodPriceValid && isDescriptionValid && isIngredientValid && isCategorySelected && isImageSelected
     }
 
     private fun uploadData() {

@@ -3,4 +3,14 @@
     <string name="dev_name">Design By Rajender, Shekhar</string>
     <string name="default_web_client_id" translatable="false">YOUR_WEB_APPLICATION_CLIENT_ID</string>
 
+    <string-array name="food_categories">
+        <item>Vegetables</item>
+        <item>Desserts</item>
+        <item>Fruits</item>
+        <item>Protein</item>
+        <item>Drinks</item>
+        <item>Salads</item>
+        <item>Dairy</item>
+        <item>Fats and oils</item>
+    </string-array>
 </resources>
