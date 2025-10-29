@@ -1,40 +1,30 @@
-package com.rajender.adminordereats // Make sure this is your correct package
+package com.rajender.adminordereats
 
 import android.os.Bundle
-import android.view.animation.AnimationUtils // Import for animations
+import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.rajender.adminordereats.Adapter.AddItemAdapter
 import com.rajender.adminordereats.databinding.ActivityAllItemBinding
-import com.rajender.adminordereats.R // Import R for resources (R.anim, R.drawable)
 
 class AllItemActivity : AppCompatActivity() {
 
-    // Class-level binding variable, initialized lazily
     private val binding: ActivityAllItemBinding by lazy {
         ActivityAllItemBinding.inflate(layoutInflater)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // Use the class-level 'binding' variable for setContentView
         setContentView(binding.root)
 
-        // --- Load Animations ---
-        val fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in)
-        val clickScale = AnimationUtils.loadAnimation(this, R.anim.click_scale)
+        // --- Animate Header ---
+        val slideDown = AnimationUtils.loadAnimation(this, R.anim.slide_down)
+        binding.headerTitle.startAnimation(slideDown)
+        binding.backButton.startAnimation(slideDown)
 
-        // --- Apply Entrance Animations ---
-        // Ensure your TextView for the title in activity_all_item.xml has the id "textView13"
-        binding.textView13.startAnimation(fadeIn)
-        binding.backButton.startAnimation(fadeIn)
-
-        // --- Back Button Click Transform & Exit Transition ---
+        // --- Back Button Click Listener ---
         binding.backButton.setOnClickListener {
-            it.startAnimation(clickScale) // Apply click scale animation
             finish()
-            // Transition for this activity exiting and the previous one entering
-            overridePendingTransition(R.anim.slide_in_left_activity, R.anim.slide_out_right_activity)
         }
 
         // --- Prepare Data for Adapter ---
@@ -50,8 +40,6 @@ class AllItemActivity : AppCompatActivity() {
             R.drawable.idli, R.drawable.paneer_bun, R.drawable.mojito,
             R.drawable.cake, R.drawable.chat, R.drawable.dosa,
             R.drawable.chicken, R.drawable.chole_kulche,
-
-            // Ensure R.drawable.logo_app exists
         )
 
         // --- Initialize and Set Adapter ---
@@ -63,16 +51,11 @@ class AllItemActivity : AppCompatActivity() {
 
         binding.MenuRecyclerView.layoutManager = LinearLayoutManager(this)
         binding.MenuRecyclerView.adapter = adapter
-
-        // The RecyclerView's layout animation (e.g., @anim/layout_animation_fall_down)
-        // should be set in your activity_all_item.xml on the RecyclerView.
-        // It will run automatically when the RecyclerView is first laid out with items.
     }
 
     override fun finish() {
         super.finish()
-        // Ensure consistent exit transition
-        // This applies when AllItemActivity exits and the PREVIOUS activity re-enters.
+        // Apply activity exit transition
         overridePendingTransition(R.anim.slide_in_left_activity, R.anim.slide_out_right_activity)
     }
 }

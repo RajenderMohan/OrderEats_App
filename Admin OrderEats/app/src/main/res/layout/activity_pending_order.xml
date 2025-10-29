@@ -5,32 +5,31 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@drawable/pending_order_background_gradient"
     tools:context=".PendingOrderActivity">
 
-    <ImageView
+    <ImageButton
         android:id="@+id/backButton"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:background="@color/transparent"
-        android:scaleType="centerCrop"
-        android:src="@drawable/arrow_left_icon"
+        android:layout_marginTop="36dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/arrow_left_white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/header_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/lato_bolditalic"
         android:text="Pending Orders"
-        android:textColor="@color/black"
-        android:textSize="36dp"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/backButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.407"
-        app:layout_constraintStart_toEndOf="@+id/backButton"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/backButton" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -38,12 +37,11 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
-        tools:listitem="@layout/pending_order_item"
+        android:layoutAnimation="@anim/layout_animation_slide_from_bottom"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView13"
-        app:layout_constraintVertical_bias="1.0"
-        android:layoutAnimation="@anim/layout_animation_slide_from_bottom"/>
+        app:layout_constraintTop_toBottomOf="@+id/header_title"
+        tools:listitem="@layout/pending_order_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
