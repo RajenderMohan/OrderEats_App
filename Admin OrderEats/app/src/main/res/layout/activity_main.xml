@@ -25,7 +25,7 @@
         android:fontFamily="@font/lato_bolditalic"
         android:text="OrderEats"
         android:textAlignment="center"
-        android:textColor="@color/black"
+        android:textColor="@color/text_color_dark"
         android:textSize="40sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,6 +40,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginTop="24dp"
         android:layout_marginRight="8dp"
+        app:cardBackgroundColor="@color/main_card_background"
         app:cardCornerRadius="15dp"
         app:cardElevation="4dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,7 +51,6 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent">
@@ -94,7 +94,7 @@
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/lato_italic"
                 android:text="Pending Order"
-                android:textColor="@color/text_color"
+                android:textColor="@color/text_color_dark"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/guideline1"
@@ -133,7 +133,7 @@
                 android:fontFamily="@font/lato_italic"
                 android:text="Complete\nOrder"
                 android:textAlignment="center"
-                android:textColor="@color/text_color"
+                android:textColor="@color/text_color_dark"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/pendingOrder"
@@ -175,7 +175,7 @@
                 android:fontFamily="@font/lato_italic"
                 android:text="Whlole Time\nEarning"
                 android:textAlignment="center"
-                android:textColor="@color/text_color"
+                android:textColor="@color/text_color_dark"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/guideline3"
@@ -191,7 +191,7 @@
                 android:layout_marginEnd="19dp"
                 android:fontFamily="@font/lato_blackitalic"
                 android:text="30₹"
-                android:textColor="@color/text_color"
+                android:textColor="@color/text_color_dark"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/textView11"
@@ -208,6 +208,7 @@
         android:layout_height="100dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
+        app:cardBackgroundColor="@color/card_background"
         app:cardCornerRadius="15dp"
         app:cardElevation="4dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -218,25 +219,30 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:animateLayoutChanges="true"
-            android:background="@drawable/cardgreen">
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true">
 
             <ImageView
                 android:id="@+id/imageView6"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:layout_marginTop="10dp"
                 android:src="@drawable/add_menu_icon"
+                app:layout_constraintBottom_toTopOf="@+id/addMenuText"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed" />
 
             <TextView
+                android:id="@+id/addMenuText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
+                android:layout_marginTop="8dp"
                 android:text="Add Menu"
-                android:textColor="@color/text_color"
+                android:textColor="@color/text_color_dark"
                 android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/imageView6"
                 app:layout_constraintStart_toStartOf="@+id/imageView6"
                 app:layout_constraintTop_toBottomOf="@+id/imageView6" />
@@ -250,6 +256,7 @@
         android:layout_height="100dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
+        app:cardBackgroundColor="@color/card_background"
         app:cardCornerRadius="15dp"
         app:cardElevation="4dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -260,7 +267,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:animateLayoutChanges="true"
-            android:background="@drawable/cardgreen"
+            android:background="?attr/selectableItemBackground"
             android:clickable="true"
             android:focusable="true">
 
@@ -268,19 +275,22 @@
                 android:id="@+id/imageView7"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:layout_marginTop="10dp"
                 android:src="@drawable/eye_icon"
+                app:layout_constraintBottom_toTopOf="@+id/allItemMenuText"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed" />
 
             <TextView
+                android:id="@+id/allItemMenuText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
+                android:layout_marginTop="8dp"
                 android:text="All Item Menu"
-                android:textColor="@color/text_color"
+                android:textColor="@color/text_color_dark"
                 android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/imageView7"
                 app:layout_constraintStart_toStartOf="@+id/imageView7"
                 app:layout_constraintTop_toBottomOf="@+id/imageView7" />
@@ -294,6 +304,7 @@
         android:layout_height="100dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="24dp"
+        app:cardBackgroundColor="@color/card_background"
         app:cardCornerRadius="15dp"
         app:cardElevation="4dp"
         app:layout_constraintEnd_toEndOf="@+id/cardView2"
@@ -306,25 +317,30 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:animateLayoutChanges="true"
-            android:background="@drawable/cardgreen">
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true">
 
             <ImageView
                 android:id="@+id/imageView8"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:layout_marginTop="10dp"
                 android:src="@drawable/profile_icon"
+                app:layout_constraintBottom_toTopOf="@+id/profileText"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed" />
 
             <TextView
+                android:id="@+id/profileText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
+                android:layout_marginTop="8dp"
                 android:text="Profile"
-                android:textColor="@color/text_color"
+                android:textColor="@color/text_color_dark"
                 android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/imageView8"
                 app:layout_constraintStart_toStartOf="@+id/imageView8"
                 app:layout_constraintTop_toBottomOf="@+id/imageView8" />
@@ -337,6 +353,7 @@
         android:layout_width="150dp"
         android:layout_height="100dp"
         android:layout_marginTop="24dp"
+        app:cardBackgroundColor="@color/card_background"
         app:cardCornerRadius="15dp"
         app:cardElevation="4dp"
         app:layout_constraintEnd_toEndOf="@+id/cardView3"
@@ -348,25 +365,30 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:animateLayoutChanges="true"
-            android:background="@drawable/cardgreen">
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true">
 
             <ImageView
                 android:id="@+id/imageView9"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:layout_marginTop="10dp"
                 android:src="@drawable/profile_create_icon"
+                app:layout_constraintBottom_toTopOf="@+id/createNewUserText"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed" />
 
             <TextView
+                android:id="@+id/createNewUserText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
+                android:layout_marginTop="8dp"
                 android:text="Create New User"
-                android:textColor="@color/text_color"
+                android:textColor="@color/text_color_dark"
                 android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/imageView9"
                 app:layout_constraintStart_toStartOf="@+id/imageView9"
                 app:layout_constraintTop_toBottomOf="@+id/imageView9" />
@@ -379,6 +401,7 @@
         android:layout_width="150dp"
         android:layout_height="100dp"
         android:layout_marginTop="24dp"
+        app:cardBackgroundColor="@color/card_background"
         app:cardCornerRadius="15dp"
         app:cardElevation="4dp"
         app:layout_constraintEnd_toEndOf="@+id/cardView4"
@@ -390,25 +413,30 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:animateLayoutChanges="true"
-            android:background="@drawable/cardgreen">
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true">
 
             <ImageView
                 android:id="@+id/imageView10"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
-                android:layout_marginTop="10dp"
                 android:src="@drawable/dispatch_icon"
+                app:layout_constraintBottom_toTopOf="@+id/outForDeliveryButtonText"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed" />
 
             <TextView
+                android:id="@+id/outForDeliveryButtonText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="8dp"
                 android:text="Order Dispatch"
-                android:textColor="@color/icon_color"
+                android:textColor="@color/text_color_dark"
                 android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/imageView10"
                 app:layout_constraintStart_toStartOf="@+id/imageView10"
                 app:layout_constraintTop_toBottomOf="@+id/imageView10" />
@@ -421,6 +449,7 @@
         android:layout_width="150dp"
         android:layout_height="100dp"
         android:layout_marginTop="24dp"
+        app:cardBackgroundColor="@color/card_background"
         app:cardCornerRadius="15dp"
         app:cardElevation="4dp"
         app:layout_constraintEnd_toEndOf="@+id/cardView5"
@@ -431,25 +460,30 @@
             android:id="@+id/logoutButton"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/cardgreen">
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true">
 
             <ImageView
                 android:id="@+id/imageView11"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:layout_marginTop="10dp"
                 android:src="@drawable/logout_icon"
+                app:layout_constraintBottom_toTopOf="@+id/logoutButtonText"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed" />
 
             <TextView
+                android:id="@+id/logoutButtonText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
+                android:layout_marginTop="8dp"
                 android:text="Log Out"
                 android:textColor="#E40B0B"
                 android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/imageView11"
                 app:layout_constraintStart_toStartOf="@+id/imageView11"
                 app:layout_constraintTop_toBottomOf="@+id/imageView11" />
@@ -465,7 +499,7 @@
         android:fontFamily="@font/lato_blackitalic"
         android:text="@string/dev_name"
         android:textAlignment="center"
-        android:textColor="@color/text_color"
+        android:textColor="@color/text_color_dark"
         android:textSize="12sp"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
