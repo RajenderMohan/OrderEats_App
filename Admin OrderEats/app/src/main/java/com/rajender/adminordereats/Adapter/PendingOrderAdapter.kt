@@ -52,10 +52,12 @@ class PendingOrderAdapter(
                 val isAccepted = acceptedStatus[position]
 
                 if (isAccepted) {
-                    acceptButton.setImageResource(R.drawable.ic_dispatch)
+                    acceptButton.text = "Dispatch"
+                    acceptButton.setIconResource(R.drawable.ic_dispatch)
                     declineButton.visibility = View.GONE
                 } else {
-                    acceptButton.setImageResource(R.drawable.ic_accept)
+                    acceptButton.text = "Accept"
+                    acceptButton.setIconResource(R.drawable.ic_accept)
                     declineButton.visibility = View.VISIBLE
                 }
 
@@ -77,7 +79,8 @@ class PendingOrderAdapter(
 
             if (!acceptedStatus[position]) {
                 acceptedStatus[position] = true
-                binding.acceptButton.setImageResource(R.drawable.ic_dispatch)
+                binding.acceptButton.text = "Dispatch"
+                binding.acceptButton.setIconResource(R.drawable.ic_dispatch)
                 binding.declineButton.visibility = View.GONE
                 showToast("Order Accepted for: ${customerNames[position]}")
             } else {

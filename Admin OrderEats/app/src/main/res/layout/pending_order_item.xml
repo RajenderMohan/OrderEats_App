@@ -4,58 +4,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingStart="16dp"
-    android:paddingEnd="16dp">
-
-    <View
-        android:id="@+id/timeline_line"
-        android:layout_width="2dp"
-        android:layout_height="0dp"
-        android:background="#8E2DE2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/orderFoodImage"
-        app:layout_constraintEnd_toEndOf="@+id/orderFoodImage"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/orderFoodImage"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/logo_app"
-        android:padding="4dp"
-        android:background="@drawable/pending_order_background_gradient"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full" />
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="16dp"
+    android:layout_marginEnd="16dp">
 
     <com.google.android.material.card.MaterialCardView
-        android:layout_width="0dp"
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginTop="32dp"
         app:cardBackgroundColor="#F8F8F8"
         app:cardCornerRadius="20dp"
-        app:cardElevation="4dp"
+        app:cardElevation="6dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/orderFoodImage"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="12dp">
+            android:layout_height="195dp">
 
             <TextView
                 android:id="@+id/orderCustomerName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="88dp"
+                android:layout_marginEnd="16dp"
                 android:fontFamily="@font/lato_bold"
                 android:text="Customer Name"
+                android:textAlignment="center"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -63,12 +45,14 @@
                 android:id="@+id/quantityTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="8dp"
                 android:fontFamily="@font/lato_regular"
                 android:text="Quantity:"
                 android:textColor="@color/text_color"
                 android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="@+id/orderCustomerName"
+                app:layout_constraintEnd_toStartOf="@+id/orderQuantity"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/orderCustomerName" />
 
             <TextView
@@ -81,34 +65,67 @@
                 android:textColor="@android:color/black"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@+id/quantityTextView"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/quantityTextView"
                 app:layout_constraintTop_toTopOf="@+id/quantityTextView" />
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/declineButton"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:backgroundTint="#D32F2F"
-                android:src="@drawable/ic_decline"
-                app:fabSize="mini"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/pending_order_action_bar_background"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/acceptButton"
-                app:tint="@android:color/white" />
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/acceptButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#4CAF50"
-                android:src="@drawable/ic_accept"
-                app:fabSize="mini"
-                app:layout_constraintBottom_toBottomOf="@+id/declineButton"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:tint="@android:color/white" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/quantityTextView">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/declineButton"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="1"
+                    android:text="Decline"
+                    android:textColor="#D32F2F"
+                    app:icon="@drawable/ic_decline"
+                    app:iconTint="#D32F2F" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/acceptButton"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:text="Accept"
+                    android:textColor="#4CAF50"
+                    app:icon="@drawable/ic_accept"
+                    app:iconTint="#4CAF50" />
+
+            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/orderFoodImage"
+        android:layout_width="74dp"
+        android:layout_height="74dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/pending_order_background_gradient"
+        android:padding="4dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/logo_app"
+        android:elevation="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/cardView"
+        app:layout_constraintStart_toStartOf="@+id/cardView"
+        app:layout_constraintTop_toTopOf="@+id/cardView"
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
