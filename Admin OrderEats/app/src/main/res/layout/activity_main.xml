@@ -414,7 +414,7 @@
                 android:id="@+id/imageView10"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
-                android:src="@drawable/dispatch_icon"
+                android:src="@drawable/out_for_delivery_icon"
                 app:layout_constraintBottom_toTopOf="@+id/outForDeliveryButtonText"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
