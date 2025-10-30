@@ -151,4 +151,3 @@ class MainActivity : AppCompatActivity() {
         // as it will be removed from the stack. The LoginActivity will have its entrance.
     }
 }
-
