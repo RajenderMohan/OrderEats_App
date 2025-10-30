@@ -94,7 +94,7 @@ class MainActivity : AppCompatActivity() {
             navigateTo(CreateUserActivity::class.java)
         }
 
-        binding.pendingOrder.setOnClickListener { view ->
+        binding.pendingOrderLayout.setOnClickListener { view ->
             view.startAnimation(clickScaleAnimation)
             navigateTo(PendingOrderActivity::class.java)
         }
