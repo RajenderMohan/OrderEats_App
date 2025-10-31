@@ -24,8 +24,8 @@
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="54dp"
-                android:layout_height="54dp"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
                 android:src="@drawable/logo"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -35,16 +35,18 @@
                 android:id="@+id/textView2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:ellipsize="marquee"
                 android:fontFamily="@font/lato_bolditalic"
                 android:gravity="center_vertical"
+                android:marqueeRepeatLimit="marquee_forever"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
-                android:text="OrderEats Admin"
+                android:singleLine="true"
+                android:text="Welcome to the OrderEats Admin Dashboard"
                 android:textColor="@color/text_color_dark"
-                android:textSize="32sp"
+                android:textSize="40sp"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/imageView"
                 app:layout_constraintTop_toTopOf="@+id/imageView" />
 

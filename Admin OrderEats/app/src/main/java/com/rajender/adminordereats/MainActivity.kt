@@ -37,6 +37,9 @@ class MainActivity : AppCompatActivity() {
 
         // Set up click listeners for all buttons
         setupClickListeners()
+
+        // Start the marquee with a delay
+        startMarqueeWithDelay()
     }
 
     override fun onResume() {
@@ -87,6 +90,13 @@ class MainActivity : AppCompatActivity() {
                 }
             }, (i * 120L)) // Staggered delay
         }
+    }
+
+    private fun startMarqueeWithDelay() {
+        val handler = Handler(Looper.getMainLooper())
+        handler.postDelayed({
+            binding.textView2.isSelected = true
+        }, 2000) // 2-second delay
     }
 
     private fun setupClickListeners() {
