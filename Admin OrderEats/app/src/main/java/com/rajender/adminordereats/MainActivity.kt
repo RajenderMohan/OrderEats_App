@@ -9,6 +9,7 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import com.google.firebase.auth.FirebaseAuth
 import com.rajender.adminordereats.databinding.ActivityMainBinding
 
@@ -20,17 +21,51 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
 
+    // Handler and Runnable for image rotation
+    private val rotateHandler = Handler(Looper.getMainLooper())
+    private lateinit var rotateRunnable: Runnable
+    private val ROTATE_DELAY = 5000L // 5 seconds
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
         auth = FirebaseAuth.getInstance()
 
-        // Animate the layout
+        // Animate the layout on startup
         animateLayout()
 
-        // Set up click listeners
+        // Set up click listeners for all buttons
         setupClickListeners()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // Start the automatic image rotation when the screen is visible
+        startImageRotation()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        // Stop the automatic image rotation to save resources when the screen is not visible
+        stopImageRotation()
+    }
+
+    private fun startImageRotation() {
+        val rotateAnim = AnimationUtils.loadAnimation(this, R.anim.rotate_once)
+        rotateRunnable = object : Runnable {
+            override fun run() {
+                binding.imageView.startAnimation(rotateAnim)
+                // Schedule the next rotation
+                rotateHandler.postDelayed(this, ROTATE_DELAY)
+            }
+        }
+        // Start the first rotation after the initial delay
+        rotateHandler.postDelayed(rotateRunnable, ROTATE_DELAY)
+    }
+
+    private fun stopImageRotation() {
+        rotateHandler.removeCallbacks(rotateRunnable)
     }
 
     private fun animateLayout() {
@@ -46,9 +81,9 @@ class MainActivity : AppCompatActivity() {
                 view.visibility = View.VISIBLE
                 view.startAnimation(unfoldEnter)
 
-                // Add pulse animation to the stats card
-                if (view.id == R.id.stats_card) {
-                    binding.pendingOrderLayout.startAnimation(pulse)
+                // Add pulse animation to all CardViews
+                if (view is CardView) {
+                    view.startAnimation(pulse)
                 }
             }, (i * 120L)) // Staggered delay
         }
@@ -67,8 +102,7 @@ class MainActivity : AppCompatActivity() {
 
         clickableViews.forEach { view ->
             view.setOnClickListener {
-                // The grow/shrink animation is now handled by the StateListAnimator in XML
-                // Navigate immediately on click
+                // The grow/shrink animation is handled by the StateListAnimator in XML
                 when (it.id) {
                     R.id.addMenu -> navigateTo(AddItemActivity::class.java)
                     R.id.allItemMenu -> navigateTo(AllItemActivity::class.java)

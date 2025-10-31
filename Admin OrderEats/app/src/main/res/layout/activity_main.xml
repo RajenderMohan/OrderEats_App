@@ -44,6 +44,7 @@
                 android:textSize="32sp"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/imageView"
                 app:layout_constraintTop_toTopOf="@+id/imageView" />
 
@@ -66,7 +67,7 @@
                 android:padding="16dp">
 
                 <!-- Pending Orders -->
-                <RelativeLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/pendingOrderLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -79,32 +80,36 @@
                         android:id="@+id/pendingIcon"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
-                        android:layout_centerVertical="true"
                         android:src="@drawable/attention_icon"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
                         app:tint="@color/text_color_dark" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
                         android:layout_marginStart="16dp"
-                        android:layout_toEndOf="@id/pendingIcon"
                         android:fontFamily="@font/lato_bolditalic"
                         android:text="Pending Orders"
                         android:textColor="@color/text_color_dark"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/pendingIcon"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/pendingOrderCount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
                         android:fontFamily="@font/lato_blackitalic"
                         android:text="30"
                         android:textColor="@color/black"
-                        android:textSize="22sp" />
-                </RelativeLayout>
+                        android:textSize="22sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <View
                     android:layout_width="match_parent"
@@ -113,7 +118,7 @@
                     android:background="@color/rose_gold" />
 
                 <!-- Completed Orders -->
-                <RelativeLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/completedOrderLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -122,32 +127,36 @@
                         android:id="@+id/completedIcon"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
-                        android:layout_centerVertical="true"
                         android:src="@drawable/correct_icon"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
                         app:tint="@color/text_color_dark" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
                         android:layout_marginStart="16dp"
-                        android:layout_toEndOf="@id/completedIcon"
                         android:fontFamily="@font/lato_bolditalic"
                         android:text="Completed Orders"
                         android:textColor="@color/text_color_dark"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/completedIcon"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/completedOrderCount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
                         android:fontFamily="@font/lato_blackitalic"
                         android:text="150"
                         android:textColor="@color/icon_color"
-                        android:textSize="22sp" />
-                </RelativeLayout>
+                        android:textSize="22sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <View
                     android:layout_width="match_parent"
@@ -156,7 +165,7 @@
                     android:background="@color/rose_gold" />
 
                 <!-- Total Earnings -->
-                <RelativeLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/totalEarningLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -165,31 +174,35 @@
                         android:id="@+id/earningIcon"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/rupee_icon" />
+                        android:src="@drawable/rupee_icon"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
                         android:layout_marginStart="16dp"
-                        android:layout_toEndOf="@id/earningIcon"
                         android:fontFamily="@font/lato_bolditalic"
                         android:text="Total Earnings"
                         android:textColor="@color/text_color_dark"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/earningIcon"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/totalEarningAmount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
                         android:fontFamily="@font/lato_blackitalic"
                         android:text="$12,500"
                         android:textColor="@color/text_color_dark"
-                        android:textSize="22sp" />
-                </RelativeLayout>
+                        android:textSize="22sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -215,7 +228,7 @@
             app:cardCornerRadius="15dp"
             app:cardElevation="4dp">
 
-            <RelativeLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/addMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -229,29 +242,33 @@
                     android:id="@+id/add_menu_icon"
                     android:layout_width="28dp"
                     android:layout_height="28dp"
-                    android:layout_centerVertical="true"
                     android:src="@drawable/add_menu_icon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:tint="@color/text_color_dark" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
                     android:layout_marginStart="16dp"
-                    android:layout_toEndOf="@id/add_menu_icon"
                     android:fontFamily="@font/lato_bold"
                     android:text="Add Menu Item"
                     android:textColor="@color/text_color_dark"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/add_menu_icon"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/arrow_right_icon" />
+                    android:src="@drawable/arrow_right_icon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            </RelativeLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
         <!-- All Items -->
@@ -264,7 +281,7 @@
             app:cardCornerRadius="15dp"
             app:cardElevation="4dp">
 
-            <RelativeLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/allItemMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -278,29 +295,33 @@
                     android:id="@+id/all_items_icon"
                     android:layout_width="28dp"
                     android:layout_height="28dp"
-                    android:layout_centerVertical="true"
                     android:src="@drawable/eye_icon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:tint="@color/text_color_dark" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
                     android:layout_marginStart="16dp"
-                    android:layout_toEndOf="@id/all_items_icon"
                     android:fontFamily="@font/lato_bold"
                     android:text="View All Items"
                     android:textColor="@color/text_color_dark"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/all_items_icon"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/arrow_right_icon" />
+                    android:src="@drawable/arrow_right_icon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            </RelativeLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
         <!-- Order Dispatch -->
@@ -313,7 +334,7 @@
             app:cardCornerRadius="15dp"
             app:cardElevation="4dp">
 
-            <RelativeLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/outForDeliveryButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -327,29 +348,33 @@
                     android:id="@+id/dispatch_icon"
                     android:layout_width="28dp"
                     android:layout_height="28dp"
-                    android:layout_centerVertical="true"
                     android:src="@drawable/out_for_delivery_icon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:tint="@color/text_color_dark" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
                     android:layout_marginStart="16dp"
-                    android:layout_toEndOf="@id/dispatch_icon"
                     android:fontFamily="@font/lato_bold"
                     android:text="Order Dispatch"
                     android:textColor="@color/text_color_dark"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/dispatch_icon"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/arrow_right_icon" />
+                    android:src="@drawable/arrow_right_icon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            </RelativeLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
         <!-- Profile -->
@@ -362,7 +387,7 @@
             app:cardCornerRadius="15dp"
             app:cardElevation="4dp">
 
-            <RelativeLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/profile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -376,29 +401,33 @@
                     android:id="@+id/profile_icon"
                     android:layout_width="28dp"
                     android:layout_height="28dp"
-                    android:layout_centerVertical="true"
                     android:src="@drawable/profile_icon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:tint="@color/text_color_dark" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
                     android:layout_marginStart="16dp"
-                    android:layout_toEndOf="@id/profile_icon"
                     android:fontFamily="@font/lato_bold"
                     android:text="Admin Profile"
                     android:textColor="@color/text_color_dark"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/profile_icon"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/arrow_right_icon" />
+                    android:src="@drawable/arrow_right_icon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            </RelativeLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
         <!-- Create New User -->
@@ -411,7 +440,7 @@
             app:cardCornerRadius="15dp"
             app:cardElevation="4dp">
 
-            <RelativeLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/createNewUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -425,29 +454,33 @@
                     android:id="@+id/create_user_icon"
                     android:layout_width="28dp"
                     android:layout_height="28dp"
-                    android:layout_centerVertical="true"
                     android:src="@drawable/profile_create_icon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:tint="@color/text_color_dark" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
                     android:layout_marginStart="16dp"
-                    android:layout_toEndOf="@id/create_user_icon"
                     android:fontFamily="@font/lato_bold"
                     android:text="Create New User"
                     android:textColor="@color/text_color_dark"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/create_user_icon"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/arrow_right_icon" />
+                    android:src="@drawable/arrow_right_icon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            </RelativeLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
         <!-- Logout -->
@@ -461,7 +494,7 @@
             app:cardCornerRadius="15dp"
             app:cardElevation="4dp">
 
-            <RelativeLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/logoutButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -475,29 +508,33 @@
                     android:id="@+id/logout_icon"
                     android:layout_width="28dp"
                     android:layout_height="28dp"
-                    android:layout_centerVertical="true"
                     android:src="@drawable/logout_icon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:tint="#E40B0B" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
                     android:layout_marginStart="16dp"
-                    android:layout_toEndOf="@id/logout_icon"
                     android:fontFamily="@font/lato_bold"
                     android:text="Log Out"
                     android:textColor="#E40B0B"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/logout_icon"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/arrow_right_icon" />
+                    android:src="@drawable/arrow_right_icon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            </RelativeLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
         <TextView

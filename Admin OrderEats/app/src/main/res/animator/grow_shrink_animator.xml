@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- Animation for pressed state -->
+    <!-- Animation for pressed state: Grow slightly bigger -->
     <item android:state_pressed="true">
-        <set>
+        <set android:interpolator="@android:anim/accelerate_decelerate_interpolator">
             <objectAnimator
                 android:propertyName="scaleX"
-                android:duration="100"
-                android:valueTo="1.05"
+                android:duration="150"
+                android:valueTo="1.08"
                 android:valueType="floatType"/>
             <objectAnimator
                 android:propertyName="scaleY"
-                android:duration="100"
-                android:valueTo="1.05"
+                android:duration="150"
+                android:valueTo="1.08"
                 android:valueType="floatType"/>
         </set>
     </item>
-    <!-- Animation for default (unpressed) state -->
+    <!-- Animation for default state: Return to normal size with a bounce -->
     <item android:state_pressed="false">
-        <set>
+        <set android:interpolator="@android:anim/anticipate_overshoot_interpolator">
             <objectAnimator
                 android:propertyName="scaleX"
-                android:duration="200"
+                android:duration="300"
                 android:valueTo="1.0"
                 android:valueType="floatType"/>
             <objectAnimator
                 android:propertyName="scaleY"
-                android:duration="200"
+                android:duration="300"
                 android:valueTo="1.0"
                 android:valueType="floatType"/>
         </set>
