@@ -2,7 +2,10 @@ package com.rajender.adminordereats
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
+import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +13,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.rajender.adminordereats.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
     private val binding: ActivityMainBinding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
     }
@@ -22,89 +26,64 @@ class MainActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
-        // --- Load Animations ---
-        val fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in)
-        val slideInBottom = AnimationUtils.loadAnimation(this, R.anim.fade_in_slide_up_delayed)
-        val clickScaleAnimation = AnimationUtils.loadAnimation(this, R.anim.click_scale)
-        val rotateOnceAnim = AnimationUtils.loadAnimation(this, R.anim.rotate_once)
+        // Animate the layout
+        animateLayout()
 
-        // --- Entrance Animations ---
-        binding.imageView.startAnimation(fadeIn)
-        binding.textView2.startAnimation(fadeIn)
-        binding.cardView.startAnimation(slideInBottom)
+        // Set up click listeners
+        setupClickListeners()
+    }
 
-        val slideInLeft1 = AnimationUtils.loadAnimation(this, R.anim.slide_in_from_left)
-        binding.cardView2.startAnimation(slideInLeft1)
+    private fun animateLayout() {
+        val unfoldEnter = AnimationUtils.loadAnimation(this, R.anim.unfold_enter)
+        val pulse = AnimationUtils.loadAnimation(this, R.anim.pulse)
+        val childCount = binding.mainContainer.childCount
+        val handler = Handler(Looper.getMainLooper())
 
-        val slideInRight1 = AnimationUtils.loadAnimation(this, R.anim.slide_in_from_right)
-        slideInRight1.startOffset = 200
-        binding.cardView3.startAnimation(slideInRight1)
+        for (i in 0 until childCount) {
+            val view = binding.mainContainer.getChildAt(i)
+            view.visibility = View.INVISIBLE // Hide views initially
+            handler.postDelayed({
+                view.visibility = View.VISIBLE
+                view.startAnimation(unfoldEnter)
 
-        val slideInLeft2 = AnimationUtils.loadAnimation(this, R.anim.slide_in_from_left)
-        slideInLeft2.startOffset = 400
-        binding.cardView4.startAnimation(slideInLeft2)
-
-        val slideInRight2 = AnimationUtils.loadAnimation(this, R.anim.slide_in_from_right)
-        slideInRight2.startOffset = 400
-        binding.cardView5.startAnimation(slideInRight2)
-
-        val slideInLeft3 = AnimationUtils.loadAnimation(this, R.anim.slide_in_from_left)
-        slideInLeft3.startOffset = 600
-        binding.cardView6.startAnimation(slideInLeft3)
-
-
-        binding.logoutCardView?.let {
-            val slideInRight3 = AnimationUtils.loadAnimation(this, R.anim.slide_in_from_right)
-            slideInRight3.startOffset = 600
-            it.startAnimation(slideInRight3)
+                // Add pulse animation to the stats card
+                if (view.id == R.id.stats_card) {
+                    binding.pendingOrderLayout.startAnimation(pulse)
+                }
+            }, (i * 120L)) // Staggered delay
         }
+    }
 
-        // --- Click Listeners with Animations and Activity Transitions ---
+    private fun setupClickListeners() {
+        val clickableViews = listOf(
+            binding.addMenu,
+            binding.allItemMenu,
+            binding.outForDeliveryButton,
+            binding.profile,
+            binding.createNewUser,
+            binding.pendingOrderLayout,
+            binding.logoutButton
+        )
 
-        binding.imageView.setOnClickListener {
-            it.startAnimation(rotateOnceAnim)
+        clickableViews.forEach { view ->
+            view.setOnClickListener {
+                // The grow/shrink animation is now handled by the StateListAnimator in XML
+                // Navigate immediately on click
+                when (it.id) {
+                    R.id.addMenu -> navigateTo(AddItemActivity::class.java)
+                    R.id.allItemMenu -> navigateTo(AllItemActivity::class.java)
+                    R.id.outForDeliveryButton -> navigateTo(OutForDeliveryActivity::class.java)
+                    R.id.profile -> navigateTo(AdminProfileActivity::class.java)
+                    R.id.createNewUser -> navigateTo(CreateUserActivity::class.java)
+                    R.id.pendingOrderLayout -> navigateTo(PendingOrderActivity::class.java)
+                    R.id.logoutButton -> {
+                        auth.signOut()
+                        Toast.makeText(this, "Logged out successfully", Toast.LENGTH_SHORT).show()
+                        navigateTo(LoginActivity::class.java, true)
+                    }
+                }
+            }
         }
-
-        binding.addMenu.setOnClickListener { view ->
-            view.startAnimation(clickScaleAnimation)
-            navigateTo(AddItemActivity::class.java)
-        }
-
-        binding.allItemMenu.setOnClickListener { view ->
-            view.startAnimation(clickScaleAnimation)
-            navigateTo(AllItemActivity::class.java)
-        }
-
-        binding.outForDeliveryButton.setOnClickListener { view ->
-            view.startAnimation(clickScaleAnimation)
-            navigateTo(OutForDeliveryActivity::class.java)
-        }
-
-        binding.profile.setOnClickListener { view ->
-            view.startAnimation(clickScaleAnimation)
-            navigateTo(AdminProfileActivity::class.java)
-        }
-
-        binding.createNewUser.setOnClickListener { view ->
-            view.startAnimation(clickScaleAnimation)
-            navigateTo(CreateUserActivity::class.java)
-        }
-
-        binding.pendingText.setOnClickListener { view ->
-            view.startAnimation(clickScaleAnimation)
-            navigateTo(PendingOrderActivity::class.java)
-        }
-
-        binding.logoutCardView?.setOnClickListener { view ->
-            view.startAnimation(clickScaleAnimation)
-
-            auth.signOut()
-
-            Toast.makeText(this, "Logged out successfully", Toast.LENGTH_SHORT).show()
-
-            navigateTo(LoginActivity::class.java, true)
-        }
-
     }
 
     private fun navigateTo(activityClass: Class<*>, clearTask: Boolean = false) {
@@ -113,8 +92,8 @@ class MainActivity : AppCompatActivity() {
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
         startActivity(intent)
-        if (!clearTask) { 
-            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+        if (!clearTask) {
+            overridePendingTransition(R.anim.unfold_enter, R.anim.unfold_exit)
         }
     }
 }

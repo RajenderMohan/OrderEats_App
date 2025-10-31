@@ -1,479 +1,515 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
-    android:padding="16dp"
+    android:fillViewport="true"
     tools:context=".MainActivity">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="54dp"
-        android:layout_height="54dp"
-        android:layout_marginTop="32dp"
-        android:src="@drawable/logo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/lato_bolditalic"
-        android:text="OrderEats"
-        android:textAlignment="center"
-        android:textColor="@color/text_color_dark"
-        android:textSize="40sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
+    <LinearLayout
+        android:id="@+id/main_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        app:cardBackgroundColor="@color/main_card_background"
-        app:cardCornerRadius="15dp"
-        app:cardElevation="6dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2">
+        android:orientation="vertical"
+        android:padding="16dp">
 
+        <!-- Header -->
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/header_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp">
+            android:layout_marginTop="16dp">
 
-            <!-- Pending Orders -->
             <ImageView
-                android:id="@+id/pendingIcon"
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                android:src="@drawable/attention_icon"
+                android:id="@+id/imageView"
+                android:layout_width="54dp"
+                android:layout_height="54dp"
+                android:src="@drawable/logo"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:tint="@color/text_color_dark" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/pendingText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:fontFamily="@font/lato_bolditalic"
-                android:text="Pending Orders"
-                android:textColor="@color/text_color_dark"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="@+id/pendingIcon"
-                app:layout_constraintStart_toEndOf="@+id/pendingIcon"
-                app:layout_constraintTop_toTopOf="@+id/pendingIcon" />
-
-            <TextView
-                android:id="@+id/pendingOrderCount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/lato_blackitalic"
-                android:text="30"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/pendingText"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/pendingText" />
-
-            <View
-                android:id="@+id/divider1"
+                android:id="@+id/textView2"
                 android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginTop="16dp"
-                android:background="@color/rose_gold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/pendingIcon" />
-
-            <!-- Completed Orders -->
-            <ImageView
-                android:id="@+id/completedIcon"
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                android:layout_marginTop="16dp"
-                android:src="@drawable/correct_icon"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider1"
-                app:tint="@color/text_color_dark" />
-
-            <TextView
-                android:id="@+id/completedText"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:fontFamily="@font/lato_bolditalic"
-                android:text="Completed Orders"
+                android:gravity="center_vertical"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="OrderEats Admin"
                 android:textColor="@color/text_color_dark"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="@+id/completedIcon"
-                app:layout_constraintStart_toEndOf="@+id/completedIcon"
-                app:layout_constraintTop_toTopOf="@+id/completedIcon" />
-
-            <TextView
-                android:id="@+id/completedOrderCount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/lato_blackitalic"
-                android:text="30"
-                android:textColor="@color/icon_color"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/completedText"
+                android:textSize="32sp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/completedText" />
-
-            <View
-                android:id="@+id/divider2"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginTop="16dp"
-                android:background="@color/rose_gold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/completedIcon" />
-
-            <!-- Total Earnings -->
-            <ImageView
-                android:id="@+id/earningIcon"
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                android:layout_marginTop="16dp"
-                android:src="@drawable/rupee_icon"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider2" />
-
-            <TextView
-                android:id="@+id/earningText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:fontFamily="@font/lato_bolditalic"
-                android:text="Total Earnings"
-                android:textColor="@color/text_color_dark"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="@+id/earningIcon"
-                app:layout_constraintStart_toEndOf="@+id/earningIcon"
-                app:layout_constraintTop_toTopOf="@+id/earningIcon" />
-
-            <TextView
-                android:id="@+id/totalEarningAmount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/lato_blackitalic"
-                android:text="30₹"
-                android:textColor="@color/text_color_dark"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/earningText"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/earningText" />
+                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintTop_toTopOf="@+id/imageView" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
 
-    <androidx.constraintlayout.helper.widget.Flow
-        android:id="@+id/flow"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        app:constraint_referenced_ids="cardView2,cardView3,cardView4,cardView5,cardView6,logoutCardView"
-        app:flow_horizontalGap="16dp"
-        app:flow_horizontalStyle="spread_inside"
-        app:flow_maxElementsWrap="2"
-        app:flow_verticalGap="16dp"
-        app:flow_wrapMode="aligned"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView2"
-        android:layout_width="0dp"
-        android:layout_height="100dp"
-        app:cardBackgroundColor="@color/card_background"
-        app:cardCornerRadius="15dp"
-        app:cardElevation="4dp">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/addMenu"
-            android:layout_width="180dp"
-            android:layout_height="104dp"
-            android:background="?attr/selectableItemBackground"
-            android:clickable="true"
-            android:focusable="true">
-
-            <ImageView
-                android:id="@+id/imageView6"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/add_menu_icon"
-                app:layout_constraintBottom_toTopOf="@+id/addMenuText"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_chainStyle="packed" />
-
-            <TextView
-                android:id="@+id/addMenuText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:fontFamily="@font/lato_bolditalic"
-                android:text="Add Menu"
-                android:textColor="@color/text_color_dark"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/imageView6"
-                app:layout_constraintStart_toStartOf="@+id/imageView6"
-                app:layout_constraintTop_toBottomOf="@+id/imageView6" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView3"
-        android:layout_width="0dp"
-        android:layout_height="100dp"
-        app:cardBackgroundColor="@color/card_background"
-        app:cardCornerRadius="15dp"
-        app:cardElevation="4dp">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/allItemMenu"
+        <!-- Main Stats Card -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/stats_card"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="?attr/selectableItemBackground"
-            android:clickable="true"
-            android:focusable="true">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            app:cardBackgroundColor="@color/main_card_background"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="8dp">
 
-            <ImageView
-                android:id="@+id/imageView7"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/eye_icon"
-                app:layout_constraintBottom_toTopOf="@+id/allItemMenuText"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_chainStyle="packed" />
-
-            <TextView
-                android:id="@+id/allItemMenuText"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:fontFamily="@font/lato_bolditalic"
-                android:text="All Item Menu"
-                android:textColor="@color/text_color_dark"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/imageView7"
-                app:layout_constraintStart_toStartOf="@+id/imageView7"
-                app:layout_constraintTop_toBottomOf="@+id/imageView7" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                android:orientation="vertical"
+                android:padding="16dp">
 
-    </androidx.cardview.widget.CardView>
+                <!-- Pending Orders -->
+                <RelativeLayout
+                    android:id="@+id/pendingOrderLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:stateListAnimator="@animator/grow_shrink_animator">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView4"
-        android:layout_width="0dp"
-        android:layout_height="100dp"
-        app:cardBackgroundColor="@color/card_background"
-        app:cardCornerRadius="15dp"
-        app:cardElevation="4dp">
+                    <ImageView
+                        android:id="@+id/pendingIcon"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/attention_icon"
+                        app:tint="@color/text_color_dark" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/profile"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="16dp"
+                        android:layout_toEndOf="@id/pendingIcon"
+                        android:fontFamily="@font/lato_bolditalic"
+                        android:text="Pending Orders"
+                        android:textColor="@color/text_color_dark"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/pendingOrderCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:fontFamily="@font/lato_blackitalic"
+                        android:text="30"
+                        android:textColor="@color/black"
+                        android:textSize="22sp" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginVertical="12dp"
+                    android:background="@color/rose_gold" />
+
+                <!-- Completed Orders -->
+                <RelativeLayout
+                    android:id="@+id/completedOrderLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/completedIcon"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/correct_icon"
+                        app:tint="@color/text_color_dark" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="16dp"
+                        android:layout_toEndOf="@id/completedIcon"
+                        android:fontFamily="@font/lato_bolditalic"
+                        android:text="Completed Orders"
+                        android:textColor="@color/text_color_dark"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/completedOrderCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:fontFamily="@font/lato_blackitalic"
+                        android:text="150"
+                        android:textColor="@color/icon_color"
+                        android:textSize="22sp" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginVertical="12dp"
+                    android:background="@color/rose_gold" />
+
+                <!-- Total Earnings -->
+                <RelativeLayout
+                    android:id="@+id/totalEarningLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/earningIcon"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/rupee_icon" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="16dp"
+                        android:layout_toEndOf="@id/earningIcon"
+                        android:fontFamily="@font/lato_bolditalic"
+                        android:text="Total Earnings"
+                        android:textColor="@color/text_color_dark"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/totalEarningAmount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:fontFamily="@font/lato_blackitalic"
+                        android:text="$12,500"
+                        android:textColor="@color/text_color_dark"
+                        android:textSize="22sp" />
+                </RelativeLayout>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Menu Items -->
+        <TextView
+            android:id="@+id/menu_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/lato_bold"
+            android:text="Dashboard"
+            android:textColor="@color/text_color_dark"
+            android:textSize="22sp" />
+
+        <!-- Add Menu -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/add_menu_card"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="?attr/selectableItemBackground"
-            android:clickable="true"
-            android:focusable="true">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:cardBackgroundColor="@color/card_background"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="4dp">
 
-            <ImageView
-                android:id="@+id/imageView8"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/profile_icon"
-                app:layout_constraintBottom_toTopOf="@+id/profileText"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_chainStyle="packed" />
-
-            <TextView
-                android:id="@+id/profileText"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:id="@+id/addMenu"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:fontFamily="@font/lato_bolditalic"
-                android:text="Profile"
-                android:textColor="@color/text_color_dark"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/imageView8"
-                app:layout_constraintStart_toStartOf="@+id/imageView8"
-                app:layout_constraintTop_toBottomOf="@+id/imageView8" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="20dp"
+                android:stateListAnimator="@animator/grow_shrink_animator">
 
-    </androidx.cardview.widget.CardView>
+                <ImageView
+                    android:id="@+id/add_menu_icon"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/add_menu_icon"
+                    app:tint="@color/text_color_dark" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView5"
-        android:layout_width="0dp"
-        android:layout_height="100dp"
-        app:cardBackgroundColor="@color/card_background"
-        app:cardCornerRadius="15dp"
-        app:cardElevation="4dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="16dp"
+                    android:layout_toEndOf="@id/add_menu_icon"
+                    android:fontFamily="@font/lato_bold"
+                    android:text="Add Menu Item"
+                    android:textColor="@color/text_color_dark"
+                    android:textSize="18sp" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/createNewUser"
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/arrow_right_icon" />
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- All Items -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/all_items_card"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="?attr/selectableItemBackground"
-            android:clickable="true"
-            android:focusable="true">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:cardBackgroundColor="@color/card_background"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="4dp">
 
-            <ImageView
-                android:id="@+id/imageView9"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/profile_create_icon"
-                app:layout_constraintBottom_toTopOf="@+id/createNewUserText"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_chainStyle="packed" />
-
-            <TextView
-                android:id="@+id/createNewUserText"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:id="@+id/allItemMenu"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:fontFamily="@font/lato_bolditalic"
-                android:text="Create New User"
-                android:textColor="@color/text_color_dark"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/imageView9"
-                app:layout_constraintStart_toStartOf="@+id/imageView9"
-                app:layout_constraintTop_toBottomOf="@+id/imageView9" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="20dp"
+                android:stateListAnimator="@animator/grow_shrink_animator">
 
-    </androidx.cardview.widget.CardView>
+                <ImageView
+                    android:id="@+id/all_items_icon"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/eye_icon"
+                    app:tint="@color/text_color_dark" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView6"
-        android:layout_width="0dp"
-        android:layout_height="100dp"
-        app:cardBackgroundColor="@color/card_background"
-        app:cardCornerRadius="15dp"
-        app:cardElevation="4dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="16dp"
+                    android:layout_toEndOf="@id/all_items_icon"
+                    android:fontFamily="@font/lato_bold"
+                    android:text="View All Items"
+                    android:textColor="@color/text_color_dark"
+                    android:textSize="18sp" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/outForDeliveryButton"
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/arrow_right_icon" />
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Order Dispatch -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/dispatch_card"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="?attr/selectableItemBackground"
-            android:clickable="true"
-            android:focusable="true">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:cardBackgroundColor="@color/card_background"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="4dp">
 
-            <ImageView
-                android:id="@+id/imageView10"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:src="@drawable/out_for_delivery_icon"
-                app:layout_constraintBottom_toTopOf="@+id/outForDeliveryButtonText"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_chainStyle="packed" />
-
-            <TextView
-                android:id="@+id/outForDeliveryButtonText"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:id="@+id/outForDeliveryButton"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:fontFamily="@font/lato_bolditalic"
-                android:text="Order Dispatch"
-                android:textColor="@color/text_color_dark"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/imageView10"
-                app:layout_constraintStart_toStartOf="@+id/imageView10"
-                app:layout_constraintTop_toBottomOf="@+id/imageView10" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="20dp"
+                android:stateListAnimator="@animator/grow_shrink_animator">
 
-    </androidx.cardview.widget.CardView>
+                <ImageView
+                    android:id="@+id/dispatch_icon"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/out_for_delivery_icon"
+                    app:tint="@color/text_color_dark" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/logoutCardView"
-        android:layout_width="0dp"
-        android:layout_height="100dp"
-        app:cardBackgroundColor="@color/card_background"
-        app:cardCornerRadius="15dp"
-        app:cardElevation="4dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="16dp"
+                    android:layout_toEndOf="@id/dispatch_icon"
+                    android:fontFamily="@font/lato_bold"
+                    android:text="Order Dispatch"
+                    android:textColor="@color/text_color_dark"
+                    android:textSize="18sp" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/logoutButton"
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/arrow_right_icon" />
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Profile -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/profile_card"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="?attr/selectableItemBackground"
-            android:clickable="true"
-            android:focusable="true">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:cardBackgroundColor="@color/card_background"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="4dp">
 
-            <ImageView
-                android:id="@+id/imageView11"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/logout_icon"
-                app:layout_constraintBottom_toTopOf="@+id/logoutButtonText"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_chainStyle="packed" />
-
-            <TextView
-                android:id="@+id/logoutButtonText"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:id="@+id/profile"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:fontFamily="@font/lato_bolditalic"
-                android:text="Log Out"
-                android:textColor="#E40B0B"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/imageView11"
-                app:layout_constraintStart_toStartOf="@+id/imageView11"
-                app:layout_constraintTop_toBottomOf="@+id/imageView11" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="20dp"
+                android:stateListAnimator="@animator/grow_shrink_animator">
 
-    </androidx.cardview.widget.CardView>
+                <ImageView
+                    android:id="@+id/profile_icon"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/profile_icon"
+                    app:tint="@color/text_color_dark" />
 
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/lato_blackitalic"
-        android:text="@string/dev_name"
-        android:textAlignment="center"
-        android:textColor="@color/text_color_dark"
-        android:textSize="12sp"
-        android:textStyle="italic"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/flow"
-        app:layout_constraintVertical_bias="1.0" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="16dp"
+                    android:layout_toEndOf="@id/profile_icon"
+                    android:fontFamily="@font/lato_bold"
+                    android:text="Admin Profile"
+                    android:textColor="@color/text_color_dark"
+                    android:textSize="18sp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/arrow_right_icon" />
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Create New User -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/create_user_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:cardBackgroundColor="@color/card_background"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="4dp">
+
+            <RelativeLayout
+                android:id="@+id/createNewUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="20dp"
+                android:stateListAnimator="@animator/grow_shrink_animator">
+
+                <ImageView
+                    android:id="@+id/create_user_icon"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/profile_create_icon"
+                    app:tint="@color/text_color_dark" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="16dp"
+                    android:layout_toEndOf="@id/create_user_icon"
+                    android:fontFamily="@font/lato_bold"
+                    android:text="Create New User"
+                    android:textColor="@color/text_color_dark"
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/arrow_right_icon" />
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Logout -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/logout_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="24dp"
+            app:cardBackgroundColor="@color/card_background"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="4dp">
+
+            <RelativeLayout
+                android:id="@+id/logoutButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="20dp"
+                android:stateListAnimator="@animator/grow_shrink_animator">
+
+                <ImageView
+                    android:id="@+id/logout_icon"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/logout_icon"
+                    app:tint="#E40B0B" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="16dp"
+                    android:layout_toEndOf="@id/logout_icon"
+                    android:fontFamily="@font/lato_bold"
+                    android:text="Log Out"
+                    android:textColor="#E40B0B"
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/arrow_right_icon" />
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/dev_name_footer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/lato_blackitalic"
+            android:gravity="center"
+            android:text="@string/dev_name"
+            android:textColor="@color/text_color_dark"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+</ScrollView>
