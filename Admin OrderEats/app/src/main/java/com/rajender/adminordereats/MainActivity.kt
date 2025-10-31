@@ -4,10 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.animation.AnimationUtils
-import android.widget.Toast // Import Toast for messages
-import androidx.activity.enableEdgeToEdge
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.auth.FirebaseAuth // Import FirebaseAuth
+import com.google.firebase.auth.FirebaseAuth
 import com.rajender.adminordereats.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -15,14 +14,12 @@ class MainActivity : AppCompatActivity() {
         ActivityMainBinding.inflate(layoutInflater)
     }
 
-    private lateinit var auth: FirebaseAuth // Declare FirebaseAuth instance
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(binding.root)
 
-        // Initialize FirebaseAuth
         auth = FirebaseAuth.getInstance()
 
         // --- Load Animations ---
@@ -61,7 +58,6 @@ class MainActivity : AppCompatActivity() {
             slideInRight3.startOffset = 600
             it.startAnimation(slideInRight3)
         }
-        // --- End Entrance Animations ---
 
         // --- Click Listeners with Animations and Activity Transitions ---
 
@@ -94,45 +90,18 @@ class MainActivity : AppCompatActivity() {
             navigateTo(CreateUserActivity::class.java)
         }
 
-        binding.pendingOrderLayout.setOnClickListener { view ->
+        binding.pendingText.setOnClickListener { view ->
             view.startAnimation(clickScaleAnimation)
             navigateTo(PendingOrderActivity::class.java)
         }
 
-        // --- Logout Button Click Listener ---
-        // Assuming your logout button has the ID "logoutButton" and is inside "logoutCardView"
-        // If "logoutCardView" itself is the clickable logout element,
-        // you can set the listener directly on binding.logoutCardView
-        // For this example, I'm assuming a distinct Button with R.id.logoutButton
-
-        val logoutButton = binding.logoutCardView?.findViewById<View>(R.id.logoutButton)
-        logoutButton?.setOnClickListener { view ->
+        binding.logoutCardView?.setOnClickListener { view ->
             view.startAnimation(clickScaleAnimation)
 
-            // Sign out from Firebase
             auth.signOut()
 
-            // Optional: Show a toast message
             Toast.makeText(this, "Logged out successfully", Toast.LENGTH_SHORT).show()
 
-            // Navigate to LoginActivity and clear the task stack
-            navigateTo(LoginActivity::class.java, true)
-        }
-
-        // If the entire logoutCardView is supposed to be the logout button:
-        // Remove or comment out the block above
-
-// Use this if the ENTIRE logoutCardView should be clickable for logout
-        binding.logoutCardView?.setOnClickListener { view -> // Listener is now directly on logoutCardView
-            view.startAnimation(clickScaleAnimation)
-
-            // Sign out from Firebase
-            auth.signOut()
-
-            // Optional: Show a toast message
-            Toast.makeText(this, "Logged out successfully", Toast.LENGTH_SHORT).show()
-
-            // Navigate to LoginActivity and clear the task stack
             navigateTo(LoginActivity::class.java, true)
         }
 
@@ -144,10 +113,8 @@ class MainActivity : AppCompatActivity() {
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
         startActivity(intent)
-        if (!clearTask) { // Only apply standard fade if not clearing task (clearing task often has its own feel)
+        if (!clearTask) { 
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         }
-        // If clearing task (like for logout), you might not need a specific exit animation for MainActivity,
-        // as it will be removed from the stack. The LoginActivity will have its entrance.
     }
 }

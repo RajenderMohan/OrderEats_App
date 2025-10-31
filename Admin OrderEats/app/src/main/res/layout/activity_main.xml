@@ -6,22 +6,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
+    android:padding="16dp"
     tools:context=".MainActivity">
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="54dp"
         android:layout_height="54dp"
-        android:layout_marginLeft="18dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="32dp"
         android:src="@drawable/logo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="180dp"
-        android:layout_height="50dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:fontFamily="@font/lato_bolditalic"
         android:text="OrderEats"
         android:textAlignment="center"
@@ -29,15 +29,14 @@
         android:textSize="40sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.385"
         app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="@+id/imageView" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_marginTop="24dp"
         app:cardBackgroundColor="@color/main_card_background"
         app:cardCornerRadius="15dp"
         app:cardElevation="6dp"
@@ -45,173 +44,170 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:padding="16dp">
 
             <!-- Pending Orders -->
-            <RelativeLayout
-                android:id="@+id/pendingOrderLayout"
-                android:layout_width="match_parent"
+            <ImageView
+                android:id="@+id/pendingIcon"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:src="@drawable/attention_icon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/text_color_dark" />
+
+            <TextView
+                android:id="@+id/pendingText"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="?attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:padding="16dp">
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/lato_bolditalic"
+                android:text="Pending Orders"
+                android:textColor="@color/text_color_dark"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/pendingIcon"
+                app:layout_constraintStart_toEndOf="@+id/pendingIcon"
+                app:layout_constraintTop_toTopOf="@+id/pendingIcon" />
 
-                <ImageView
-                    android:id="@+id/pendingIcon"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/attention_icon"
-                    app:tint="@color/text_color_dark" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="16dp"
-                    android:layout_toEndOf="@+id/pendingIcon"
-                    android:fontFamily="@font/lato_bolditalic"
-                    android:text="Pending Orders"
-                    android:textColor="@color/text_color_dark"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/pendingOrderCount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:fontFamily="@font/lato_blackitalic"
-                    android:text="30"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-            </RelativeLayout>
+            <TextView
+                android:id="@+id/pendingOrderCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lato_blackitalic"
+                android:text="30"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/pendingText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/pendingText" />
 
             <View
-                android:layout_width="match_parent"
+                android:id="@+id/divider1"
+                android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:layout_marginHorizontal="16dp"
-                android:background="@color/rose_gold" />
+                android:layout_marginTop="16dp"
+                android:background="@color/rose_gold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pendingIcon" />
 
             <!-- Completed Orders -->
-            <RelativeLayout
-                android:id="@+id/completedOrderLayout"
-                android:layout_width="match_parent"
+            <ImageView
+                android:id="@+id/completedIcon"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/correct_icon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider1"
+                app:tint="@color/text_color_dark" />
+
+            <TextView
+                android:id="@+id/completedText"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="?attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:padding="16dp">
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/lato_bolditalic"
+                android:text="Completed Orders"
+                android:textColor="@color/text_color_dark"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/completedIcon"
+                app:layout_constraintStart_toEndOf="@+id/completedIcon"
+                app:layout_constraintTop_toTopOf="@+id/completedIcon" />
 
-                <ImageView
-                    android:id="@+id/completedIcon"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/correct_icon"
-                    app:tint="@color/text_color_dark" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="16dp"
-                    android:layout_toEndOf="@+id/completedIcon"
-                    android:fontFamily="@font/lato_bolditalic"
-                    android:text="Completed Orders"
-                    android:textColor="@color/text_color_dark"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/completedOrderCount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:fontFamily="@font/lato_blackitalic"
-                    android:text="30"
-                    android:textColor="@color/icon_color"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-            </RelativeLayout>
+            <TextView
+                android:id="@+id/completedOrderCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lato_blackitalic"
+                android:text="30"
+                android:textColor="@color/icon_color"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/completedText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/completedText" />
 
             <View
-                android:layout_width="match_parent"
+                android:id="@+id/divider2"
+                android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:layout_marginHorizontal="16dp"
-                android:background="@color/rose_gold" />
+                android:layout_marginTop="16dp"
+                android:background="@color/rose_gold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/completedIcon" />
 
             <!-- Total Earnings -->
-            <RelativeLayout
-                android:id="@+id/totalEarningLayout"
-                android:layout_width="match_parent"
+            <ImageView
+                android:id="@+id/earningIcon"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/rupee_icon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider2" />
+
+            <TextView
+                android:id="@+id/earningText"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="?attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:padding="16dp">
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/lato_bolditalic"
+                android:text="Total Earnings"
+                android:textColor="@color/text_color_dark"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/earningIcon"
+                app:layout_constraintStart_toEndOf="@+id/earningIcon"
+                app:layout_constraintTop_toTopOf="@+id/earningIcon" />
 
-                <ImageView
-                    android:id="@+id/earningIcon"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/rupee_icon"
+            <TextView
+                android:id="@+id/totalEarningAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lato_blackitalic"
+                android:text="30₹"
+                android:textColor="@color/text_color_dark"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/earningText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/earningText" />
 
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="16dp"
-                    android:layout_toEndOf="@+id/earningIcon"
-                    android:fontFamily="@font/lato_bolditalic"
-                    android:text="Total Earnings"
-                    android:textColor="@color/text_color_dark"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/totalEarningAmount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:fontFamily="@font/lato_blackitalic"
-                    android:text="30₹"
-                    android:textColor="@color/text_color_dark"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-            </RelativeLayout>
-
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flow"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        app:constraint_referenced_ids="cardView2,cardView3,cardView4,cardView5,cardView6,logoutCardView"
+        app:flow_horizontalGap="16dp"
+        app:flow_horizontalStyle="spread_inside"
+        app:flow_maxElementsWrap="2"
+        app:flow_verticalGap="16dp"
+        app:flow_wrapMode="aligned"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
-        android:layout_width="150dp"
+        android:layout_width="0dp"
         android:layout_height="100dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
         app:cardBackgroundColor="@color/card_background"
         app:cardCornerRadius="15dp"
-        app:cardElevation="4dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView">
+        app:cardElevation="4dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/addMenu"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:animateLayoutChanges="true"
+            android:layout_width="180dp"
+            android:layout_height="104dp"
             android:background="?attr/selectableItemBackground"
             android:clickable="true"
             android:focusable="true">
@@ -232,6 +228,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:fontFamily="@font/lato_bolditalic"
                 android:text="Add Menu"
                 android:textColor="@color/text_color_dark"
                 android:textSize="18sp"
@@ -245,21 +242,16 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView3"
-        android:layout_width="150dp"
+        android:layout_width="0dp"
         android:layout_height="100dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
         app:cardBackgroundColor="@color/card_background"
         app:cardCornerRadius="15dp"
-        app:cardElevation="4dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView">
+        app:cardElevation="4dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/allItemMenu"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:animateLayoutChanges="true"
             android:background="?attr/selectableItemBackground"
             android:clickable="true"
             android:focusable="true">
@@ -280,6 +272,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:fontFamily="@font/lato_bolditalic"
                 android:text="All Item Menu"
                 android:textColor="@color/text_color_dark"
                 android:textSize="18sp"
@@ -293,23 +286,16 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView4"
-        android:layout_width="150dp"
+        android:layout_width="0dp"
         android:layout_height="100dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="24dp"
         app:cardBackgroundColor="@color/card_background"
         app:cardCornerRadius="15dp"
-        app:cardElevation="4dp"
-        app:layout_constraintEnd_toEndOf="@+id/cardView2"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView2">
+        app:cardElevation="4dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/profile"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:animateLayoutChanges="true"
             android:background="?attr/selectableItemBackground"
             android:clickable="true"
             android:focusable="true">
@@ -330,6 +316,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:fontFamily="@font/lato_bolditalic"
                 android:text="Profile"
                 android:textColor="@color/text_color_dark"
                 android:textSize="18sp"
@@ -343,21 +330,16 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView5"
-        android:layout_width="150dp"
+        android:layout_width="0dp"
         android:layout_height="100dp"
-        android:layout_marginTop="24dp"
         app:cardBackgroundColor="@color/card_background"
         app:cardCornerRadius="15dp"
-        app:cardElevation="4dp"
-        app:layout_constraintEnd_toEndOf="@+id/cardView3"
-        app:layout_constraintStart_toStartOf="@+id/cardView3"
-        app:layout_constraintTop_toBottomOf="@+id/cardView3">
+        app:cardElevation="4dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/createNewUser"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:animateLayoutChanges="true"
             android:background="?attr/selectableItemBackground"
             android:clickable="true"
             android:focusable="true">
@@ -378,6 +360,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:fontFamily="@font/lato_bolditalic"
                 android:text="Create New User"
                 android:textColor="@color/text_color_dark"
                 android:textSize="18sp"
@@ -391,21 +374,16 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView6"
-        android:layout_width="150dp"
+        android:layout_width="0dp"
         android:layout_height="100dp"
-        android:layout_marginTop="24dp"
         app:cardBackgroundColor="@color/card_background"
         app:cardCornerRadius="15dp"
-        app:cardElevation="4dp"
-        app:layout_constraintEnd_toEndOf="@+id/cardView4"
-        app:layout_constraintStart_toStartOf="@+id/cardView4"
-        app:layout_constraintTop_toBottomOf="@+id/cardView4">
+        app:cardElevation="4dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/outForDeliveryButton"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:animateLayoutChanges="true"
             android:background="?attr/selectableItemBackground"
             android:clickable="true"
             android:focusable="true">
@@ -426,6 +404,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:fontFamily="@font/lato_bolditalic"
                 android:text="Order Dispatch"
                 android:textColor="@color/text_color_dark"
                 android:textSize="18sp"
@@ -439,15 +418,11 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/logoutCardView"
-        android:layout_width="150dp"
+        android:layout_width="0dp"
         android:layout_height="100dp"
-        android:layout_marginTop="24dp"
         app:cardBackgroundColor="@color/card_background"
         app:cardCornerRadius="15dp"
-        app:cardElevation="4dp"
-        app:layout_constraintEnd_toEndOf="@+id/cardView5"
-        app:layout_constraintStart_toStartOf="@+id/cardView5"
-        app:layout_constraintTop_toBottomOf="@+id/cardView5">
+        app:cardElevation="4dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/logoutButton"
@@ -473,6 +448,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:fontFamily="@font/lato_bolditalic"
                 android:text="Log Out"
                 android:textColor="#E40B0B"
                 android:textSize="18sp"
@@ -488,7 +464,6 @@
         android:id="@+id/textView12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
         android:fontFamily="@font/lato_blackitalic"
         android:text="@string/dev_name"
         android:textAlignment="center"
@@ -497,6 +472,8 @@
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/flow"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
