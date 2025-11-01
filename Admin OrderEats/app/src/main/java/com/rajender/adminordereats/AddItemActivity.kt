@@ -1,77 +1,129 @@
 package com.rajender.adminordereats
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.view.animation.AnimationUtils
-import android.view.animation.LayoutAnimationController
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.widget.doOnTextChanged
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import androidx.cardview.widget.CardView
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
 import com.rajender.adminordereats.databinding.ActivityAddItemBinding
 
 class AddItemActivity : AppCompatActivity() {
 
-    // Food Item Details
-    private var foodImageUri: Uri? = null
-
-    // Firebase
-    private lateinit var auth: FirebaseAuth
-    private lateinit var database: FirebaseDatabase
     private val binding: ActivityAddItemBinding by lazy {
         ActivityAddItemBinding.inflate(layoutInflater)
     }
 
-    private val pickImage =
-        registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
-            if (uri != null) {
-                foodImageUri = uri
-                binding.selectedImage.setImageURI(uri)
-                binding.tapToSelectImage.visibility = View.GONE
-                val popInAnimation = AnimationUtils.loadAnimation(this, R.anim.image_pop_in)
-                binding.selectedImage.startAnimation(popInAnimation)
-            } else {
-                Toast.makeText(this, "No image selected", Toast.LENGTH_SHORT).show()
-            }
+    private var foodImageUri: Uri? = null
+
+    private val pickImage = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+        if (uri != null) {
+            binding.selectedImage.setImageURI(uri)
+            foodImageUri = uri
+            binding.tapToSelectImage.visibility = View.GONE
         }
+    }
+
+    // Handler and Runnable for logo rotation
+    private val rotateHandler = Handler(Looper.getMainLooper())
+    private lateinit var rotateRunnable: Runnable
+    private val ROTATE_DELAY = 5000L // 5 seconds
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        // Initialize Firebase
-        auth = FirebaseAuth.getInstance()
-        database = FirebaseDatabase.getInstance()
+        // Animate the layout on startup
+        animateLayout()
 
-        setupAnimations()
-        setupClickListeners()
-        setupInputValidation()
+        // Set up the category dropdown
         setupCategoryDropdown()
+
+        // Set up click listeners
+        setupClickListeners()
+        
+        // Start the marquee with a delay
+        startMarqueeWithDelay()
     }
 
-    private fun setupAnimations() {
-        // Header Animation
-        val slideDown = AnimationUtils.loadAnimation(this, R.anim.slide_down)
-        binding.headerTitle.startAnimation(slideDown)
+    override fun onResume() {
+        super.onResume()
+        // Start the automatic logo rotation when the screen is visible
+        startLogoRotation()
+    }
 
-        // Staggered slide-up animation for the form
-        val slideUp = AnimationUtils.loadAnimation(this, R.anim.slide_up)
-        val controller = LayoutAnimationController(slideUp)
-        controller.delay = 0.2f // a delay of 20% of the animation duration
-        controller.order = LayoutAnimationController.ORDER_NORMAL
+    override fun onPause() {
+        super.onPause()
+        // Stop the automatic logo rotation to save resources when the screen is not visible
+        stopLogoRotation()
+    }
 
-        binding.formContainer.layoutAnimation = controller
-        binding.formContainer.startLayoutAnimation()
+    private fun startLogoRotation() {
+        val rotateAnim = AnimationUtils.loadAnimation(this, R.anim.rotate_once)
+        rotateRunnable = object : Runnable {
+            override fun run() {
+                binding.logoImage.startAnimation(rotateAnim)
+                // Schedule the next rotation
+                rotateHandler.postDelayed(this, ROTATE_DELAY)
+            }
+        }
+        // Start the first rotation after the initial delay
+        rotateHandler.postDelayed(rotateRunnable, ROTATE_DELAY)
+    }
 
-        // Pulsate animation for the Add Item button
-        val pulsate = AnimationUtils.loadAnimation(this, R.anim.pulsate)
-        binding.AddItemButton.startAnimation(pulsate)
+    private fun stopLogoRotation() {
+        rotateHandler.removeCallbacks(rotateRunnable)
+    }
+
+    private fun animateLayout() {
+        val unfoldEnter = AnimationUtils.loadAnimation(this, R.anim.unfold_enter)
+        val jiggle = AnimationUtils.loadAnimation(this, R.anim.jiggle)
+        val pulse = AnimationUtils.loadAnimation(this, R.anim.pulse)
+        val container = binding.mainContainer
+        val childCount = container.childCount
+        val handler = Handler(Looper.getMainLooper())
+
+        for (i in 0 until childCount) {
+            val view = container.getChildAt(i)
+            view.visibility = View.INVISIBLE // Hide views initially
+            handler.postDelayed({
+                view.visibility = View.VISIBLE
+                view.startAnimation(unfoldEnter)
+
+                // Add pulse animation to all CardViews
+                if (view is CardView) {
+                    view.startAnimation(pulse)
+                }
+
+                // Add jiggle animation to the button after the main animation
+                if (view.id == R.id.AddItemButton) { 
+                    handler.postDelayed({ view.startAnimation(jiggle) }, (childCount * 100L))
+                }
+            }, (i * 100L)) // Staggered delay
+        }
+    }
+
+    private fun setupCategoryDropdown() {
+        val categories = listOf("Fast Food",
+                "Indian Cuisine",
+                "Chinese",
+                "Italian",
+                "Desserts",
+                "Beverages",
+                "Healthy",
+               " Street Food",
+                "South Indian",
+                "Snacks")
+        val adapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, categories)
+        binding.foodCategory.setAdapter(adapter)
     }
 
     private fun setupClickListeners() {
@@ -80,109 +132,41 @@ class AddItemActivity : AppCompatActivity() {
         }
 
         binding.selectImage.setOnClickListener {
-            pickImage.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+            pickImage.launch("image/*")
         }
 
         binding.AddItemButton.setOnClickListener {
-            if (validateInput()) {
-                uploadData()
-            }
-        }
-    }
-
-    private fun setupInputValidation() {
-        binding.foodName.doOnTextChanged { text, _, _, _ ->
-            if (text.isNullOrBlank()) {
-                binding.foodNameLayout.error = "Food name is required"
-            } else {
-                binding.foodNameLayout.error = null
-            }
-        }
-
-        binding.foodPrice.doOnTextChanged { text, _, _, _ ->
-            if (text.isNullOrBlank()) {
-                binding.foodPriceLayout.error = "Food price is required"
-            } else {
-                binding.foodPriceLayout.error = null
-            }
-        }
-
-        binding.description.doOnTextChanged { text, _, _, _ ->
-            if (text.isNullOrBlank()) {
-                binding.descriptionLayout.error = "Description is required"
-            } else {
-                binding.descriptionLayout.error = null
-            }
-        }
-
-        binding.ingredient.doOnTextChanged { text, _, _, _ ->
-            if (text.isNullOrBlank()) {
-                binding.ingredientLayout.error = "Ingredients are required"
-            } else {
-                binding.ingredientLayout.error = null
-            }
-        }
-    }
-
-    private fun setupCategoryDropdown() {
-        val categories = resources.getStringArray(R.array.food_categories)
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, categories)
-        binding.foodCategory.setAdapter(adapter)
-    }
-
-    private fun validateInput(): Boolean {
-        val isFoodNameValid = !binding.foodName.text.isNullOrBlank()
-        val isFoodPriceValid = !binding.foodPrice.text.isNullOrBlank()
-        val isDescriptionValid = !binding.description.text.isNullOrBlank()
-        val isIngredientValid = !binding.ingredient.text.isNullOrBlank()
-        val isCategorySelected = !binding.foodCategory.text.isNullOrBlank()
-        val isImageSelected = foodImageUri != null
-
-        if (!isFoodNameValid) binding.foodNameLayout.error = "Food name is required"
-        if (!isFoodPriceValid) binding.foodPriceLayout.error = "Food price is required"
-        if (!isDescriptionValid) binding.descriptionLayout.error = "Description is required"
-        if (!isIngredientValid) binding.ingredientLayout.error = "Ingredients are required"
-        if (!isCategorySelected) binding.foodCategoryLayout.error = "Category is required"
-
-        if (!isImageSelected) {
-            Toast.makeText(this, "Please select an image", Toast.LENGTH_SHORT).show()
-        }
-
-        return isFoodNameValid && isFoodPriceValid && isDescriptionValid && isIngredientValid && isCategorySelected && isImageSelected
-    }
-
-    private fun uploadData() {
-        setInProgress(true)
-
-        val menuRef: DatabaseReference = database.getReference("menu")
-        val newItemKey: String? = menuRef.push().key
-
-        if (newItemKey != null) {
-            // Here you would upload the image to Firebase Storage and then save the item details
-            // For now, we'll just simulate a delay
-            binding.root.postDelayed({
-                setInProgress(false)
-                Toast.makeText(this, "Item Added Successfully", Toast.LENGTH_LONG).show()
+            if (areAllFieldsFilled()) {
+                Toast.makeText(this, "item added successfully", Toast.LENGTH_SHORT).show()
+                // Redirect to MainActivity
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
                 finish()
-            }, 2000)
-        } else {
-            setInProgress(false)
-            Toast.makeText(this, "Could not create new item key.", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
-    private fun setInProgress(inProgress: Boolean) {
-        if (inProgress) {
-            binding.progressBar.visibility = View.VISIBLE
-            binding.AddItemButton.isEnabled = false
-        } else {
-            binding.progressBar.visibility = View.GONE
-            binding.AddItemButton.isEnabled = true
-        }
+    private fun areAllFieldsFilled(): Boolean {
+        return binding.foodName.text.toString().isNotBlank() &&
+                binding.foodPrice.text.toString().isNotBlank() &&
+                binding.description.text.toString().isNotBlank() &&
+                binding.ingredient.text.toString().isNotBlank() &&
+                binding.foodCategory.text.toString().isNotBlank() &&
+                foodImageUri != null
+    }
+
+    private fun startMarqueeWithDelay() {
+        val handler = Handler(Looper.getMainLooper())
+        handler.postDelayed({
+            binding.headerTitle.isSelected = true
+        }, 2000) // 2-second delay
     }
 
     override fun finish() {
         super.finish()
-        overridePendingTransition(R.anim.slide_in_left_activity, R.anim.slide_out_right_activity)
+        // Apply the consistent unfold transition on exit
+        overridePendingTransition(R.anim.unfold_enter, R.anim.unfold_exit)
     }
 }

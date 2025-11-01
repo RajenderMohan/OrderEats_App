@@ -11,18 +11,18 @@
     <style name="Theme.AdminOrderEats" parent="Base.Theme.AdminOrderEats" />
 
     <style name="Widget.App.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        <item name="android:textColorHint">#CCFFFFFF</item>
-        <item name="boxStrokeColor">#FFFFFF</item>
-        <item name="hintTextColor">#FFFFFF</item>
-        <item name="endIconTint">@android:color/white</item>
-        <item name="counterTextColor">@android:color/white</item>
+        <item name="android:textColorHint">@color/text_color_dark</item>
+        <item name="boxStrokeColor">@color/text_color_dark</item>
+        <item name="hintTextColor">@color/text_color_dark</item>
+        <item name="endIconTint">@color/text_color_dark</item>
+        <item name="counterTextColor">@color/text_color_dark</item>
     </style>
 
     <style name="Widget.App.ExposedDropdownMenu" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
-        <item name="android:textColorHint">#CCFFFFFF</item>
-        <item name="boxStrokeColor">#FFFFFF</item>
-        <item name="hintTextColor">#FFFFFF</item>
-        <item name="endIconTint">@android:color/white</item>
+        <item name="android:textColorHint">@color/text_color_dark</item>
+        <item name="boxStrokeColor">@color/text_color_dark</item>
+        <item name="hintTextColor">@color/text_color_dark</item>
+        <item name="endIconTint">@color/text_color_dark</item>
     </style>
 
     <style name="ActionCard">

@@ -28,8 +28,8 @@ class AllItemActivity : AppCompatActivity() {
         }
 
         // --- Prepare Data for Adapter ---
-        val menuFoodName = listOf("Burger", "bhel", "Chai", "brownie", "sandwich", "Roll", "Momo", "paratha", "Paneer_tikka",
-            "Pasta", "Noddles", "Kachori", "jalebi","idli","Paneer_bun","Mojito","Cake","Chat","Dosa","Chicken","Chole_Kulche",)
+        val menuFoodName = listOf("Burger", "Bhel", "Chai", "Brownie", "Sandwich", "Roll", "Momo", "Paratha", "Paneer Tikka",
+            "Pasta", "Noddles", "Kachori", "Jalebi","Idli","Paneer Bun","Mojito","Cake","Chat","Dosa","Chicken","Chole Kulche",)
         val menuItemPrice = listOf("₹39", "₹49", "₹20", "₹30", "₹30", "₹40", "₹50", "₹30", "₹30", "₹50", "₹60", "₹50", "₹30","₹40","₹30","₹49","₹199","₹40","₹60","₹259","₹40",)
         val menuImage = listOf(
             R.drawable.burger, R.drawable.bhel,

@@ -1,9 +1,15 @@
 package com.rajender.adminordereats.model
 
+import android.net.Uri
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class AllMenu(
-    val foodName : String ?= null,
-    val foodPrice : String ?= null,
-    val foodDescription : String ?= null,
-    val foodImage : String ?= null, // ✅ Int? को String? में बदल दिया गया है
-    val foodIngredient : String ?= null
-)
+    val key: String? = null,
+    val foodName: String? = null,
+    val foodPrice: String? = null,
+    val foodImage: Uri? = null,
+    val foodDescription: String? = null,
+    val foodIngredient: String? = null
+) : Parcelable

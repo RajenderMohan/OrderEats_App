@@ -1,6 +1,8 @@
-plugins {    alias(libs.plugins.android.application)
+plugins {
+    alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.google.gms.google.services)
+    id("kotlin-parcelize") // Added this line
 }
 
 android {
@@ -43,9 +45,15 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-    implementation(libs.firebase.auth)
-    implementation(libs.firebase.database)
-    implementation(libs.firebase.storage)
+    
+    // Firebase Bill of Materials (BOM)
+    implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
+
+    // Firebase Libraries
+    implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.firebase:firebase-database")
+    implementation("com.google.firebase:firebase-storage")
+    implementation("com.google.firebase:firebase-firestore")
 
     // Google Sign-In
     implementation(libs.googleid)
