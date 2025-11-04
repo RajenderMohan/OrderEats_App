@@ -1,6 +1,7 @@
 package com.rajender.adminordereats
 
 import android.os.Bundle
+import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,6 +21,11 @@ class OutForDeliveryActivity : AppCompatActivity() {
         val slideDown = AnimationUtils.loadAnimation(this, R.anim.slide_down)
         binding.headerTitle.startAnimation(slideDown)
         binding.backButton.startAnimation(slideDown)
+        binding.headerTitle.isSelected = true
+
+        // Animate Logo
+        val rotate = AnimationUtils.loadAnimation(this, R.anim.rotate_indefinitely)
+        binding.logoImageView.startAnimation(rotate)
 
         // --- Prepare Data ---
         val customerNames = arrayListOf(
