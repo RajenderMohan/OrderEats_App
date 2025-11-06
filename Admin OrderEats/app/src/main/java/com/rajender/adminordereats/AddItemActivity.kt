@@ -29,6 +29,9 @@ class AddItemActivity : AppCompatActivity() {
             binding.selectedImage.setImageURI(uri)
             foodImageUri = uri
             binding.tapToSelectImage.visibility = View.GONE
+            Toast.makeText(this, "Image Selected", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(this, "No Image Selected", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -136,26 +139,45 @@ class AddItemActivity : AppCompatActivity() {
         }
 
         binding.AddItemButton.setOnClickListener {
-            if (areAllFieldsFilled()) {
-                Toast.makeText(this, "item added successfully", Toast.LENGTH_SHORT).show()
-                // Redirect to MainActivity
+            if (validateInputs()) {
+                // All checks passed, proceed with adding the item
+                // In a real app, you would now upload the image and save the data
+                Toast.makeText(this, "Item Added Successfully!", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 finish()
-            } else {
-                Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
-    private fun areAllFieldsFilled(): Boolean {
-        return binding.foodName.text.toString().isNotBlank() &&
-                binding.foodPrice.text.toString().isNotBlank() &&
-                binding.description.text.toString().isNotBlank() &&
-                binding.ingredient.text.toString().isNotBlank() &&
-                binding.foodCategory.text.toString().isNotBlank() &&
-                foodImageUri != null
+    private fun validateInputs(): Boolean {
+        if (binding.foodName.text.toString().isBlank()) {
+            Toast.makeText(this, "Please enter a food name", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        if (binding.foodPrice.text.toString().isBlank()) {
+            Toast.makeText(this, "Please enter a food price", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        if (foodImageUri == null) {
+            Toast.makeText(this, "Please select an image", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        if (binding.description.text.toString().isBlank()) {
+            Toast.makeText(this, "Please enter a description", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        if (binding.ingredient.text.toString().isBlank()) {
+            Toast.makeText(this, "Please enter ingredients", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        if (binding.foodCategory.text.toString().isBlank()) {
+            Toast.makeText(this, "Please select a category", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        return true
     }
+
 
     private fun startMarqueeWithDelay() {
         val handler = Handler(Looper.getMainLooper())
