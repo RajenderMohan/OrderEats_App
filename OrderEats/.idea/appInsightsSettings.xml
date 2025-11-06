@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.rajender.ordereats" />
+                  <option name="mobileSdkAppId" value="1:146028169859:android:e2505667743b17f8eae9b6" />
+                  <option name="projectId" value="ordereats-ee850" />
+                  <option name="projectNumber" value="146028169859" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
