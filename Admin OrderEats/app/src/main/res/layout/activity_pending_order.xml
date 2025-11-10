@@ -5,17 +5,18 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/pending_order_background_gradient"
+    android:background="@drawable/gradient_background"
     tools:context=".PendingOrderActivity">
 
     <ImageButton
         android:id="@+id/backButton"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="36dp"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:src="@drawable/arrow_left_white"
+        app:tint="@color/text_color_dark"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,8 +26,8 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/lato_bolditalic"
         android:text="Pending Orders"
-        android:textColor="@android:color/white"
-        android:textSize="30sp"
+        android:textColor="@color/text_color_dark"
+        android:textSize="35sp"
         app:layout_constraintBottom_toBottomOf="@+id/backButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

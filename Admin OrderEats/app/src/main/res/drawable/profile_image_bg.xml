@@ -1,0 +1,26 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Outer soft background -->
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="#F2EBDC" />
+            <stroke
+                android:width="2dp"
+                android:color="#FFFFFF" />
+        </shape>
+    </item>
+
+    <!-- Inner radial glow -->
+    <item android:left="4dp" android:right="4dp" android:top="4dp" android:bottom="4dp">
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="80dp"
+                android:startColor="#FFFFFF"
+                android:endColor="#F1FFE0"
+                android:centerX="50%"
+                android:centerY="50%" />
+        </shape>
+    </item>
+
+</layer-list>

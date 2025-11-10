@@ -1,6 +1,8 @@
 package com.rajender.adminordereats
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,6 +23,15 @@ class AllItemActivity : AppCompatActivity() {
         val slideDown = AnimationUtils.loadAnimation(this, R.anim.slide_down)
         binding.headerTitle.startAnimation(slideDown)
         binding.backButton.startAnimation(slideDown)
+
+        // Marquee effect for header title
+        binding.headerTitle.isSelected = true
+
+        // Rotate logo_image after 5 seconds
+        Handler(Looper.getMainLooper()).postDelayed({
+            val rotate = AnimationUtils.loadAnimation(this, R.anim.rotate_anim)
+            binding.logoImage.startAnimation(rotate)
+        }, 5000)
 
         // --- Back Button Click Listener ---
         binding.backButton.setOnClickListener {

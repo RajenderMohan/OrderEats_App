@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="pulse_animator_x" type="id" />
+    <item name="pulse_animator_y" type="id" />
+</resources>
