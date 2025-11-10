@@ -5,31 +5,48 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/pending_order_background_gradient"
+    android:background="@drawable/gradient_background"
+    android:padding="16dp"
     tools:context=".OutForDeliveryActivity">
 
     <ImageButton
         android:id="@+id/backButton"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="36dp"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="20dp"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:src="@drawable/arrow_left_white"
+        app:tint="@color/text_color_dark"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/header_title"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:ellipsize="marquee"
         android:fontFamily="@font/lato_bolditalic"
+        android:gravity="center"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:scrollHorizontally="true"
+        android:singleLine="true"
         android:text="Out For Delivery"
-        android:textColor="@android:color/white"
-        android:textSize="30sp"
+        android:textColor="@color/text_color_dark"
+        android:textSize="35sp"
+        app:layout_constraintBottom_toBottomOf="@+id/backButton"
+        app:layout_constraintEnd_toStartOf="@+id/logoImageView"
+        app:layout_constraintStart_toEndOf="@+id/backButton"
+        app:layout_constraintTop_toTopOf="@+id/backButton" />
+
+    <ImageView
+        android:id="@+id/logoImageView"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/logo"
         app:layout_constraintBottom_toBottomOf="@+id/backButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/backButton" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -37,7 +54,6 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
-        android:layoutAnimation="@anim/layout_animation_slide_from_bottom"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

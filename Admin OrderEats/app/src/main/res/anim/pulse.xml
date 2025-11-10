@@ -1,13 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <set xmlns:android="http://schemas.android.com/apk/res/android">
     <scale
+<<<<<<< HEAD
         android:duration="1000"
+=======
+        android:duration="500"
+>>>>>>> 7f1f1c08c3e328a0df6513908c0d395eb2d50a7f
         android:fromXScale="1.0"
         android:fromYScale="1.0"
         android:pivotX="50%"
         android:pivotY="50%"
+<<<<<<< HEAD
         android:repeatCount="infinite"
         android:repeatMode="reverse"
         android:toXScale="1.1"
         android:toYScale="1.1" />
+=======
+        android:toXScale="1.05"
+        android:toYScale="1.05" />
+    <scale
+        android:duration="500"
+        android:fromXScale="1.05"
+        android:fromYScale="1.05"
+        android:pivotX="50%"
+        android:pivotY="50%"
+        android:startOffset="500"
+        android:toXScale="1.0"
+        android:toYScale="1.0" />
+>>>>>>> 7f1f1c08c3e328a0df6513908c0d395eb2d50a7f
 </set>

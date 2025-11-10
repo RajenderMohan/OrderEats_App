@@ -8,20 +8,21 @@
     android:layout_marginTop="8dp"
     android:layout_marginEnd="12dp"
     android:layout_marginBottom="8dp"
-    app:cardBackgroundColor="#F8F8F8"
-    app:cardCornerRadius="20dp"
-    app:cardElevation="6dp">
+    app:cardBackgroundColor="@android:color/white"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="4dp"
+    app:strokeColor="#E0E0E0"
+    app:strokeWidth="1dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/delivery_item_card_background"
-        android:padding="12dp">
+        android:padding="16dp">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/customerImageView"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:scaleType="centerCrop"
             android:src="@drawable/logo_app"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -36,21 +37,28 @@
             android:layout_marginStart="16dp"
             android:fontFamily="@font/lato_bold"
             android:text="Customer Name"
-            android:textColor="@android:color/black"
+            android:textColor="@color/text_color_dark"
             android:textSize="18sp"
             app:layout_constraintEnd_toStartOf="@+id/callButton"
             app:layout_constraintStart_toEndOf="@+id/customerImageView"
             app:layout_constraintTop_toTopOf="@+id/customerImageView" />
 
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="end"
+            app:constraint_referenced_ids="paymentStatusTextView,deliveryStatusTextView" />
+
         <TextView
             android:id="@+id/paymentStatusTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="8dp"
             android:fontFamily="@font/lato_regular"
             android:text="Payment:"
             android:textColor="@color/text_color"
-            android:textSize="16sp"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@+id/customerName"
             app:layout_constraintTop_toBottomOf="@+id/customerName" />
 
@@ -62,10 +70,9 @@
             android:fontFamily="@font/lato_bold"
             android:text="Received"
             android:textColor="#4CAF50"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@+id/paymentStatusTextView"
-            app:layout_constraintStart_toEndOf="@+id/paymentStatusTextView"
-            app:layout_constraintTop_toTopOf="@+id/paymentStatusTextView" />
+            android:textSize="14sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/paymentStatusTextView"
+            app:layout_constraintStart_toEndOf="@+id/barrier" />
 
         <TextView
             android:id="@+id/deliveryStatusTextView"
@@ -75,8 +82,9 @@
             android:fontFamily="@font/lato_regular"
             android:text="Delivery:"
             android:textColor="@color/text_color"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="@+id/paymentStatusTextView"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/customerName"
             app:layout_constraintTop_toBottomOf="@+id/paymentStatusTextView" />
 
         <TextView
@@ -87,22 +95,21 @@
             android:fontFamily="@font/lato_bold"
             android:text="Pending"
             android:textColor="#FFC107"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@+id/deliveryStatusTextView"
-            app:layout_constraintStart_toEndOf="@+id/deliveryStatusTextView"
-            app:layout_constraintTop_toTopOf="@+id/deliveryStatusTextView" />
+            android:textSize="14sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/deliveryStatusTextView"
+            app:layout_constraintStart_toEndOf="@+id/barrier" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <ImageButton
             android:id="@+id/callButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#4CAF50"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Call Customer"
             android:src="@drawable/ic_call"
-            app:fabSize="mini"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="@android:color/white" />
+            app:tint="#4CAF50" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
